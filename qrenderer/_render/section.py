@@ -65,4 +65,6 @@ class __RenderSection(RenderBase):
 
 
 class RenderSection(__RenderSection):
-    pass
+    """
+    Extend Rendering of a layout.Section object
+    """

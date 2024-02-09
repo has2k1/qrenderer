@@ -50,7 +50,7 @@ $ pip install git+https://github.com/has2k1/qrenderer.git
 
 Keeping the original signature of a class, we add a line of text below it.
 
-```
+```python
 from quartodoc.pandoc.blocks import Blocks
 from qrenderer import QRenderer, extend_base_class, RenderDocClass
 

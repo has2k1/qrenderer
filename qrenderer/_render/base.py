@@ -161,4 +161,7 @@ class __RenderBase(Block):
 class RenderBase(__RenderBase):
     """
     Extend the base render class
+
+    This class is meant for internal use. Users should not have
+    to extend it.
     """

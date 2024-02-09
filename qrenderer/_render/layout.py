@@ -52,4 +52,6 @@ class __RenderLayout(RenderBase):
 
 
 class RenderLayout(__RenderLayout):
-    pass
+    """
+    Extend Rendering of a layout.Layout object
+    """
