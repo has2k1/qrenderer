@@ -9,6 +9,8 @@ import griffe.expressions as expr
 from quartodoc.pandoc.components import Attr
 from quartodoc.pandoc.inlines import Span
 
+from ._pandoc.inlines import InterLink
+
 if TYPE_CHECKING:
     from typing import Any
 
@@ -175,8 +177,6 @@ def interlink_identifiers(el: dc.Attribute) -> str:
     """
     Render expression with identifiers in them interlinked
     """
-    from ._utils import InterLink
-
     if not el.value or isinstance(el.value, str):
         return str(el.value)
 

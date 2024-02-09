@@ -25,7 +25,8 @@ from .._format import (
     pretty_code,
     repr_obj,
 )
-from .._utils import InterLink, is_protocol, is_typealias, is_typevar, no_init
+from .._pandoc.inlines import InterLink
+from .._utils import is_protocol, is_typealias, is_typevar, no_init
 from .base import RenderBase
 
 if TYPE_CHECKING:
@@ -354,7 +355,7 @@ class __RenderDoc(RenderBase):
 
         sections: list[Block] = []
         patched_sections = qast.transform(self.obj.docstring.parsed)
-        for section in patched_sections: # type: ignore
+        for section in patched_sections:  # type: ignore
             title = cast(str, (section.title or section.kind.value).title())
             body = self.render_section(section) or ""
             slug = title.lower().replace(" ", "-")

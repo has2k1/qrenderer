@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import field
 from typing import TYPE_CHECKING
 
 from griffe import dataclasses as dc
 from griffe import expressions as expr
 from quartodoc import layout
-from quartodoc.pandoc.inlines import Link
 
 if TYPE_CHECKING:
     from typing import TypeGuard, TypeVar
@@ -14,43 +13,6 @@ if TYPE_CHECKING:
     from .typing import DocMemberType, DocType  # noqa: TCH001
 
     T = TypeVar("T")
-
-
-@dataclass
-class InterLink(Link):
-    """
-    Link with target enclosed in colons
-
-    These targets of these links are interlink references
-    that are finally resolved by the interlinks filter.
-    """
-
-    def __post_init__(self):
-        self.target = f"`{self.target}`"
-
-
-def shortcode(name: str, *args: str, **kwargs: str):
-    """
-    Create pandoc shortcode
-
-    Parameters
-    ----------
-    str:
-        Name of the shortcode
-    *args:
-        Arguments to the shortcode
-    **kwargs:
-        Named arguments for the shortcode
-
-    References
-    ----------
-    https://quarto.org/docs/extensions/shortcodes.html
-    """
-
-    _args = " ".join(args)
-    _kwargs = " ".join(f"{k}={v}" for k, v in kwargs.items())
-    content = f"{name} {_args} {_kwargs}".strip()
-    return f"{{{{< {content} >}}}}"
 
 
 def is_typealias(obj: dc.Object | dc.Alias) -> bool:

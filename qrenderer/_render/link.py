@@ -11,7 +11,7 @@ from quartodoc.pandoc.blocks import (
 from quartodoc.pandoc.components import Attr
 
 from .._format import markdown_escape
-from .._utils import InterLink
+from .._pandoc.inlines import InterLink
 from .base import RenderBase
 
 
