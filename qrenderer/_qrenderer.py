@@ -8,7 +8,7 @@ from quartodoc.renderers.base import Renderer
 from .typing_information import TypeInformation
 
 if TYPE_CHECKING:
-    from quartodoc import layout
+    from quartodoc import Builder, layout
 
     from .typing import DisplayNameFormat
 
@@ -49,10 +49,10 @@ class QRenderer(Renderer):
 
         return str(RenderLayout(el, self, self.header_level))
 
-    def _pages_written(self, builder):
+    def _pages_written(self, builder: Builder):
         self._write_typing_information(builder)
 
-    def _write_typing_information(self, builder):
+    def _write_typing_information(self, builder: Builder):
         """
         Render typing information and the interlinks
         """

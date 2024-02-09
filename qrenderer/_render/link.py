@@ -3,7 +3,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import cast
 
-from griffe import dataclasses as dc
 from quartodoc import layout
 from quartodoc.pandoc.blocks import (
     Blocks,
@@ -26,7 +25,7 @@ class __RenderLink(RenderBase):
         self.link = cast(layout.Link, self.layout_obj)
         """Link being documented"""
 
-        self.obj = cast(dc.Object | dc.Alias, self.link.obj)
+        self.obj = self.link.obj
         """Griffe object"""
 
     def __str__(self):

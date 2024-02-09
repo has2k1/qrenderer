@@ -13,7 +13,7 @@ from quartodoc.pandoc.blocks import (
 )
 
 if TYPE_CHECKING:
-    from typing import Any, Optional
+    from typing import Any
 
     from quartodoc.pandoc.components import Attr
     from quartodoc.pandoc.inlines import Code
@@ -53,8 +53,8 @@ class RawHTMLBlockTag(Block):
     """
 
     tag: str
-    content: Optional[BlockContent] = None
-    attr: Optional[Attr] = None
+    content: BlockContent | None = None
+    attr: Attr | None = None
 
     def __str__(self):
         """
@@ -73,9 +73,9 @@ class RenderedDocObject(Block):
     The rendered parts of an object
     """
 
-    title: Optional[Header] = None
-    signature: Optional[Code | str] = None
-    body: Optional[BlockContent] = None
+    title: Header | None = None
+    signature: Code | str | None = None
+    body: BlockContent | None = None
 
     def __str__(self):
         lst = [b for b in (self.title, self.signature, self.body) if b]

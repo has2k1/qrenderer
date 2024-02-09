@@ -174,4 +174,4 @@ class TypeInformation(Block):
         """
         self.builder.items.extend(self.sections.items)
         filepath = Path(self.base_uri).with_suffix(".qmd")
-        filepath.write_text(str(self))
+        _ = filepath.write_text(str(self))

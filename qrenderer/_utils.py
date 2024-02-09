@@ -75,7 +75,6 @@ def is_protocol(obj: dc.Object | dc.Alias) -> bool:
     """
     return (
         isinstance(obj, dc.Class)
-        and isinstance(obj.bases, list)
         and len(obj.bases) > 0
         and isinstance(obj.bases[-1], expr.ExprName)
         and obj.bases[-1].canonical_path == "typing.Protocol"

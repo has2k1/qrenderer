@@ -29,9 +29,11 @@ from .._utils import InterLink, is_protocol, is_typealias, is_typevar, no_init
 from .base import RenderBase
 
 if TYPE_CHECKING:
-    from typing import Optional, Sequence
+    from collections.abc import Sequence
 
-    from ..typing import Annotation, DocObjectKind
+    from quartodoc.pandoc.inlines import InlineContentItem
+
+    from ..typing import Annotation, DisplayNameFormat, DocObjectKind
 
 
 @dataclass
@@ -101,8 +103,8 @@ class __RenderDoc(RenderBase):
         self.doc = cast(layout.Doc, self.layout_obj)
         """Doc Object"""
 
-        self.obj = cast(dc.Object | dc.Alias, self.doc.obj)
-        """Griffe object"""
+        self.obj = self.doc.obj
+        """Griffe object (or alias)"""
 
         self.path = f"{self.obj.name}.qmd"
         """Name of the page where this object will be written"""
@@ -118,7 +120,7 @@ class __RenderDoc(RenderBase):
         kind = obj.kind.value
         kind = cast(
             Literal["class", "function", "attribute", "module", "alias"],
-            obj.kind.value
+            obj.kind.value,
         )
         if obj.is_function and obj.parent and obj.parent.is_class:
             kind = "method"
@@ -175,7 +177,7 @@ class __RenderDoc(RenderBase):
     def signature_name(self) -> str:
         return self.format_name(self.renderer.signature_name_format)
 
-    def format_name(self, format="relative") -> str:
+    def format_name(self, format: DisplayNameFormat = "relative") -> str:
         """
         Return a name to use for the object
 
@@ -219,7 +221,7 @@ class __RenderDoc(RenderBase):
         return Span(codes, Attr(classes=["doc-labels"]))
 
     def render_annotation(
-        self, annotation: Optional[Annotation] = None
+        self, annotation: Annotation | None = None
     ) -> Inline | str:
         """
         Render an annotation
@@ -235,10 +237,9 @@ class __RenderDoc(RenderBase):
                 msg = f"Cannot render annotation for type {type(self.obj)}."
                 raise TypeError(msg)
 
-            self.obj = cast(dc.Attribute, self.obj)
             annotation = self.obj.annotation
 
-        def _render(ann):
+        def _render(ann: Annotation | None) -> str | InterLink:
             # Recursively render annotation
             if ann is None:
                 return ""
@@ -246,23 +247,21 @@ class __RenderDoc(RenderBase):
                 return repr_obj(ann)
             elif isinstance(ann, expr.ExprName):
                 return InterLink(markdown_escape(ann.name), ann.canonical_path)
-            elif isinstance(ann, expr.Expr):
+            else:
+                assert isinstance(ann, expr.Expr)
                 # A type annotation with ~ removes the qualname prefix
                 path_str = ann.canonical_path
                 if path_str[0] == "~":
                     return InterLink(ann.canonical_name, path_str[1:])
                 return "".join(str(_render(a)) for a in ann)
-            else:
-                msg = f"Cannot render annotation for type {type(ann)}."
-                raise TypeError(msg)
 
         return _render(annotation)
 
     def render_variable_definition(
         self,
         name: str,
-        annotation: Optional[str],
-        default: Optional[str | expr.Expr],
+        annotation: str | None,
+        default: str | expr.Expr | None,
     ) -> Inline:
         """
         Create code snippet that declares a variable
@@ -280,7 +279,7 @@ class __RenderDoc(RenderBase):
         default :
             Default value of the variable/parameter.
         """
-        lst = []
+        lst: list[InlineContentItem] = []
         if name:
             lst.append(Span(name, Attr(classes=["doc-parameter-name"])))
 
@@ -355,8 +354,8 @@ class __RenderDoc(RenderBase):
 
         sections: list[Block] = []
         patched_sections = qast.transform(self.obj.docstring.parsed)
-        for section in patched_sections:  # type: ignore
-            title = (section.title or section.kind.value).title()
+        for section in patched_sections: # type: ignore
+            title = cast(str, (section.title or section.kind.value).title())
             body = self.render_section(section) or ""
             slug = title.lower().replace(" ", "-")
             section_classes = [f"doc-{slug}"]

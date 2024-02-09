@@ -64,7 +64,7 @@ def markdown_escape(s: str) -> str:
     return s
 
 
-def string_match_highlight_func(m: re.Match) -> str:
+def string_match_highlight_func(m: re.Match[str]) -> str:
     """
     Return matched group(string) wrapped in a Span for a string
     """
@@ -182,7 +182,7 @@ def interlink_identifiers(el: dc.Attribute) -> str:
 
     lookup = canonical_path_lookup_table(el.value)
 
-    def interlink_func(m: re.Match) -> str:
+    def interlink_func(m: re.Match[str]) -> str:
         identifier_str = m.group("identifier")
         try:
             canonical_path = lookup[identifier_str]

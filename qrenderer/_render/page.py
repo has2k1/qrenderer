@@ -40,6 +40,7 @@ class __RenderPage(RenderBase):
         """
         return str(Blocks([self.title, self.description, self.body]))
 
+    @property
     def _has_one_object(self):
         return len(self.page.contents) == 1
 
@@ -93,7 +94,7 @@ class __RenderPage(RenderBase):
         """
         return Blocks(self.render_objs)
 
-    def render_summary(self):
+    def render_summary(self) -> list[tuple[str, str]]:
         page = self.page
         if page.summary is not None:
             link = Link(markdown_escape(page.summary.name), f"{page.path}.qmd")

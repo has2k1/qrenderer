@@ -7,13 +7,15 @@ from types import CellType, FunctionType
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from typing import Any, Type
+    from typing import Any
+
+    from .base import RenderBase
 
 # Attributes that should not be copied when extending a base class
 EXCLUDE_ATTRIBUTES = {"__module__", "__dict__", "__weakref__", "__doc__"}
 
 
-def extend_base_class(cls: Type):
+def extend_base_class(cls: type[RenderBase]):
     """
     Class decorator to help extend (customise) the render classes
 
@@ -28,7 +30,7 @@ def extend_base_class(cls: Type):
         set_class_attr(base, name, getattr(cls, name))
 
 
-def set_class_attr(cls: Type, name: str, value: Any):
+def set_class_attr(cls: type[RenderBase], name: str, value: Any):
     """
     Set class attribute
 

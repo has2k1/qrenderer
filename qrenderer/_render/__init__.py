@@ -21,12 +21,10 @@ from .page import RenderPage
 from .section import RenderSection
 
 if TYPE_CHECKING:
-    from typing import Type
-
     from qrenderer.typing import Documentable, RenderObjType
 
 
-_class_mapping: dict[Type[Documentable], Type[RenderObjType]] = {
+_class_mapping: dict[type[Documentable], type[RenderObjType]] = {
     DocAttribute: RenderDocAttribute,
     DocClass: RenderDocClass,
     DocFunction: RenderDocFunction,
@@ -38,41 +36,41 @@ _class_mapping: dict[Type[Documentable], Type[RenderObjType]] = {
 
 
 @overload
-def get_render_type(obj: DocClass) -> Type[RenderDocClass]:
+def get_render_type(obj: DocClass) -> type[RenderDocClass]:
     ...
 
 
 @overload
-def get_render_type(obj: DocFunction) -> Type[RenderDocFunction]:
+def get_render_type(obj: DocFunction) -> type[RenderDocFunction]:
     ...
 
 
 @overload
-def get_render_type(obj: DocAttribute) -> Type[RenderDocAttribute]:
+def get_render_type(obj: DocAttribute) -> type[RenderDocAttribute]:
     ...
 
 
 @overload
-def get_render_type(obj: DocModule) -> Type[RenderDocModule]:
+def get_render_type(obj: DocModule) -> type[RenderDocModule]:
     ...
 
 
 @overload
-def get_render_type(obj: Layout) -> Type[RenderLayout]:
+def get_render_type(obj: Layout) -> type[RenderLayout]:
     ...
 
 
 @overload
-def get_render_type(obj: Page) -> Type[RenderPage]:
+def get_render_type(obj: Page) -> type[RenderPage]:
     ...
 
 
 @overload
-def get_render_type(obj: Section) -> Type[RenderSection]:
+def get_render_type(obj: Section) -> type[RenderSection]:
     ...
 
 
-def get_render_type(obj: Documentable) -> Type[RenderObjType]:
+def get_render_type(obj: Documentable) -> type[RenderObjType]:
     if type(obj) in _class_mapping:
         return _class_mapping[type(obj)]
     else:

@@ -17,16 +17,17 @@ from .._utils import isDoc, no_init
 from .doc import RenderDoc
 
 if TYPE_CHECKING:
-    from typing import Literal, Optional, Sequence
+    from collections.abc import Sequence
+    from typing import Literal
 
     from ..typing import DocType
 
 
 @dataclass
 class RenderedMembersGroup(Block):
-    title: Optional[Header] = None
-    summary: Optional[str] = None
-    members_body: Optional[Block] = None
+    title: Header | None = None
+    summary: str | None = None
+    members_body: Block | None = None
 
     def __str__(self):
         return str(Blocks([self.title, self.summary, self.members_body]))
@@ -60,8 +61,8 @@ class __RenderDocMembersMixin(RenderDoc):
 
     def __post_init__(self):
         super().__post_init__()
-        self.doc = cast(layout.DocClass | layout.DocModule, self.doc)
-        self.obj = cast(dc.Class | dc.Module, self.obj)
+        self.doc = cast(layout.DocClass | layout.DocModule, self.doc)  # pyright: ignore[reportUnnecessaryCast]
+        self.obj = cast(dc.Class | dc.Module, self.obj)  # pyright: ignore[reportUnnecessaryCast]
 
     def render_body(self):
         """
@@ -70,7 +71,7 @@ class __RenderDocMembersMixin(RenderDoc):
         docstring = super().render_body()
         return Blocks([docstring, *self.render_members()])
 
-    def render_members(self) -> list[Optional[RenderedMembersGroup]]:
+    def render_members(self) -> list[RenderedMembersGroup | None]:
         """
         Render the docs of member objects
 
@@ -84,7 +85,7 @@ class __RenderDocMembersMixin(RenderDoc):
             self.render_functions(),
         ]
 
-    def render_classes(self) -> Optional[RenderedMembersGroup]:
+    def render_classes(self) -> RenderedMembersGroup | None:
         """
         Render the class members of the Doc
         """
@@ -93,7 +94,7 @@ class __RenderDocMembersMixin(RenderDoc):
         classes = [x for x in self.doc.members if isDoc.Class(x)]
         return self._render_members_group(classes, "classes")
 
-    def render_functions(self) -> Optional[RenderedMembersGroup]:
+    def render_functions(self) -> RenderedMembersGroup | None:
         """
         Render the function members of the Doc
         """
@@ -105,7 +106,7 @@ class __RenderDocMembersMixin(RenderDoc):
         )
         return self._render_members_group(functions, name)
 
-    def render_attributes(self) -> Optional[RenderedMembersGroup]:
+    def render_attributes(self) -> RenderedMembersGroup | None:
         """
         Render the function members of the Doc
         """
@@ -118,7 +119,7 @@ class __RenderDocMembersMixin(RenderDoc):
         self,
         docables: Sequence[DocType],
         member_group: Literal["classes", "methods", "functions", "attributes"],
-    ) -> Optional[RenderedMembersGroup]:
+    ) -> RenderedMembersGroup | None:
         """
         Render all of class, function or attribute members
 

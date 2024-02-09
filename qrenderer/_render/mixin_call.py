@@ -32,6 +32,7 @@ DocstringSectionWithDefinitions: TypeAlias = (
     | ds.DocstringSectionAttributes
 )
 
+
 class __RenderDocCallMixin(RenderDoc):
     """
     Mixin to render Doc objects that can be called
@@ -42,8 +43,8 @@ class __RenderDocCallMixin(RenderDoc):
     def __post_init__(self):
         super().__post_init__()
 
-        self.doc = cast(layout.DocFunction | layout.DocClass, self.doc)
-        self.obj = cast(dc.Function, self.obj)
+        self.doc = cast(layout.DocFunction | layout.DocClass, self.doc)  # pyright: ignore[reportUnnecessaryCast]
+        self.obj = cast(dc.Function, self.obj)  # pyright: ignore[reportUnnecessaryCast]
 
     @RenderDoc.render_section.register  # type: ignore
     def _(self, el: DocstringSectionWithDefinitions):

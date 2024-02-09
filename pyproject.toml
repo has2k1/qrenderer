@@ -97,6 +97,7 @@ include = [
 # single character).
 ignore = []
 
+# Ref: https://microsoft.github.io/pyright/#/configuration?id=type-check-diagnostics-settings
 # Set of identifiers that should be assumed to contain a constant
 # value wherever used within this program. For example, { "DEBUG": true
 # } indicates that pyright should assume that the identifier DEBUG will
@@ -107,10 +108,31 @@ ignore = []
 # (e.g. my_module.DEBUG) are also supported.
 defineConstant = { DEBUG = true }
 
-# typeCheckingMode = "strict"
-useLibraryCodeForTypes = true
-reportUnnecessaryTypeIgnoreComment = true
+# pyright might switch this to true by default, we might as well
+deprecateTypingAliases = true
 
+# Turn on all the typing checks we can get, then make exceptions as required.
+typeCheckingMode = "strict"
+
+# These checks are not enabled on by "strict"
+reportUnnecessaryTypeIgnoreComment = true
+reportCallInDefaultInitializer = true
+reportPropertyTypeMismatch = true
+reportShadowedImports = true
+reportUnusedCallResult = true
+
+# These checks are not enabled on by "strict" but are too restrictive
+# for us to
+# reportImplicitOverride = true
+# reportImplicitStringConcatenation = true
+# reportImportCycles = true
+# reportMissingSuperCall = true
+# reportUninitializedInstanceVariable = true
+
+# These fail mainly because quartodoc is not fully type annotated
+reportMissingTypeStubs = false
+reportUnknownMemberType = false
+reportUnknownVariableType = false
 
 # Specifies a list of execution environments (see below). Execution
 # environments are searched from start to finish by comparing the path
