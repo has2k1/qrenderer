@@ -25,6 +25,24 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         self.doc: layout.DocClass = self.doc
         self.obj: dc.Class = self.obj
 
+    # NOTE: This method override is a temporary fix to
+    # https://github.com/mkdocstrings/griffe/issues/233
+    def get_function_parameters(self):
+        """
+        Override mixin method to exclude non-parameters
+        """
+        from griffe import dataclasses as dc
+
+        from .._utils import is_field_init_false
+
+        parameters = super().get_function_parameters()
+
+        if "dataclass" in self.obj.labels:
+            parameters = dc.Parameters(
+                *[p for p in parameters if not is_field_init_false(p)]
+            )
+
+        return parameters
 
 class RenderDocClass(__RenderDocClass):
     """

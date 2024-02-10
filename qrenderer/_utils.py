@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import field
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 from griffe import dataclasses as dc
 from griffe import expressions as expr
@@ -96,3 +96,19 @@ def no_init(default: T) -> T:
     Set defaut value of a dataclass field that will not be __init__ed
     """
     return field(init=False, default=default)
+
+
+def is_field_init_false(el: dc.Parameter) -> bool:
+    """
+    Return True if parameter is a field(init=False, ...) expression
+    """
+    if not (
+        isinstance(el.default, expr.ExprCall)
+        and isinstance(el.default.function, expr.ExprName)
+        and el.default.function.name == "field"
+    ):
+        return False
+
+    # field has only keyword arguments
+    exprs = cast(list[expr.ExprKeyword], el.default.arguments)
+    return any(expr.value == "False" for expr in exprs if  expr.name == "init")
