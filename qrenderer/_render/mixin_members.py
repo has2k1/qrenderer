@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, cast
 
 from griffe import dataclasses as dc
@@ -13,7 +13,7 @@ from quartodoc.pandoc.blocks import (
 from quartodoc.pandoc.components import Attr
 from tabulate import tabulate
 
-from .._utils import isDoc, no_init
+from .._utils import isDoc
 from .doc import RenderDoc
 
 if TYPE_CHECKING:
@@ -41,23 +41,23 @@ class __RenderDocMembersMixin(RenderDoc):
     i.e. modules and classes
     """
 
-    show_members: bool = no_init(True)
+    show_members: bool = field(init=False, default=True)
     """All members (attributes, classes and functions) """
-    show_attributes: bool = no_init(True)
-    show_classes: bool = no_init(True)
-    show_functions: bool = no_init(True)
+    show_attributes: bool = field(init=False, default=True)
+    show_classes: bool = field(init=False, default=True)
+    show_functions: bool = field(init=False, default=True)
 
-    show_members_summary: bool = no_init(True)
+    show_members_summary: bool = field(init=False, default=True)
     """All member (attribute, class and function) summaries"""
-    show_attributes_summary: bool = no_init(True)
-    show_classes_summary: bool = no_init(True)
-    show_functions_summary: bool = no_init(True)
+    show_attributes_summary: bool = field(init=False, default=True)
+    show_classes_summary: bool = field(init=False, default=True)
+    show_functions_summary: bool = field(init=False, default=True)
 
-    show_members_body: bool = no_init(True)
+    show_members_body: bool = field(init=False, default=True)
     """All member (attribute, class and function) bodies"""
-    show_attributes_body: bool = no_init(True)
-    show_classes_body: bool = no_init(True)
-    show_functions_body: bool = no_init(True)
+    show_attributes_body: bool = field(init=False, default=True)
+    show_classes_body: bool = field(init=False, default=True)
+    show_functions_body: bool = field(init=False, default=True)
 
     def __post_init__(self):
         super().__post_init__()

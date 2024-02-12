@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from functools import cached_property, singledispatchmethod
 from typing import TYPE_CHECKING, Literal, cast
 
@@ -26,7 +26,7 @@ from .._format import (
     repr_obj,
 )
 from .._pandoc.inlines import InterLink
-from .._utils import is_protocol, is_typealias, is_typevar, no_init
+from .._utils import is_protocol, is_typealias, is_typevar
 from .base import RenderBase
 
 if TYPE_CHECKING:
@@ -43,7 +43,7 @@ class __RenderDoc(RenderBase):
     Render a layout.Doc object
     """
 
-    show_title: bool = no_init(True)
+    show_title: bool = field(init=False, default=True)
     """
     Whether to show the title of the object
 
@@ -56,13 +56,13 @@ class __RenderDoc(RenderBase):
     Each of this can be independently turned off.
     """
 
-    show_signature: bool = no_init(True)
+    show_signature: bool = field(init=False, default=True)
     """Whether to show the signature"""
 
-    show_signature_name: bool = no_init(True)
+    show_signature_name: bool = field(init=False, default=True)
     """Whether to show the name of the object in the signature"""
 
-    show_signature_annotation: bool = no_init(False)
+    show_signature_annotation: bool = field(init=False, default=False)
     """
     Where to show type annotations in the signature
 
@@ -70,24 +70,24 @@ class __RenderDoc(RenderBase):
     parameter definitions.
     """
 
-    show_body: bool = no_init(True)
+    show_body: bool = field(init=False, default=True)
     """Whether to show the body of the object"""
 
-    show_object_name: bool = no_init(True)
+    show_object_name: bool = field(init=False, default=True)
     """
     Whether to show the name of the object
 
     This is part of the title
     """
 
-    show_object_symbol: bool = no_init(True)
+    show_object_symbol: bool = field(init=False, default=True)
     """
     Whether to show the symbol of the object
 
     This is part of the title
     """
 
-    show_object_labels: bool = no_init(True)
+    show_object_labels: bool = field(init=False, default=True)
     """
     Whether to show the labels of the object
 
