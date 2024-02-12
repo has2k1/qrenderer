@@ -136,11 +136,6 @@ class __RenderDoc(RenderBase):
     def labels(self) -> Sequence[str]:
         """
         Return labels for an object (iff object is a function/method)
-
-        Parameters
-        ----------
-        el:
-            A griffe object
         """
         # Only check for the labels we care about
         lst = (
@@ -184,8 +179,6 @@ class __RenderDoc(RenderBase):
 
         Parameters
         ----------
-        el:
-            A griffe Alias or Object
         format:
             The format to use for the object's name.
         """
