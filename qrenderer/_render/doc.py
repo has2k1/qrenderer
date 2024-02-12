@@ -234,7 +234,10 @@ class __RenderDoc(RenderBase):
                of self
         """
         if annotation is None:
-            if not isinstance(self.obj, dc.Attribute):
+            if not (
+                isinstance(self.obj, dc.Attribute)
+                or (isinstance(self.obj, dc.Alias) and self.obj.is_attribute)
+            ):
                 msg = f"Cannot render annotation for type {type(self.obj)}."
                 raise TypeError(msg)
 
