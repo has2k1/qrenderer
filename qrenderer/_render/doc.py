@@ -369,6 +369,20 @@ class __RenderDoc(RenderBase):
 
     @singledispatchmethod
     def render_section(self, el: ds.DocstringSection) -> BlockContent:
+        """
+        Render a section of a docstring
+
+        Parameter
+        ---------
+        el :
+            The section to render
+
+        Notes
+        -----
+        To render a given type of section differently, register a
+        [](`~functools.singledispatchmethod`) method for that type
+        of section.
+        """
         new_el = qast.transform(el)
         if isinstance(new_el, qast.ExampleCode):
             return CodeBlock(el.value, Attr(classes=["python"]))
