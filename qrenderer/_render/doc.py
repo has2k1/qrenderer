@@ -70,9 +70,6 @@ class __RenderDoc(RenderBase):
     parameter definitions.
     """
 
-    show_body: bool = field(init=False, default=True)
-    """Whether to show the body of the object"""
-
     show_object_name: bool = field(init=False, default=True)
     """
     Whether to show the name of the object
