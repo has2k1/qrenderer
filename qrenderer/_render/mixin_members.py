@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from functools import cached_property
 from typing import TYPE_CHECKING, cast
 
 from griffe import dataclasses as dc
 from quartodoc import layout
 from quartodoc.pandoc.blocks import (
     Block,
+    BlockContent,
     Blocks,
     Header,
 )
@@ -17,10 +19,7 @@ from .._utils import isDoc
 from .doc import RenderDoc
 
 if TYPE_CHECKING:
-    from collections.abc import Sequence
     from typing import Literal
-
-    from ..typing import DocType
 
 
 @dataclass
@@ -64,7 +63,7 @@ class __RenderDocMembersMixin(RenderDoc):
         self.doc = cast(layout.DocClass | layout.DocModule, self.doc)  # pyright: ignore[reportUnnecessaryCast]
         self.obj = cast(dc.Class | dc.Module, self.obj)  # pyright: ignore[reportUnnecessaryCast]
 
-    def render_body(self):
+    def render_body(self) -> BlockContent:
         """
         Render the docstring and member docs
         """
@@ -85,40 +84,51 @@ class __RenderDocMembersMixin(RenderDoc):
             self.render_functions(),
         ]
 
+    @cached_property
+    def _attribute_members(self) -> list[layout.DocAttribute]:
+        return [x for x in self.doc.members if isDoc.Attribute(x)]
+
+    @cached_property
+    def _class_members(self) -> list[layout.DocClass]:
+        return [x for x in self.doc.members if isDoc.Class(x)]
+
+    @cached_property
+    def _function_members(self) -> list[layout.DocFunction]:
+        return [x for x in self.doc.members if isDoc.Function(x)]
+
     def render_classes(self) -> RenderedMembersGroup | None:
         """
         Render the class members of the Doc
         """
-        if not self.show_classes:
-            return None
-        classes = [x for x in self.doc.members if isDoc.Class(x)]
-        return self._render_members_group(classes, "classes")
+        return (
+            self._render_members_group("classes")
+            if self.show_classes
+            else None
+        )
 
     def render_functions(self) -> RenderedMembersGroup | None:
         """
         Render the function members of the Doc
         """
-        if not self.show_functions:
-            return None
-        functions = [x for x in self.doc.members if isDoc.Function(x)]
-        name = (
-            "methods" if isinstance(self.doc, layout.DocClass) else "functions"
+        return (
+            self._render_members_group("functions")
+            if self.show_functions
+            else None
         )
-        return self._render_members_group(functions, name)
 
     def render_attributes(self) -> RenderedMembersGroup | None:
         """
         Render the function members of the Doc
         """
-        if not self.show_attributes:
-            return None
-        attributes = [x for x in self.doc.members if isDoc.Attribute(x)]
-        return self._render_members_group(attributes, "attributes")
+        return (
+            self._render_members_group("attributes")
+            if self.show_attributes
+            else None
+        )
 
     def _render_members_group(
         self,
-        docables: Sequence[DocType],
-        member_group: Literal["classes", "methods", "functions", "attributes"],
+        group: Literal["classes", "functions", "attributes"],
     ) -> RenderedMembersGroup | None:
         """
         Render all of class, function or attribute members
@@ -131,31 +141,36 @@ class __RenderDocMembersMixin(RenderDoc):
         member_group
             An identifier for the type of the members.
         """
+        from . import RenderDocAttribute, RenderDocClass, RenderDocFunction
+
+        if group == "classes":
+            docables, Render = self._class_members, RenderDocClass
+        elif group == "attributes":
+            docables, Render = self._attribute_members, RenderDocAttribute
+        else:
+            docables, Render = self._function_members, RenderDocFunction
+
         if not docables:
             return None
 
-        from . import get_render_type
-
-        _RenderType = get_render_type(docables[0])
-
-        def _render_obj(obj: DocType):
-            """
-            Make a render object
-            """
-            r = _RenderType(obj, self.renderer, self.level + 2)
-            r.path = ""  # Path is on the parent page
-            return r
-
-        mgroup = "functions" if member_group == "methods" else member_group
-        show_summary: bool = getattr(self, f"show_{mgroup}_summary")
-        show_body: bool = getattr(self, f"show_{mgroup}_body")
-        render_objs = [_render_obj(obj) for obj in docables]
+        show_summary: bool = getattr(self, f"show_{group}_summary")
+        show_body: bool = getattr(self, f"show_{group}_body")
+        slug = (
+            "methods"
+            if group == "functions" and isinstance(self.doc, layout.DocClass)
+            else group
+        )
 
         title = Header(
             self.level + 1,
-            member_group.title(),
-            Attr(classes=[f"doc-{member_group}"]),
+            group.title(),
+            Attr(classes=[f"doc-{slug}"]),
         )
+
+        render_objs = [
+            Render(obj, self.renderer, self.level + 2).clear_page_path()
+            for obj in docables
+        ]
 
         if self.show_members_summary and show_summary:
             rows = [row for r in render_objs for row in r.render_summary()]

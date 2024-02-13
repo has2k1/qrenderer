@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     from collections.abc import Sequence
 
     from quartodoc.pandoc.inlines import InlineContentItem
+    from typing_extensions import Self
 
     from ..typing import Annotation, DisplayNameFormat, DocObjectKind
 
@@ -104,7 +105,7 @@ class __RenderDoc(RenderBase):
         self.obj = self.doc.obj
         """Griffe object (or alias)"""
 
-        self.path = f"{self.obj.name}.qmd"
+        self.page_path = f"{self.obj.name}.qmd"
         """Name of the page where this object will be written"""
 
         self.show_signature = self.renderer.show_signature
@@ -143,7 +144,7 @@ class __RenderDoc(RenderBase):
             "abstractmethod",
             "typing.overload",
         )
-        if self.obj.is_function:
+        if self.obj.is_function or self.obj.is_attribute:
             return tuple(
                 label.replace(".", "-")
                 for label in lst
@@ -169,6 +170,15 @@ class __RenderDoc(RenderBase):
     @cached_property
     def signature_name(self) -> str:
         return self.format_name(self.renderer.signature_name_format)
+
+    def clear_page_path(self) -> Self:
+        """
+        Set the page to the page where object will be rendered to nothing
+
+        Do this for objects contained on a parent page
+        """
+        self.page_path = ""
+        return self
 
     def format_name(self, format: DisplayNameFormat = "relative") -> str:
         """
@@ -339,17 +349,23 @@ class __RenderDoc(RenderBase):
             attr=Attr(identifier=self.obj.path, classes=classes),
         )
 
-    def render_body(self) -> BlockContent:
+    @cached_property
+    def _sections(self) -> tuple[list[Block], list[str]]:
         """
-        Render the docsting of the Doc object
+        Sections of the docstring
         """
         if not self.obj.docstring:
-            return None
+            return [], []
 
         sections: list[Block] = []
-        patched_sections = qast.transform(self.obj.docstring.parsed)
-        for section in patched_sections:  # type: ignore
-            title = cast(str, (section.title or section.kind.value).title())
+        section_kinds: list[str] = []
+
+        patched_sections = cast(
+            list[ds.DocstringSection],
+            qast.transform(self.obj.docstring.parsed),
+        )
+        for section in patched_sections:
+            title = (section.title or section.kind.value).title()
             body = self.render_section(section) or ""
             slug = title.lower().replace(" ", "-")
             section_classes = [f"doc-{slug}"]
@@ -364,7 +380,17 @@ class __RenderDoc(RenderBase):
                 )
                 content = Blocks([header, body])
             sections.append(content)
+            section_kinds.append(section.kind.value)
 
+        return sections, section_kinds
+
+    def render_body(self) -> BlockContent:
+        """
+        Render the docsting of the Doc object
+        """
+        sections, _ = self._sections
+        if not sections:
+            return None
         return Blocks(sections)
 
     @singledispatchmethod
@@ -423,7 +449,8 @@ class __RenderDoc(RenderBase):
         """
         # The page where this object will be written
         link = Link(
-            markdown_escape(self.doc.name), f"{self.path}#{self.doc.anchor}"
+            markdown_escape(self.doc.name),
+            f"{self.page_path}#{self.doc.anchor}",
         )
         return [(str(link), self._describe_object(self.obj))]
 

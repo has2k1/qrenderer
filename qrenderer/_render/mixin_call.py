@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from functools import cached_property
 from typing import TYPE_CHECKING, TypeAlias, cast
 
 from griffe import dataclasses as dc
@@ -14,7 +15,7 @@ from quartodoc.pandoc.blocks import (
 from quartodoc.pandoc.components import Attr
 from quartodoc.pandoc.inlines import Code
 
-from .._format import formatted_signature, repr_obj
+from .._format import formatted_signature, pretty_code, repr_obj
 from .doc import RenderDoc
 
 if TYPE_CHECKING:
@@ -62,7 +63,7 @@ class __RenderDocCallMixin(RenderDoc):
             name = getattr(el, "name", None) or ""
             default = getattr(el, "default", None)
             annotation = (
-                str(self.render_annotation(el.annotation))
+                pretty_code(str(self.render_annotation(el.annotation)))
                 if el.annotation
                 else None
             )
@@ -82,7 +83,8 @@ class __RenderDocCallMixin(RenderDoc):
             Attr(classes=["doc-definition-items"]),
         )
 
-    def get_function_parameters(self) -> dc.Parameters:
+    @cached_property
+    def function_parameters(self) -> dc.Parameters:
         """
         Return the parameters of the function
         """
@@ -116,13 +118,11 @@ class __RenderDocCallMixin(RenderDoc):
 
         i.e. The stuff in the brackets of func(a, b, c=3, d=4, **kwargs)
         """
-        parameters = self.get_function_parameters()
-
         params: list[str] = []
         prev, cur = 0, 1
         state = (dc.ParameterKind.positional_or_keyword,) * 2
 
-        for parameter in parameters:
+        for parameter in self.function_parameters:
             state = state[cur], parameter.kind
             append_transition_token = (
                 state[prev] != state[cur]

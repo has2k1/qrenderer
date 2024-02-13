@@ -30,18 +30,20 @@ class __RenderBase(Block):
         | layout.DocFunction
         | layout.DocAttribute
         | layout.DocModule
-        | layout.Page  # structural
-        | layout.Section  # structural
-        | layout.Link  #
-        | layout.Layout  # structural
+        | layout.Page
+        | layout.Section
+        | layout.Link
+        | layout.Layout
     )
-    """layout object to be documented"""
+    """Layout object to be documented"""
 
     renderer: QRenderer
     """Renderer that holds the configured values"""
 
     level: int = 1
     """The deepth of the object in the documentation"""
+
+    # TODO: Convert all the show_* attributes into parameters
 
     show_title: bool = field(init=False, default=True)
     """Whether to show the title of the object"""

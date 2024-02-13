@@ -7,7 +7,7 @@ from quartodoc.pandoc.blocks import Block, Div
 from quartodoc.pandoc.components import Attr
 from quartodoc.pandoc.inlines import Code
 
-from .._format import interlink_identifiers, pretty_code
+from .._format import pretty_code, render_attribute_declaration
 from .doc import RenderDoc
 
 if TYPE_CHECKING:
@@ -49,7 +49,7 @@ class __RenderDocAttribute(RenderDoc):
         """
         The signature of a TypeAlias
         """
-        stmt = interlink_identifiers(self.obj)
+        stmt = render_attribute_declaration(self.obj)
         i, j = stmt.find(":"), stmt.find("=")
 
         if self.show_signature_name:

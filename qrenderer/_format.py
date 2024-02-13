@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import re
-from functools import singledispatch
-from typing import TYPE_CHECKING
+from functools import partial, singledispatch
+from textwrap import dedent
+from typing import TYPE_CHECKING, cast
 
 import griffe.dataclasses as dc
 import griffe.expressions as expr
@@ -170,10 +171,22 @@ def pretty_code(s: str) -> str:
         the links, but should not be wrapped inside the <code>
         tags. Those tags should wrap the output of this function.
     """
-    return escape_quotes(escape_indents(highlight_strings(s)))
+    return escape_quotes(escape_indents(highlight_strings(dedent(s))))
 
 
-def interlink_identifiers(el: dc.Attribute) -> str:
+def interlink_groups(m: re.Match[str], lookup: dict[str, str]) -> str:
+    """
+    Substitute match text with value from lookup table
+    """
+    identifier_str = m.group("identifier")
+    try:
+        canonical_path = lookup[identifier_str]
+    except KeyError:
+        return identifier_str
+    return str(InterLink(identifier_str, canonical_path))
+
+
+def render_attribute_declaration(el: dc.Attribute) -> str:
     """
     Render expression with identifiers in them interlinked
     """
@@ -181,14 +194,27 @@ def interlink_identifiers(el: dc.Attribute) -> str:
         return str(el.value)
 
     lookup = canonical_path_lookup_table(el.value)
-
-    def interlink_func(m: re.Match[str]) -> str:
-        identifier_str = m.group("identifier")
-        try:
-            canonical_path = lookup[identifier_str]
-        except KeyError:
-            return identifier_str
-        return str(InterLink(identifier_str, canonical_path))
-
+    interlink_func = partial(interlink_groups, lookup=lookup)
     definition_str = "\n".join(el.lines)
+    return IDENTIFIER_RE.sub(interlink_func, definition_str)
+
+
+def render_dataclass_parameter_declaration(
+    param: dc.Parameter,
+    attr: dc.Attribute,
+):
+    """
+    Render a dataclass parameter
+
+    Parameters
+    ----------
+    param :
+        The parameter
+    attr :
+        The attribute form of the parameter
+    """
+    annotation = cast(expr.Expr, param.annotation)
+    lookup = canonical_path_lookup_table(annotation)
+    interlink_func = partial(interlink_groups, lookup=lookup)
+    definition_str = "\n".join(attr.lines)
     return IDENTIFIER_RE.sub(interlink_func, definition_str)
