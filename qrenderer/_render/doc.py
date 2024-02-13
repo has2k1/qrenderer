@@ -160,7 +160,7 @@ class __RenderDoc(RenderBase):
         format = self.renderer.display_name_format
         if format == "auto":
             format = "full" if self.level == 1 else "name"
-        return self.format_name(format)
+        return markdown_escape(self.format_name(format))
 
     @cached_property
     def raw_title(self) -> str:
@@ -330,7 +330,7 @@ class __RenderDoc(RenderBase):
 
         name = (
             Span(
-                self.raw_title,
+                self.display_name,
                 Attr(classes=["doc-object-name", f"doc-{self.kind}-name"]),
             )
             if self.show_object_name
