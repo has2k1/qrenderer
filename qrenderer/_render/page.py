@@ -113,6 +113,7 @@ class __RenderPage(RenderBase):
         return items
 
 
+@dataclass
 class RenderPage(__RenderPage):
     """
     Extend Rendering of a layout.Page object

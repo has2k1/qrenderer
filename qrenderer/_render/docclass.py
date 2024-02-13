@@ -44,6 +44,8 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
 
         return parameters
 
+
+@dataclass
 class RenderDocClass(__RenderDocClass):
     """
     Extend Rendering of a layout.DocClass object

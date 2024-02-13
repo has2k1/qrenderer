@@ -64,6 +64,7 @@ class __RenderSection(RenderBase):
         )
 
 
+@dataclass
 class RenderSection(__RenderSection):
     """
     Extend Rendering of a layout.Section object

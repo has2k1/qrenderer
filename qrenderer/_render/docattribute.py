@@ -66,6 +66,7 @@ class __RenderDocAttribute(RenderDoc):
         )
 
 
+@dataclass
 class RenderDocAttribute(__RenderDocAttribute):
     """
     Extend Rendering of a layout.DocAttribute object

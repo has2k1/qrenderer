@@ -25,6 +25,7 @@ class __RenderDocFunction(RenderDocCallMixin, RenderDoc):
         self.obj: dc.Function = self.obj
 
 
+@dataclass
 class RenderDocFunction(__RenderDocFunction):
     """
     Extend Rendering of a layout.DocFunction object

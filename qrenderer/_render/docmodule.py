@@ -36,6 +36,7 @@ class __RenderDocModule(RenderDocMembersMixin, RenderDoc):
         return Div(Code(self.signature_name), Attr(classes=["doc-signature"]))
 
 
+@dataclass
 class RenderDocModule(__RenderDocModule):
     """
     Extend Rendering of a layout.DocModule object

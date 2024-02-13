@@ -44,6 +44,7 @@ class __RenderLink(RenderBase):
         return [(str(link), self._describe_object(self.obj))]
 
 
+@dataclass
 class RenderLink(__RenderLink):
     """
     Extend Rendering of a layout.Link object

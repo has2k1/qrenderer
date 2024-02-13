@@ -51,6 +51,7 @@ class __RenderLayout(RenderBase):
         return Blocks(render_objs)
 
 
+@dataclass
 class RenderLayout(__RenderLayout):
     """
     Extend Rendering of a layout.Layout object
