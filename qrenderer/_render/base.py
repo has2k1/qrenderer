@@ -85,6 +85,8 @@ class __RenderBase(Block):
     def title(self) -> BlockContent:
         """
         The title/header of a docstring, including any anchors
+
+        Do not override this property.
         """
         return self.render_title()
 
@@ -92,6 +94,8 @@ class __RenderBase(Block):
     def signature(self) -> BlockContent:
         """
         The signature of the object (if any)
+
+        Do not override this property.
         """
         return self.render_signature()
 
@@ -99,6 +103,8 @@ class __RenderBase(Block):
     def description(self) -> BlockContent:
         """
         The description that the documented object
+
+        Do not override this property.
         """
         return self.render_description()
 
@@ -106,6 +112,8 @@ class __RenderBase(Block):
     def body(self) -> BlockContent:
         """
         The body that the documented object
+
+        Do not override this property.
         """
         return self.render_body()
 
@@ -114,6 +122,8 @@ class __RenderBase(Block):
     def summary(self):
         """
         The summary of the documented object
+
+        Do not override this property.
         """
         return self.render_summary()
 
@@ -158,6 +168,7 @@ class __RenderBase(Block):
         return []
 
 
+@dataclass
 class RenderBase(__RenderBase):
     """
     Extend the base render class
