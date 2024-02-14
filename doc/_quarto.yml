@@ -1,0 +1,71 @@
+project:
+  type: website
+  resources:
+    - objects.txt
+  output-dir: _site
+
+website:
+  title: Renderer for Quartodoc
+  description: |
+    An experimental renderer for building documentation for a python project
+    using quartodoc.
+  navbar:
+    left:
+      - file: reference/index.qmd
+        text: "Reference"
+
+format:
+  html:
+    toc: true
+    theme:
+      - lumen
+      - qrenderer.scss
+
+filters:
+  - interlinks
+
+interlinks:
+  fast: true
+  sources:
+    python:
+      url: https://docs.python.org/3/
+    griffe:
+      url: https://mkdocstrings.github.io/griffe/
+    # quartodoc is missing objects.inv
+    # quartodoc:
+    #   url: https://machow.github.io/quartodoc/
+
+quartodoc:
+  dir: reference
+  title: API Reference
+  package: qrenderer
+  options:
+    include_inherited: true
+  renderer:
+    style: _renderer.py
+    typing_module_paths:
+      - qrenderer.typing
+
+  sections:
+    - title: Render classes
+      package: qrenderer
+      contents:
+        - name: RenderBase
+          package: qrenderer._render.base
+        - RenderDoc
+        - RenderDocClass
+        - RenderDocFunction
+        - RenderDocAttribute
+        - RenderDocModule
+        - RenderDocCallMixin
+        - RenderDocMembersMixin
+        - RenderLayout
+        - RenderPage
+        - RenderSection
+
+    - title: Extending the Render classes
+      package: qrenderer
+      contents:
+        - QRenderer
+        - extend_base_class
+
