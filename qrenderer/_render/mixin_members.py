@@ -163,7 +163,7 @@ class __RenderDocMembersMixin(RenderDoc):
 
         title = Header(
             self.level + 1,
-            group.title(),
+            slug.title(),
             Attr(classes=[f"doc-{slug}"]),
         )
 
