@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Renderer for Quartodoc</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Renderer for Quartodoc</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../reference/index.html"> 
+<span class="menu-text">Reference</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#qrenderer.RenderDocClass" id="toc-qrenderer.RenderDocClass" class="nav-link active" data-scroll-target="#qrenderer.RenderDocClass"><code class="doc-symbol doc-symbol-class"></code> <span class="doc-object-name doc-class-name">qrenderer.RenderDocClass</span></a></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes">Attributes</a>
+  <ul class="collapse">
+  <li><a href="#qrenderer.RenderDocClass.body" id="toc-qrenderer.RenderDocClass.body" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">body</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.description" id="toc-qrenderer.RenderDocClass.description" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">description</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.function_parameters" id="toc-qrenderer.RenderDocClass.function_parameters" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.function_parameters"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">function_parameters</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.is_dataclass" id="toc-qrenderer.RenderDocClass.is_dataclass" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.is_dataclass"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">is_dataclass</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.kind" id="toc-qrenderer.RenderDocClass.kind" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.kind"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">kind</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.labels" id="toc-qrenderer.RenderDocClass.labels" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.labels"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">labels</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.layout_obj" id="toc-qrenderer.RenderDocClass.layout_obj" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.layout_obj"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">layout_obj</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.level" id="toc-qrenderer.RenderDocClass.level" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.level"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">level</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.renderer" id="toc-qrenderer.RenderDocClass.renderer" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.renderer"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">renderer</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_body" id="toc-qrenderer.RenderDocClass.show_body" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_body</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_description" id="toc-qrenderer.RenderDocClass.show_description" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_description</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_members" id="toc-qrenderer.RenderDocClass.show_members" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_members"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_members</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_members_body" id="toc-qrenderer.RenderDocClass.show_members_body" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_members_body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_members_body</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_members_summary" id="toc-qrenderer.RenderDocClass.show_members_summary" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_members_summary"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_members_summary</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_object_labels" id="toc-qrenderer.RenderDocClass.show_object_labels" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_object_labels"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_object_labels</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_object_name" id="toc-qrenderer.RenderDocClass.show_object_name" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_object_name"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_object_name</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_object_symbol" id="toc-qrenderer.RenderDocClass.show_object_symbol" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_object_symbol"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_object_symbol</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_signature" id="toc-qrenderer.RenderDocClass.show_signature" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_signature_annotation" id="toc-qrenderer.RenderDocClass.show_signature_annotation" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_signature_annotation"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature_annotation</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_signature_name" id="toc-qrenderer.RenderDocClass.show_signature_name" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_signature_name"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature_name</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.show_title" id="toc-qrenderer.RenderDocClass.show_title" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.show_title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_title</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.signature" id="toc-qrenderer.RenderDocClass.signature" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">signature</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.summary" id="toc-qrenderer.RenderDocClass.summary" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.summary"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">summary</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.title" id="toc-qrenderer.RenderDocClass.title" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">title</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  </ul></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#qrenderer.RenderDocClass.clear_page_path" id="toc-qrenderer.RenderDocClass.clear_page_path" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.clear_page_path"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">clear_page_path</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.format_name" id="toc-qrenderer.RenderDocClass.format_name" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.format_name"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">format_name</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_annotation" id="toc-qrenderer.RenderDocClass.render_annotation" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_annotation"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_annotation</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_attributes" id="toc-qrenderer.RenderDocClass.render_attributes" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_attributes"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_attributes</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_classes" id="toc-qrenderer.RenderDocClass.render_classes" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_classes"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_classes</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_description" id="toc-qrenderer.RenderDocClass.render_description" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_description"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_description</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_functions" id="toc-qrenderer.RenderDocClass.render_functions" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_functions"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_functions</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_labels" id="toc-qrenderer.RenderDocClass.render_labels" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_labels"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_labels</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_members" id="toc-qrenderer.RenderDocClass.render_members" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_members"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_members</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_section" id="toc-qrenderer.RenderDocClass.render_section" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_section"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_section</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_signature_parameter" id="toc-qrenderer.RenderDocClass.render_signature_parameter" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_signature_parameter"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_signature_parameter</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_signature_parameters" id="toc-qrenderer.RenderDocClass.render_signature_parameters" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_signature_parameters"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_signature_parameters</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_summary" id="toc-qrenderer.RenderDocClass.render_summary" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_summary"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_summary</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_title" id="toc-qrenderer.RenderDocClass.render_title" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_title"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_title</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_variable_definition" id="toc-qrenderer.RenderDocClass.render_variable_definition" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_variable_definition"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_variable_definition</span></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<section id="qrenderer.RenderDocClass" class="level1 title doc-object doc-class quarto-title display-7">
+<h1 class="title doc-object doc-class"><code class="doc-symbol doc-symbol-class"></code> <span class="doc-object-name doc-class-name">qrenderer.RenderDocClass</span></h1>
+</section>
+</header>
+<div class="doc-signature">
+<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RenderDocClass()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Extend Rendering of a layout.DocClass object</p>
+</div>
+<section id="attributes" class="level2 doc-attributes">
+<h2 class="doc-attributes anchored" data-anchor-id="attributes">Attributes</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.body">body</a></td>
+<td>The body that the documented object</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.description">description</a></td>
+<td>The description that the documented object</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.function_parameters">function_parameters</a></td>
+<td>Override mixin method to exclude non-parameters</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.is_dataclass">is_dataclass</a></td>
+<td>Return True if the class object is a dataclass</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.kind">kind</a></td>
+<td>Return the object’s kind</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.labels">labels</a></td>
+<td>Return labels for an object (iff object is a function/method)</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.layout_obj">layout_obj</a></td>
+<td>Layout object to be documented</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.level">level</a></td>
+<td>The deepth of the object in the documentation</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.renderer">renderer</a></td>
+<td>Renderer that holds the configured values</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.show_body">show_body</a></td>
+<td>Whether to show the documentation body of the object</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.show_description">show_description</a></td>
+<td>Whether to show the description of the object</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.show_members">show_members</a></td>
+<td>All members (attributes, classes and functions)</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.show_members_body">show_members_body</a></td>
+<td>All member (attribute, class and function) bodies</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.show_members_summary">show_members_summary</a></td>
+<td>All member (attribute, class and function) summaries</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.show_object_labels">show_object_labels</a></td>
+<td>Whether to show the labels of the object</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.show_object_name">show_object_name</a></td>
+<td>Whether to show the name of the object</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.show_object_symbol">show_object_symbol</a></td>
+<td>Whether to show the symbol of the object</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.show_signature">show_signature</a></td>
+<td>Whether to show the signature</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.show_signature_annotation">show_signature_annotation</a></td>
+<td>Where to show type annotations in the signature</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.show_signature_name">show_signature_name</a></td>
+<td>Whether to show the name of the object in the signature</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.show_title">show_title</a></td>
+<td>Whether to show the title of the object</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.signature">signature</a></td>
+<td>The signature of the object (if any)</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.summary">summary</a></td>
+<td>The summary of the documented object</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.title">title</a></td>
+<td>The title/header of a docstring, including any anchors</td>
+</tr>
+</tbody>
+</table>
+<section id="qrenderer.RenderDocClass.body" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">body</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">body</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
+</div>
+<div class="doc-text">
+<p>The body that the documented object</p>
+<p>Do not override this property.</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.description" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">description</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">description</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
+</div>
+<div class="doc-text">
+<p>The description that the documented object</p>
+<p>Do not override this property.</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.function_parameters" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.function_parameters"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">function_parameters</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">function_parameters</span></code></p>
+</div>
+<div class="doc-text">
+<p>Override mixin method to exclude non-parameters</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.is_dataclass" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.is_dataclass"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">is_dataclass</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">is_dataclass</span></code></p>
+</div>
+<div class="doc-text">
+<p>Return True if the class object is a dataclass</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.kind" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.kind"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">kind</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">kind</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="../reference/typing.html#qrenderer.typing.DocObjectKind">DocObjectKind</a></span></code></p>
+</div>
+<div class="doc-text">
+<p>Return the object’s kind</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.labels" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.labels"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">labels</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">labels</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence">Sequence</a>[<a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</span></code></p>
+</div>
+<div class="doc-text">
+<p>Return labels for an object (iff object is a function/method)</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.layout_obj" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.layout_obj"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">layout_obj</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">layout_obj</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">layout.DocClass | layout.DocFunction | layout.DocAttribute | layout.DocModule | layout.Page | layout.Section | layout.Link | layout.Layout</span></code></p>
+</div>
+<div class="doc-text">
+<p>Layout object to be documented</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.level" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.level"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">level</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">level</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">1</span></code></p>
+</div>
+<div class="doc-text">
+<p>The deepth of the object in the documentation</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.renderer" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.renderer"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">renderer</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">renderer</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="../reference/QRenderer.html#qrenderer.QRenderer">QRenderer</a></span></code></p>
+</div>
+<div class="doc-text">
+<p>Renderer that holds the configured values</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_body" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_body</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_body</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the documentation body of the object</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_description" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_description</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_description</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the description of the object</p>
+<p>This only applies to objects that have descriptions that are not considered part of the body documentation body.</p>
+<p>This attribute is not well defined and it may change in the future.</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_members" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_members"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_members</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_members</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>All members (attributes, classes and functions)</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_members_body" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_members_body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_members_body</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_members_body</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>All member (attribute, class and function) bodies</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_members_summary" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_members_summary"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_members_summary</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_members_summary</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>All member (attribute, class and function) summaries</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_object_labels" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_object_labels"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_object_labels</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_object_labels</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the labels of the object</p>
+<p>This is part of the title</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_object_name" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_object_name"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_object_name</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_object_name</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the name of the object</p>
+<p>This is part of the title</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_object_symbol" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_object_symbol"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_object_symbol</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_object_symbol</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the symbol of the object</p>
+<p>This is part of the title</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_signature" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_signature</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the signature</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_signature_annotation" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_signature_annotation"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature_annotation</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_signature_annotation</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=False)</span></code></p>
+</div>
+<div class="doc-text">
+<p>Where to show type annotations in the signature</p>
+<p>The default is False because they are better displayed in the parameter definitions.</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_signature_name" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_signature_name"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature_name</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_signature_name</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the name of the object in the signature</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.show_title" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.show_title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_title</span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">show_title</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the title of the object</p>
+<p>The title includes:</p>
+<pre><code>1. symbol for the object
+2. name of the object
+3. labels the object</code></pre>
+<p>Each of this can be independently turned off.</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.signature" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">signature</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">signature</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
+</div>
+<div class="doc-text">
+<p>The signature of the object (if any)</p>
+<p>Do not override this property.</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.summary" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.summary"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">summary</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">summary</span></code></p>
+</div>
+<div class="doc-text">
+<p>The summary of the documented object</p>
+<p>Do not override this property.</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.title" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocClass.title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">title</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
+<div class="doc-signature">
+<p><code><span class="doc-parameter-name">title</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
+</div>
+<div class="doc-text">
+<p>The title/header of a docstring, including any anchors</p>
+<p>Do not override this property.</p>
+</div>
+</section>
+</section>
+<section id="methods" class="level2 doc-methods">
+<h2 class="doc-methods anchored" data-anchor-id="methods">Methods</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.clear_page_path">clear_page_path</a></td>
+<td>Set the page to the page where object will be rendered to nothing</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.format_name">format_name</a></td>
+<td>Return a name to use for the object</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.render_annotation">render_annotation</a></td>
+<td>Render an annotation</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.render_attributes">render_attributes</a></td>
+<td>Render the function members of the Doc</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.render_classes">render_classes</a></td>
+<td>Render the class members of the Doc</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.render_description">render_description</a></td>
+<td>Render the description of the documentation page</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.render_functions">render_functions</a></td>
+<td>Render the function members of the Doc</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.render_labels">render_labels</a></td>
+<td>Create codes used for doc labels</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.render_members">render_members</a></td>
+<td>Render the docs of member objects</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.render_section">render_section</a></td>
+<td>Render a section of a docstring</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.render_signature_parameter">render_signature_parameter</a></td>
+<td>Parameter for the function/method signature</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.render_signature_parameters">render_signature_parameters</a></td>
+<td>Render parameters in a function / method signature</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.render_summary">render_summary</a></td>
+<td>Return a line item that summarises the object</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderDocClass.render_title">render_title</a></td>
+<td>Render the header of a docstring, including any anchors</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.render_variable_definition">render_variable_definition</a></td>
+<td>Create code snippet that declares a variable</td>
+</tr>
+</tbody>
+</table>
+<section id="qrenderer.RenderDocClass.clear_page_path" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.clear_page_path"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">clear_page_path</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb3"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>clear_page_path()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Set the page to the page where object will be rendered to nothing</p>
+<p>Do this for objects contained on a parent page</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.format_name" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.format_name"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">format_name</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>format_name(<span class="bu">format</span><span class="op">=</span><span class="st">"relative"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Return a name to use for the object</p>
+</div>
+<section id="parameters" class="level4 doc-parameters">
+<h4 class="doc-parameters anchored" data-anchor-id="parameters">Parameters</h4>
+<div class="doc-definition-items">
+<dl>
+<dt><code><span class="doc-parameter-name">format</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="../reference/typing.html#qrenderer.typing.DisplayNameFormat">DisplayNameFormat</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default"><span class="st">"relative"</span></span></code></dt>
+<dd>
+<p>The format to use for the object’s name.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+<section id="qrenderer.RenderDocClass.render_annotation" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_annotation"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_annotation</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb5"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>render_annotation(annotation<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Render an annotation</p>
+<p>This can be used to renderer the annotation of:</p>
+<pre><code>1. self - if it is an Attribute &amp; annotation is None
+2. annotation - annotation of a parameter in the signature
+   of self</code></pre>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_attributes" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_attributes"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_attributes</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb7"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>render_attributes()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Render the function members of the Doc</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_classes" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_classes"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_classes</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb8"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>render_classes()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Render the class members of the Doc</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_description" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_description"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_description</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb9"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>render_description()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Render the description of the documentation page</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_functions" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_functions"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_functions</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb10"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>render_functions()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Render the function members of the Doc</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_labels" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_labels"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_labels</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb11"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>render_labels()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Create codes used for doc labels</p>
+<p>Given the label names, it returns a Code object that creates the following HTML <span class="doc-labels"> <code class="doc-label doc-label-name1"></code> <code class="doc-label doc-label-name2"></code> </span></p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_members" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_members"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_members</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb12"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>render_members()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Render the docs of member objects</p>
+<p>The member objects are attributes, classes and functions/methods</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_section" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_section"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_section</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>render_section(el)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Render a section of a docstring</p>
+</div>
+<section id="parameter" class="level4 doc-parameter">
+<h4 class="doc-parameter anchored" data-anchor-id="parameter">Parameter</h4>
+<p>el : The section to render</p>
+</section>
+<section id="notes" class="level4 doc-notes">
+<h4 class="doc-notes anchored" data-anchor-id="notes">Notes</h4>
+<p>To render a given type of section differently, register a <a href="https://docs.python.org/3/library/functools.html#functools.singledispatchmethod"><code>singledispatchmethod</code></a> method for that type of section.</p>
+</section>
+</section>
+<section id="qrenderer.RenderDocClass.render_signature_parameter" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_signature_parameter"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_signature_parameter</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>render_signature_parameter(el)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Parameter for the function/method signature</p>
+<p>This is a single item in the brackets of</p>
+<pre><code>func(a, b, c=3, d=4, **kwargs)</code></pre>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_signature_parameters" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_signature_parameters"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_signature_parameters</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb16"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>render_signature_parameters()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Render parameters in a function / method signature</p>
+<p>i.e.&nbsp;The stuff in the brackets of func(a, b, c=3, d=4, **kwargs)</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_summary" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_summary"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_summary</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb17"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>render_summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Return a line item that summarises the object</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_title" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_title"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_title</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>render_title()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Render the header of a docstring, including any anchors</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocClass.render_variable_definition" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_variable_definition"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_variable_definition</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb19"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>render_variable_definition(name, annotation, default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Create code snippet that declares a variable</p>
+<p>This applies to function parameters and module/class attributes</p>
+</div>
+<section id="parameters-1" class="level4 doc-parameters">
+<h4 class="doc-parameters anchored" data-anchor-id="parameters-1">Parameters</h4>
+<div class="doc-definition-items">
+<dl>
+<dt><code><span class="doc-parameter-name">name</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span></code></dt>
+<dd>
+<p>Name of the variable</p>
+</dd>
+<dt><code><span class="doc-parameter-name">annotation</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | None</span></code></dt>
+<dd>
+<p>Type Annotation of the variable or parameter</p>
+</dd>
+<dt><code><span class="doc-parameter-name">default</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a href="https://mkdocstrings.github.io/griffe/reference/griffe/#griffe">expr</a>.Expr | None</span></code></dt>
+<dd>
+<p>Default value of the variable/parameter.</p>
+</dd>
+</dl>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
