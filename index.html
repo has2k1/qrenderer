@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Renderer for Quartodoc</title>
+<title>Renderer for Quartodoc - qrenderer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -141,53 +141,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#qrenderer" id="toc-qrenderer" class="nav-link active" data-scroll-target="#qrenderer">qrenderer</a>
-  <ul class="collapse">
-  <li><a href="#install" id="toc-install" class="nav-link" data-scroll-target="#install">Install</a></li>
-  <li><a href="#how-to-extend-quartodoc" id="toc-how-to-extend-quartodoc" class="nav-link" data-scroll-target="#how-to-extend-quartodoc">How to extend quartodoc</a></li>
+  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">Install</a></li>
+  <li><a href="#how-to-extend-quartodoc-with-qrenderer" id="toc-how-to-extend-quartodoc-with-qrenderer" class="nav-link" data-scroll-target="#how-to-extend-quartodoc-with-qrenderer">How to extend quartodoc with qrenderer</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">qrenderer</h1>
+</div>
 
 
 
-<section id="qrenderer" class="level1">
-<h1>qrenderer</h1>
-<p>This is an experimental renderer for <a href="https://github.com/machow/quartodoc">quartodoc</a>. It can only be installed from github and it will never be released on PyPi. Use it with caution, there will be breaking changes.</p>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This is an experimental renderer for <a href="https://github.com/machow/quartodoc">quartodoc</a>. It can only be installed from github and it will never be released on PyPi. Some version of it may find its way into quartodoc. Use it with caution, there will be breaking changes.</p>
 <section id="install" class="level2">
 <h2 class="anchored" data-anchor-id="install">Install</h2>
 <pre class="console"><code>$ pip install git+https://github.com/has2k1/qrenderer.git</code></pre>
 </section>
-<section id="how-to-extend-quartodoc" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-extend-quartodoc">How to extend quartodoc</h2>
+<section id="how-to-extend-quartodoc-with-qrenderer" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-extend-quartodoc-with-qrenderer">How to extend quartodoc with qrenderer</h2>
 <ol type="1">
 <li><p>Import <a href="./reference/QRenderer.html#qrenderer.QRenderer"><code>QRenderer</code></a> which is the bridge between this renderer and quartodoc’s current rendering system.</p></li>
 <li><p>Import a decorator that will mark the classes created to extend quartodoc.</p></li>
 <li><p>Import any Render classes that you want to extend. The options are:</p>
 <ul>
-<li><a href="./reference/RenderDoc.html#qrenderer.RenderDoc"><code>RenderDoc</code></a> - Base class for the renderers of python <code>classes</code>, <code>functions</code>, <code>attributes</code> and <code>modules</code>.</li>
-<li><a href="./reference/RenderDocClass.html#qrenderer.RenderDocClass"><code>RenderDocClass</code></a> - class that renderers python <code>classes</code></li>
-<li><a href="./reference/RenderDocFunction.html#qrenderer.RenderDocFunction"><code>RenderDocFunction</code></a> - class that renderers python <code>functions</code></li>
-<li><a href="./reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute"><code>RenderDocAttribute</code></a> - class that renderers python <code>attributes</code></li>
-<li><a href="./reference/RenderDocModule.html#qrenderer.RenderDocModule"><code>RenderDocModule</code></a> - class that renderers python <code>modules</code></li>
-<li><a href="./reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin"><code>RenderDocCallMixin</code></a> - mixin class for types that are callable. That is <code>functions</code> and class <code>methods</code>.</li>
-<li><a href="./reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin"><code>RenderDocMembersMixin</code></a> - mixin class for types that contain other types. That is, <code>modules</code> and <code>classes</code>.</li>
-<li><a href="./reference/RenderLayout.html#qrenderer.RenderLayout"><code>RenderLayout</code></a> - class that renders the API / Reference page</li>
-<li><a href="./reference/RenderPage.html#qrenderer.RenderPage"><code>RenderPage</code></a> - class that renders a documentation page. The contents of the page will include one or more <code>classes</code>, <code>functions</code>, <code>attributes</code> and <code>modules</code>.</li>
-<li><a href="./reference/RenderSection.html#qrenderer.RenderSection"><code>RenderSection</code></a> - class that renders a section/group on the API / Reference page.</li>
+<li><p><a href="./reference/RenderDoc.html#qrenderer.RenderDoc"><code>RenderDoc</code></a> to extend the common parts to all of python <code>classes</code>, <code>functions</code>, <code>attributes</code> and <code>modules</code>.</p></li>
+<li><p><a href="./reference/RenderDocClass.html#qrenderer.RenderDocClass"><code>RenderDocClass</code></a> to extend rendering of <code>classes</code>.</p></li>
+<li><p><a href="./reference/RenderDocFunction.html#qrenderer.RenderDocFunction"><code>RenderDocFunction</code></a> to extend rendering of <code>functions</code>.</p></li>
+<li><p><a href="./reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute"><code>RenderDocAttribute</code></a> to extend rendering of <code>attributes</code>.</p></li>
+<li><p><a href="./reference/RenderDocModule.html#qrenderer.RenderDocModule"><code>RenderDocModule</code></a> to extend rendering of <code>modules</code>.</p></li>
+<li><p><a href="./reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin"><code>RenderDocCallMixin</code></a> to extend rendering of the common part parts of <code>functions</code> and class <code>methods</code> i.e.&nbsp;callables.</p></li>
+<li><p><a href="./reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin"><code>RenderDocMembersMixin</code></a> to extend rendering of the common parts of <code>modules</code> and <code>classes</code> i.e.&nbsp;objects with members.</p></li>
+<li><p><a href="./reference/RenderLayout.html#qrenderer.RenderLayout"><code>RenderLayout</code></a> to extend rendering of the Reference page.</p></li>
+<li><p><a href="./reference/RenderSection.html#qrenderer.RenderSection"><code>RenderSection</code></a> to extend rendering of a section/group of objecs on Reference page.</p></li>
+<li><p><a href="./reference/RenderPage.html#qrenderer.RenderPage"><code>RenderPage</code></a> to extend rendering of page that contains the documentation of one or more objects. i.e.&nbsp;links from the Reference lead to this type of page.</p></li>
+</ul></li>
+<li><p>Wheen overriding the defaults, the common methods to extend are:</p>
+<ul>
+<li><a href="./reference/RenderBase.html#qrenderer._render.base.RenderBase.render_title"><code>render_title</code></a></li>
+<li><a href="./reference/RenderBase.html#qrenderer._render.base.RenderBase.render_signature"><code>render_signature</code></a></li>
+<li><a href="./reference/RenderBase.html#qrenderer._render.base.RenderBase.render_description"><code>render_description</code></a></li>
+<li><a href="./reference/RenderBase.html#qrenderer._render.base.RenderBase.render_body"><code>render_body</code></a></li>
+<li><a href="./reference/RenderBase.html#qrenderer._render.base.RenderBase.render_summary"><code>render_summary</code></a></li>
 </ul>
-<p>Extending the base class (<a href="./reference/RenderDoc.html#qrenderer.RenderDoc"><code>RenderDoc</code></a>) or the mixing classes (<a href="./reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin"><code>RenderDocCallMixin</code></a>, <a href="./reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin"><code>RenderDocMembersMixin</code></a>) affects the render classes that derive from them.</p>
-<p>The common methods to override when extending are <code>render_title</code>, <code>render_signature</code>, <code>render_description</code>, <code>render_body</code> and <code>render_summary</code>. For some types, it does not make sense to extend some of these method, e.g.&nbsp;<code>modules</code> and <code>attributes</code> do not have signatures so for them to extend the <code>render_signature</code> method would not have an effect.</p></li>
+<p>Though for some types, it does not make sense to extend some of these methods. e.g.&nbsp;<code>modules</code> and <code>attributes</code> do not have signatures so extending the <code>render_signature</code> method would not have an effect.</p></li>
+<li><p>Download <a href="https://raw.githubusercontent.com/has2k1/qrenderer/main/doc/qrenderer.scss">qrenderer.scss</a> into your <code>doc</code> directory.</p></li>
 </ol>
 </section>
 <section id="example" class="level2">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
 <p>Keeping the original signature of a class, we add a line of text below it.</p>
+<p><strong>_renderer.py</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> quartodoc.pandoc.blocks <span class="im">import</span> Blocks</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qrenderer <span class="im">import</span> QRenderer, extend_base_class, RenderDocClass</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -200,9 +220,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> render_signature(<span class="va">self</span>):</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        sig <span class="op">=</span> <span class="bu">super</span>().render_signature()</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> Blocks([sig, <span class="st">"Line below the class signature"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then your minimal configuration file should contain</p>
+<p><strong>_quarto.yml</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> lumen</span><span class="co">           # bootswatch theme</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> qrenderer.scss</span><span class="co">  # qrenderer's customisation</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> custom.scss</span><span class="co">     # your customisation</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">quartodoc</span><span class="kw">:</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">package</span><span class="kw">:</span><span class="at"> your_package</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">renderer</span><span class="kw">:</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">style</span><span class="kw">:</span><span class="at"> _renderer.py</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">typing_module_paths</span><span class="kw">:</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> your_package.typing</span><span class="co">  # path to your type annotations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The easiest customisation you can make is to change the primary color of your documentation.</p>
+<p><strong>custom.scss</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode scss code-with-copy"><code class="sourceCode scss"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:defaults --*/</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">$primary</span>: <span class="cn">#9E2F68</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:mixins --*/</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:rules --*/</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:functions --*/</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:uses --*/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Consult the <a href="https://quarto.org/">quarto</a> documentation on <a href="https://quarto.org/docs/output-formats/html-themes.html">theming</a> for <a href="https://quarto.org/docs/output-formats/html-themes-more.html">more</a></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
