@@ -1,7 +1,9 @@
 # qrenderer
 
 This is an experimental renderer for [quartodoc](https://github.com/machow/quartodoc).
-It can only be installed from github and it will never be released on PyPi. Use it with caution, there will be breaking changes.
+It can only be installed from github and it will never be released on PyPi. Some version
+of it may find its way into quartodoc. Use it with caution, there will be
+breaking changes.
 
 ## Install
 
@@ -9,8 +11,7 @@ It can only be installed from github and it will never be released on PyPi. Use 
 $ pip install git+https://github.com/has2k1/qrenderer.git
 ```
 
-
-## How to extend quartodoc
+## How to extend quartodoc with qrenderer
 
 1. Import `QRenderer` which is the bridge between this renderer and
    quartodoc's current rendering system.
@@ -20,35 +21,53 @@ $ pip install git+https://github.com/has2k1/qrenderer.git
 
 3. Import any Render classes that you want to extend. The options are:
 
-   - `RenderDoc` - Base class for the renderers of python `classes`, `functions`,
-     `attributes` and `modules`.
-   - `RenderDocClass` - class that renderers python `classes`
-   - `RenderDocFunction` - class that renderers python `functions`
-   - `RenderDocAttribute` - class that renderers python `attributes`
-   - `RenderDocModule` - class that renderers python `modules`
-   - `RenderDocCallMixin` - mixin class for types that are callable. That is
-     `functions` and class `methods`.
-   - `RenderDocMembersMixin` - mixin class for types that contain other types.
-     That is, `modules` and `classes`.
-   - `RenderLayout` - class that renders the API / Reference page
-   - `RenderPage` - class that renders a documentation page. The contents of the
-     page will include one or more `classes`, `functions`, `attributes` and
-     `modules`.
-   - `RenderSection` - class that renders a section/group on the API / Reference
-     page.
+   - `RenderDoc` to extend the common parts to all of python `classes`,
+     `functions`, `attributes` and `modules`.
 
-   Extending the base class (`RenderDoc`) or the mixing classes
-   (`RenderDocCallMixin`, `RenderDocMembersMixin`) affects the render classes
-   that derive from them.
+   - `RenderDocClass` to extend rendering of `classes`
 
-   The common methods to override when extending are `render_title`, `render_signature`,
-   `render_description`, `render_body` and `render_summary`. For some types, it does not make sense
-   to extend some of these method, e.g. `modules` and `attributes` do not have signatures
-   so for them to extend the `render_signature` method would not have an effect.
+   - `RenderDocFunction` to extend rendering of `functions`
+
+   - `RenderDocAttribute` to extend rendering of `attributes`
+
+   - `RenderDocModule` to extend rendering of `modules`
+
+   - `RenderDocCallMixin` to extend rendering of the common parts
+      of `functions` and class `methods` i.e. callables
+
+   - `RenderDocMembersMixin` to extend rendering of the common parts
+     of `modules` and `classes` i.e. objects with members
+
+   - `RenderLayout` to extend rendering of the API / Reference page
+
+   - `RenderSection` to extend rendering of a section/group of
+     objects on Reference page.
+
+   - `RenderPage `to extend rendering of page that contains the
+      documentation of one or more objects. i.e. links from the
+      Reference lead to this type of page.
+
+4. Wheen overriding the defaults, the common methods to extend are:
+
+   - `render_title`
+   - `render_signature`
+   - `render_description`
+   - `render_body`
+   - `render_summary`
+
+   Though for some types, it does not make sense to extend some of these
+   methods. e.g. `modules` and `attributes` do not have signatures so
+   extending the `render_signature` method would not have an effect.
+
+5. Download
+   [qrenderer.scss](https://raw.githubusercontent.com/has2k1/qrenderer/main/doc/qrenderer.scss)
+   into your `doc` directory.
 
 ## Example
 
 Keeping the original signature of a class, we add a line of text below it.
+
+**\_renderer.py**
 
 ```python
 from quartodoc.pandoc.blocks import Blocks
@@ -64,3 +83,47 @@ class _RenderDocClass(RenderDocClass):
         sig = super().render_signature()
         return Blocks([sig, "Line below the class signature"])
 ```
+
+Then your minimal configuration file should have
+
+**\_quarto.yml**
+
+```yaml
+project:
+  type: website
+
+format:
+  html:
+    toc: true
+    theme:
+      - lumen           # bootswatch theme
+      - qrenderer.scss  # qrenderer's customisation
+      - custom.scss     # your customisation (if any)
+
+quartodoc:
+  package: your_package
+  renderer:
+    style: _renderer.py
+    typing_module_paths:
+      - your_package.typing  # path to your type annotations
+```
+
+The easiest customisation you can make is to change the primary color of your documentation.
+
+**custom.scss**
+
+```scss
+/*-- scss:defaults --*/
+$primary: #9E2F68;
+
+/*-- scss:mixins --*/
+
+/*-- scss:rules --*/
+
+/*-- scss:functions --*/
+
+/*-- scss:uses --*/
+
+```
+
+Consult the [quarto](https://quarto.org/) documentation on [theming](https://quarto.org/docs/output-formats/html-themes.html) for [more](https://quarto.org/docs/output-formats/html-themes-more.html)
