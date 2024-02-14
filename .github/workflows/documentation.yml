@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -37,4 +37,3 @@ jobs:
         if: contains(needs.parse_commit_info.outputs.can_deploy, 'true')
         with:
           folder: doc/_site
-          branch: ${{ needs.parse_commit_info.outputs.deploy_to }}
