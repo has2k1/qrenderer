@@ -1,6 +1,7 @@
 // Ref:
 // - https://getbootstrap.com/docs/5.3/utilities/spacing/
 // - https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
+// - https://quarto.org/docs/output-formats/html-themes-more.html
 
 /*-- scss:defaults --*/
 $primary: #2874A6;
@@ -8,7 +9,9 @@ $font-family-base: "Source Sans Pro";
 $font-family-code: "Source Code Pro";
 $table-striped-order: even;
 $headings-font-weight: 300 !default;
-$table-striped-bg: mix($primary, #FDFDFD, 2.5%);
+
+/*-- scss:mixins --*/
+$table-striped-bg: mix($primary, #FDFDFD, 2%);
 
 /*-- scss:rules --*/
 $class-symbol-color: $primary;
@@ -66,7 +69,6 @@ section.doc-methods > section.doc-method {
 
 // docstring signatures
 .doc-signature > div:first-child {
-   border-top: none;
    background-color: $signature-background-color;
 }
 
@@ -283,9 +285,6 @@ code.doc-symbol-typevar::after {
 .content code.doc-label-protocol::after {
    content: "Protocol";
 }
-
-
-/*-- scss:mixins --*/
 
 /*-- scss:functions --*/
 
