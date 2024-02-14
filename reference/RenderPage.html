@@ -142,13 +142,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#qrenderer.RenderPage" id="toc-qrenderer.RenderPage" class="nav-link active" data-scroll-target="#qrenderer.RenderPage"><code class="doc-symbol doc-symbol-class"></code> <span class="doc-object-name doc-class-name">qrenderer.RenderPage</span></a></li>
+  <li><a href="#parameter-attributes" id="toc-parameter-attributes" class="nav-link" data-scroll-target="#parameter-attributes">Parameter Attributes</a></li>
   <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes">Attributes</a>
   <ul class="collapse">
   <li><a href="#qrenderer.RenderPage.body" id="toc-qrenderer.RenderPage.body" class="nav-link" data-scroll-target="#qrenderer.RenderPage.body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">body</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderPage.description" id="toc-qrenderer.RenderPage.description" class="nav-link" data-scroll-target="#qrenderer.RenderPage.description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">description</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
-  <li><a href="#qrenderer.RenderPage.layout_obj" id="toc-qrenderer.RenderPage.layout_obj" class="nav-link" data-scroll-target="#qrenderer.RenderPage.layout_obj"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">layout_obj</span></a></li>
-  <li><a href="#qrenderer.RenderPage.level" id="toc-qrenderer.RenderPage.level" class="nav-link" data-scroll-target="#qrenderer.RenderPage.level"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">level</span></a></li>
-  <li><a href="#qrenderer.RenderPage.renderer" id="toc-qrenderer.RenderPage.renderer" class="nav-link" data-scroll-target="#qrenderer.RenderPage.renderer"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">renderer</span></a></li>
   <li><a href="#qrenderer.RenderPage.show_body" id="toc-qrenderer.RenderPage.show_body" class="nav-link" data-scroll-target="#qrenderer.RenderPage.show_body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_body</span></a></li>
   <li><a href="#qrenderer.RenderPage.show_description" id="toc-qrenderer.RenderPage.show_description" class="nav-link" data-scroll-target="#qrenderer.RenderPage.show_description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_description</span></a></li>
   <li><a href="#qrenderer.RenderPage.show_signature" id="toc-qrenderer.RenderPage.show_signature" class="nav-link" data-scroll-target="#qrenderer.RenderPage.show_signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature</span></a></li>
@@ -179,11 +177,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </header>
 <div class="doc-signature">
-<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RenderPage()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RenderPage(layout_obj, renderer, level<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Extend Rendering of a layout.Page object</p>
 </div>
+<section id="parameter-attributes" class="level2 doc-parameter-attributes">
+<h2 class="doc-parameter-attributes anchored" data-anchor-id="parameter-attributes">Parameter Attributes</h2>
+<div class="doc-definition-items">
+<dl>
+<dt><code>layout_obj: (<br>&nbsp;&nbsp;&nbsp;&nbsp;layout.DocClass<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.DocFunction<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.DocAttribute<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.DocModule<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.Page<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.Section<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.Link<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.Layout<br>)</code></dt>
+<dd>
+<p>Layout object to be documented</p>
+</dd>
+<dt><code>renderer: <a href="../reference/QRenderer.html#qrenderer.QRenderer">QRenderer</a></code></dt>
+<dd>
+<p>Renderer that holds the configured values</p>
+</dd>
+<dt><code>level: <a href="https://docs.python.org/3/library/functions.html#int">int</a> = 1</code></dt>
+<dd>
+<p>The deepth of the object in the documentation</p>
+</dd>
+</dl>
+</div>
+</section>
 <section id="attributes" class="level2 doc-attributes">
 <h2 class="doc-attributes anchored" data-anchor-id="attributes">Attributes</h2>
 <table class="table">
@@ -203,42 +220,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>The description that the documented object</td>
 </tr>
 <tr class="odd">
-<td><a href="#qrenderer.RenderPage.layout_obj">layout_obj</a></td>
-<td>Layout object to be documented</td>
-</tr>
-<tr class="even">
-<td><a href="#qrenderer.RenderPage.level">level</a></td>
-<td>The deepth of the object in the documentation</td>
-</tr>
-<tr class="odd">
-<td><a href="#qrenderer.RenderPage.renderer">renderer</a></td>
-<td>Renderer that holds the configured values</td>
-</tr>
-<tr class="even">
 <td><a href="#qrenderer.RenderPage.show_body">show_body</a></td>
 <td>Whether to show the documentation body of the object</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderPage.show_description">show_description</a></td>
 <td>Whether to show the description of the object</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderPage.show_signature">show_signature</a></td>
 <td>Whether to show the signature</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderPage.show_title">show_title</a></td>
 <td>Whether to show the title of the object</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderPage.signature">signature</a></td>
 <td>The signature of the object (if any)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderPage.summary">summary</a></td>
 <td>The summary of the documented object</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderPage.title">title</a></td>
 <td>The title/header of a docstring, including any anchors</td>
 </tr>
@@ -262,33 +267,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="doc-text">
 <p>The description that the documented object</p>
 <p>Do not override this property.</p>
-</div>
-</section>
-<section id="qrenderer.RenderPage.layout_obj" class="level3 title doc-object doc-attribute">
-<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.layout_obj"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">layout_obj</span></h3>
-<div class="doc-signature">
-<p><code><span class="doc-parameter-name">layout_obj</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">layout.DocClass | layout.DocFunction | layout.DocAttribute | layout.DocModule | layout.Page | layout.Section | layout.Link | layout.Layout</span></code></p>
-</div>
-<div class="doc-text">
-<p>Layout object to be documented</p>
-</div>
-</section>
-<section id="qrenderer.RenderPage.level" class="level3 title doc-object doc-attribute">
-<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.level"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">level</span></h3>
-<div class="doc-signature">
-<p><code><span class="doc-parameter-name">level</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">1</span></code></p>
-</div>
-<div class="doc-text">
-<p>The deepth of the object in the documentation</p>
-</div>
-</section>
-<section id="qrenderer.RenderPage.renderer" class="level3 title doc-object doc-attribute">
-<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.renderer"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">renderer</span></h3>
-<div class="doc-signature">
-<p><code><span class="doc-parameter-name">renderer</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="../reference/QRenderer.html#qrenderer.QRenderer">QRenderer</a></span></code></p>
-</div>
-<div class="doc-text">
-<p>Renderer that holds the configured values</p>
 </div>
 </section>
 <section id="qrenderer.RenderPage.show_body" class="level3 title doc-object doc-attribute">

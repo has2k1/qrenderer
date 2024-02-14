@@ -142,6 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#qrenderer.QRenderer" id="toc-qrenderer.QRenderer" class="nav-link active" data-scroll-target="#qrenderer.QRenderer"><code class="doc-symbol doc-symbol-class"></code> <span class="doc-object-name doc-class-name">qrenderer.QRenderer</span></a></li>
+  <li><a href="#parameter-attributes" id="toc-parameter-attributes" class="nav-link" data-scroll-target="#parameter-attributes">Parameter Attributes</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
   <li><a href="#qrenderer.QRenderer.render" id="toc-qrenderer.QRenderer.render" class="nav-link" data-scroll-target="#qrenderer.QRenderer.render"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render</span></a></li>
@@ -167,14 +168,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    show_signature<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    display_name_format<span class="op">=</span><span class="st">"auto"</span>,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    signature_name_format<span class="op">=</span><span class="st">"name"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    typing_module_paths<span class="op">=</span>field(default_factory<span class="op">=</span><span class="bu">list</span>),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    style<span class="op">=</span>field(init<span class="op">=</span><span class="va">False</span>, default<span class="op">=</span><span class="st">"q"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    typing_module_paths<span class="op">=</span>field(default_factory<span class="op">=</span><span class="bu">list</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Render strings to markdown</p>
 <p>This class provides a scafolding around quartodocs base renderer and it helps connect the rendering done by this package to the official quartodoc renderer API.</p>
 </div>
+<section id="parameter-attributes" class="level2 doc-parameter-attributes">
+<h2 class="doc-parameter-attributes anchored" data-anchor-id="parameter-attributes">Parameter Attributes</h2>
+<div class="doc-definition-items">
+<dl>
+<dt><code>header_level: <a href="https://docs.python.org/3/library/functions.html#int">int</a> = 1</code></dt>
+<dd>
+
+</dd>
+<dt><code>show_signature: <a href="https://docs.python.org/3/library/functions.html#bool">bool</a> = True</code></dt>
+<dd>
+
+</dd>
+<dt><code>display_name_format: <a href="../reference/typing.html#qrenderer.typing.DisplayNameFormat">DisplayNameFormat</a> | <a href="https://docs.python.org/3/library/typing.html#typing.Literal">Literal</a>[<span class="st">"auto"</span>] = <span class="st">"auto"</span></code></dt>
+<dd>
+
+</dd>
+<dt><code>signature_name_format: <a href="../reference/typing.html#qrenderer.typing.DisplayNameFormat">DisplayNameFormat</a> = <span class="st">"name"</span></code></dt>
+<dd>
+
+</dd>
+<dt><code>typing_module_paths: <a href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>] = field(default_factory=<a href="https://docs.python.org/3/library/stdtypes.html#list">list</a>)</code></dt>
+<dd>
+
+</dd>
+</dl>
+</div>
+</section>
 <section id="methods" class="level2 doc-methods">
 <h2 class="doc-methods anchored" data-anchor-id="methods">Methods</h2>
 <table class="table">

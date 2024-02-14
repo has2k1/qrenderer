@@ -142,15 +142,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#qrenderer.RenderDocMembersMixin" id="toc-qrenderer.RenderDocMembersMixin" class="nav-link active" data-scroll-target="#qrenderer.RenderDocMembersMixin"><code class="doc-symbol doc-symbol-class"></code> <span class="doc-object-name doc-class-name">qrenderer.RenderDocMembersMixin</span></a></li>
+  <li><a href="#parameter-attributes" id="toc-parameter-attributes" class="nav-link" data-scroll-target="#parameter-attributes">Parameter Attributes</a></li>
   <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes">Attributes</a>
   <ul class="collapse">
   <li><a href="#qrenderer.RenderDocMembersMixin.body" id="toc-qrenderer.RenderDocMembersMixin.body" class="nav-link" data-scroll-target="#qrenderer.RenderDocMembersMixin.body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">body</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderDocMembersMixin.description" id="toc-qrenderer.RenderDocMembersMixin.description" class="nav-link" data-scroll-target="#qrenderer.RenderDocMembersMixin.description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">description</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderDocMembersMixin.kind" id="toc-qrenderer.RenderDocMembersMixin.kind" class="nav-link" data-scroll-target="#qrenderer.RenderDocMembersMixin.kind"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">kind</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderDocMembersMixin.labels" id="toc-qrenderer.RenderDocMembersMixin.labels" class="nav-link" data-scroll-target="#qrenderer.RenderDocMembersMixin.labels"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">labels</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
-  <li><a href="#qrenderer.RenderDocMembersMixin.layout_obj" id="toc-qrenderer.RenderDocMembersMixin.layout_obj" class="nav-link" data-scroll-target="#qrenderer.RenderDocMembersMixin.layout_obj"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">layout_obj</span></a></li>
-  <li><a href="#qrenderer.RenderDocMembersMixin.level" id="toc-qrenderer.RenderDocMembersMixin.level" class="nav-link" data-scroll-target="#qrenderer.RenderDocMembersMixin.level"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">level</span></a></li>
-  <li><a href="#qrenderer.RenderDocMembersMixin.renderer" id="toc-qrenderer.RenderDocMembersMixin.renderer" class="nav-link" data-scroll-target="#qrenderer.RenderDocMembersMixin.renderer"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">renderer</span></a></li>
   <li><a href="#qrenderer.RenderDocMembersMixin.show_body" id="toc-qrenderer.RenderDocMembersMixin.show_body" class="nav-link" data-scroll-target="#qrenderer.RenderDocMembersMixin.show_body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_body</span></a></li>
   <li><a href="#qrenderer.RenderDocMembersMixin.show_description" id="toc-qrenderer.RenderDocMembersMixin.show_description" class="nav-link" data-scroll-target="#qrenderer.RenderDocMembersMixin.show_description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_description</span></a></li>
   <li><a href="#qrenderer.RenderDocMembersMixin.show_members" id="toc-qrenderer.RenderDocMembersMixin.show_members" class="nav-link" data-scroll-target="#qrenderer.RenderDocMembersMixin.show_members"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_members</span></a></li>
@@ -200,11 +198,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </header>
 <div class="doc-signature">
-<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RenderDocMembersMixin()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RenderDocMembersMixin(layout_obj, renderer, level<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Extend Rendering of objects that have members</p>
 </div>
+<section id="parameter-attributes" class="level2 doc-parameter-attributes">
+<h2 class="doc-parameter-attributes anchored" data-anchor-id="parameter-attributes">Parameter Attributes</h2>
+<div class="doc-definition-items">
+<dl>
+<dt><code>layout_obj: (<br>&nbsp;&nbsp;&nbsp;&nbsp;layout.DocClass<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.DocFunction<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.DocAttribute<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.DocModule<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.Page<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.Section<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.Link<br>&nbsp;&nbsp;&nbsp;&nbsp;| layout.Layout<br>)</code></dt>
+<dd>
+<p>Layout object to be documented</p>
+</dd>
+<dt><code>renderer: <a href="../reference/QRenderer.html#qrenderer.QRenderer">QRenderer</a></code></dt>
+<dd>
+<p>Renderer that holds the configured values</p>
+</dd>
+<dt><code>level: <a href="https://docs.python.org/3/library/functions.html#int">int</a> = 1</code></dt>
+<dd>
+<p>The deepth of the object in the documentation</p>
+</dd>
+</dl>
+</div>
+</section>
 <section id="attributes" class="level2 doc-attributes">
 <h2 class="doc-attributes anchored" data-anchor-id="attributes">Attributes</h2>
 <table class="table">
@@ -232,74 +249,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Return labels for an object (iff object is a function/method)</td>
 </tr>
 <tr class="odd">
-<td><a href="#qrenderer.RenderDocMembersMixin.layout_obj">layout_obj</a></td>
-<td>Layout object to be documented</td>
-</tr>
-<tr class="even">
-<td><a href="#qrenderer.RenderDocMembersMixin.level">level</a></td>
-<td>The deepth of the object in the documentation</td>
-</tr>
-<tr class="odd">
-<td><a href="#qrenderer.RenderDocMembersMixin.renderer">renderer</a></td>
-<td>Renderer that holds the configured values</td>
-</tr>
-<tr class="even">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_body">show_body</a></td>
 <td>Whether to show the documentation body of the object</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_description">show_description</a></td>
 <td>Whether to show the description of the object</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_members">show_members</a></td>
 <td>All members (attributes, classes and functions)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_members_body">show_members_body</a></td>
 <td>All member (attribute, class and function) bodies</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_members_summary">show_members_summary</a></td>
 <td>All member (attribute, class and function) summaries</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_object_labels">show_object_labels</a></td>
 <td>Whether to show the labels of the object</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_object_name">show_object_name</a></td>
 <td>Whether to show the name of the object</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_object_symbol">show_object_symbol</a></td>
 <td>Whether to show the symbol of the object</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_signature">show_signature</a></td>
 <td>Whether to show the signature</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_signature_annotation">show_signature_annotation</a></td>
 <td>Where to show type annotations in the signature</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_signature_name">show_signature_name</a></td>
 <td>Whether to show the name of the object in the signature</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocMembersMixin.show_title">show_title</a></td>
 <td>Whether to show the title of the object</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocMembersMixin.signature">signature</a></td>
 <td>The signature of the object (if any)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocMembersMixin.summary">summary</a></td>
 <td>The summary of the documented object</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocMembersMixin.title">title</a></td>
 <td>The title/header of a docstring, including any anchors</td>
 </tr>
@@ -341,33 +346,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="doc-text">
 <p>Return labels for an object (iff object is a function/method)</p>
-</div>
-</section>
-<section id="qrenderer.RenderDocMembersMixin.layout_obj" class="level3 title doc-object doc-attribute">
-<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocMembersMixin.layout_obj"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">layout_obj</span></h3>
-<div class="doc-signature">
-<p><code><span class="doc-parameter-name">layout_obj</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">layout.DocClass | layout.DocFunction | layout.DocAttribute | layout.DocModule | layout.Page | layout.Section | layout.Link | layout.Layout</span></code></p>
-</div>
-<div class="doc-text">
-<p>Layout object to be documented</p>
-</div>
-</section>
-<section id="qrenderer.RenderDocMembersMixin.level" class="level3 title doc-object doc-attribute">
-<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocMembersMixin.level"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">level</span></h3>
-<div class="doc-signature">
-<p><code><span class="doc-parameter-name">level</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">1</span></code></p>
-</div>
-<div class="doc-text">
-<p>The deepth of the object in the documentation</p>
-</div>
-</section>
-<section id="qrenderer.RenderDocMembersMixin.renderer" class="level3 title doc-object doc-attribute">
-<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocMembersMixin.renderer"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">renderer</span></h3>
-<div class="doc-signature">
-<p><code><span class="doc-parameter-name">renderer</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="../reference/QRenderer.html#qrenderer.QRenderer">QRenderer</a></span></code></p>
-</div>
-<div class="doc-text">
-<p>Renderer that holds the configured values</p>
 </div>
 </section>
 <section id="qrenderer.RenderDocMembersMixin.show_body" class="level3 title doc-object doc-attribute">
