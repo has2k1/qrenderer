@@ -4,14 +4,11 @@
 // - https://quarto.org/docs/output-formats/html-themes-more.html
 
 /*-- scss:defaults --*/
-$primary: #2874A6;
-$font-family-base: "Source Sans Pro";
-$font-family-code: "Source Code Pro";
-$table-striped-order: even;
-$headings-font-weight: 300 !default;
 
 /*-- scss:mixins --*/
+$headings-font-weight: 300 !default;
 $table-striped-bg: mix($primary, #FDFDFD, 2%);
+$table-striped-order: even;
 
 /*-- scss:rules --*/
 $class-symbol-color: $primary;
