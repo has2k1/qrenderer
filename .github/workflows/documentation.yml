@@ -1,0 +1,40 @@
+name: Documentation
+
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build-documentation:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.11]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install Package
+        shell: bash
+        run: |
+          pip install git+https://github.com/machow/quartodoc.git@fix-alias-method-members
+
+      - name: Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: contains(needs.parse_commit_info.outputs.can_deploy, 'true')
+        with:
+          folder: doc/_site
+          branch: ${{ needs.parse_commit_info.outputs.deploy_to }}
