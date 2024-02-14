@@ -30,10 +30,20 @@ jobs:
       - name: Install Package
         shell: bash
         run: |
-          pip install git+https://github.com/machow/quartodoc.git@fix-alias-method-members
+          pip install .
+
+      - name: Build docs
+        shell: bash
+        run: |
+          pushd doc; make doc; popd
+
+      - name: Environment Information
+        shell: bash
+        run: |
+          ls -la doc
+          ls -la doc/reference
 
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4
-        if: contains(needs.parse_commit_info.outputs.can_deploy, 'true')
         with:
           folder: doc/_site
