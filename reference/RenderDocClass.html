@@ -173,6 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#qrenderer.RenderDocClass.format_name" id="toc-qrenderer.RenderDocClass.format_name" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.format_name"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">format_name</span></a></li>
   <li><a href="#qrenderer.RenderDocClass.render_annotation" id="toc-qrenderer.RenderDocClass.render_annotation" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_annotation"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_annotation</span></a></li>
   <li><a href="#qrenderer.RenderDocClass.render_attributes" id="toc-qrenderer.RenderDocClass.render_attributes" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_attributes"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_attributes</span></a></li>
+  <li><a href="#qrenderer.RenderDocClass.render_body" id="toc-qrenderer.RenderDocClass.render_body" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_body"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_body</span></a></li>
   <li><a href="#qrenderer.RenderDocClass.render_classes" id="toc-qrenderer.RenderDocClass.render_classes" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_classes"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_classes</span></a></li>
   <li><a href="#qrenderer.RenderDocClass.render_description" id="toc-qrenderer.RenderDocClass.render_description" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_description"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_description</span></a></li>
   <li><a href="#qrenderer.RenderDocClass.render_functions" id="toc-qrenderer.RenderDocClass.render_functions" class="nav-link" data-scroll-target="#qrenderer.RenderDocClass.render_functions"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_functions</span></a></li>
@@ -553,46 +554,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Render the function members of the Doc</td>
 </tr>
 <tr class="odd">
+<td><a href="#qrenderer.RenderDocClass.render_body">render_body</a></td>
+<td>Render the docstring and member docs</td>
+</tr>
+<tr class="even">
 <td><a href="#qrenderer.RenderDocClass.render_classes">render_classes</a></td>
 <td>Render the class members of the Doc</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocClass.render_description">render_description</a></td>
 <td>Render the description of the documentation page</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocClass.render_functions">render_functions</a></td>
 <td>Render the function members of the Doc</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocClass.render_labels">render_labels</a></td>
 <td>Create codes used for doc labels</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocClass.render_members">render_members</a></td>
 <td>Render the docs of member objects</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocClass.render_section">render_section</a></td>
 <td>Render a section of a docstring</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocClass.render_signature_parameter">render_signature_parameter</a></td>
 <td>Parameter for the function/method signature</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocClass.render_signature_parameters">render_signature_parameters</a></td>
 <td>Render parameters in a function / method signature</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocClass.render_summary">render_summary</a></td>
 <td>Return a line item that summarises the object</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocClass.render_title">render_title</a></td>
 <td>Render the header of a docstring, including any anchors</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocClass.render_variable_definition">render_variable_definition</a></td>
 <td>Create code snippet that declares a variable</td>
 </tr>
@@ -650,10 +655,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Render the function members of the Doc</p>
 </div>
 </section>
+<section id="qrenderer.RenderDocClass.render_body" class="level3 title doc-object doc-method">
+<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_body"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_body</span></h3>
+<div class="doc-signature">
+<div class="sourceCode" id="cb8"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>render_body()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Render the docstring and member docs</p>
+</div>
+</section>
 <section id="qrenderer.RenderDocClass.render_classes" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_classes"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_classes</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb8"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>render_classes()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>render_classes()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Render the class members of the Doc</p>
@@ -662,7 +676,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocClass.render_description" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_description"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_description</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb9"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>render_description()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>render_description()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Render the description of the documentation page</p>
@@ -671,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocClass.render_functions" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_functions"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_functions</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb10"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>render_functions()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>render_functions()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Render the function members of the Doc</p>
@@ -680,7 +694,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocClass.render_labels" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_labels"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_labels</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb11"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>render_labels()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>render_labels()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Create codes used for doc labels</p>
@@ -690,7 +704,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocClass.render_members" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_members"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_members</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb12"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>render_members()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>render_members()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Render the docs of member objects</p>
@@ -700,7 +714,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocClass.render_section" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_section"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_section</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>render_section(el)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>render_section(el)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Render a section of a docstring</p>
@@ -717,7 +731,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocClass.render_signature_parameter" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_signature_parameter"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_signature_parameter</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>render_signature_parameter(el)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>render_signature_parameter(el)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Parameter for the function/method signature</p>
@@ -728,7 +742,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocClass.render_signature_parameters" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_signature_parameters"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_signature_parameters</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb16"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>render_signature_parameters()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>render_signature_parameters()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Render parameters in a function / method signature</p>
@@ -738,7 +752,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocClass.render_summary" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_summary"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_summary</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb17"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>render_summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>render_summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Return a line item that summarises the object</p>
@@ -747,7 +761,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocClass.render_title" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_title"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_title</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>render_title()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>render_title()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Render the header of a docstring, including any anchors</p>
@@ -756,7 +770,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocClass.render_variable_definition" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocClass.render_variable_definition"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_variable_definition</span></h3>
 <div class="doc-signature">
-<div class="sourceCode" id="cb19"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>render_variable_definition(name, annotation, default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>render_variable_definition(name, annotation, default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Create code snippet that declares a variable</p>

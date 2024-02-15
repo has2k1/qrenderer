@@ -123,6 +123,8 @@ qrenderer.RenderDocClass.render_annotation py:function 1 reference/RenderDocClas
 qrenderer._render.doc.__RenderDoc.render_annotation py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_annotation qrenderer.RenderDocClass.render_annotation
 qrenderer.RenderDocClass.render_attributes py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_attributes -
 qrenderer._render.mixin_members.__RenderDocMembersMixin.render_attributes py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_attributes qrenderer.RenderDocClass.render_attributes
+qrenderer.RenderDocClass.render_body py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_body -
+qrenderer._render.mixin_members.__RenderDocMembersMixin.render_body py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_body qrenderer.RenderDocClass.render_body
 qrenderer.RenderDocClass.render_classes py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_classes -
 qrenderer._render.mixin_members.__RenderDocMembersMixin.render_classes py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_classes qrenderer.RenderDocClass.render_classes
 qrenderer.RenderDocClass.render_description py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_description -
