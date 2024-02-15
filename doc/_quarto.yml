@@ -48,7 +48,6 @@ quartodoc:
 
   sections:
     - title: Render classes
-      package: qrenderer
       contents:
         - name: RenderBase
           package: qrenderer._render.base
@@ -64,7 +63,6 @@ quartodoc:
         - RenderSection
 
     - title: Extending the Render classes
-      package: qrenderer
       contents:
         - QRenderer
         - extend_base_class
