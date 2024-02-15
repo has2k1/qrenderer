@@ -16,12 +16,12 @@ $ pip install git+https://github.com/has2k1/qrenderer.git
 1. Import `QRenderer` which is the bridge between this renderer and
    quartodoc's current rendering system.
 
-2. Import a decorator `extend_base_class` that will mark the classes
-   created to extend quartodoc.
+2. Import the decorator `extend_base_class` that make makes it
+   possible to modify the classes that you extend.
 
 3. Import any Render classes that you want to extend. The options are:
 
-   - `RenderDoc` to extend the common parts to all of python `classes`,
+   - `RenderDoc` to extend the common parts to `classes`,
      `functions`, `attributes` and `modules`.
 
    - `RenderDocClass` to extend rendering of `classes`
