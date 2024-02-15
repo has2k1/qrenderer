@@ -56,18 +56,20 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
             attributes = [a for a in attributes if a.name not in params]
         return attributes
 
-    def render_body(self) -> BlockContent:
-        sections, kinds = self._sections
+    @cached_property
+    def _sections(self):
+        sections, section_kinds  = super()._sections
 
+        # We only want to extend the sections for dataclasses
+        # that do not have a parameters section
         if (
             not self.is_dataclass
-            or "parameters" in set(kinds)
+            or "parameters" in set(section_kinds)
             or not len(self.function_parameters)
         ):
-            return Blocks([sections, *self.render_members()])
+            return sections, section_kinds
 
-        # FIXME: This is a mixture of RenderDoc.render_body and
-        # RenderDocCallMixin.render_section
+        # Create a "Parameter Attributes" section
         header = Header(
             self.level + 1,
             "Parameter Attributes",
@@ -86,10 +88,11 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
             Attr(classes=["doc-definition-items"]),
         )
 
-        content = Blocks([header, body])
-        idx = 1 if kinds and kinds[0] == "text" else 0
-        sections.insert(idx, content)
-        return Blocks([sections, *self.render_members()])
+        section = Blocks([header, body])
+        idx = 1 if section_kinds and section_kinds[0] == "text" else 0
+        sections.insert(idx, section)
+        section_kinds.insert(idx, "parameter attributes")
+        return sections, section_kinds
 
     # NOTE: This method override is a temporary fix to
     # https://github.com/mkdocstrings/griffe/issues/233

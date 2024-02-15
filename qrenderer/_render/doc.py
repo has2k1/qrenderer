@@ -354,11 +354,11 @@ class __RenderDoc(RenderBase):
         """
         Sections of the docstring
         """
-        if not self.obj.docstring:
-            return [], []
-
         sections: list[Block] = []
         section_kinds: list[str] = []
+
+        if not self.obj.docstring:
+            return sections, section_kinds
 
         patched_sections = cast(
             list[ds.DocstringSection],
