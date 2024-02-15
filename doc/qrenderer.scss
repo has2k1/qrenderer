@@ -82,7 +82,6 @@ section.doc-methods > section.doc-method {
 .doc-signature > p:first-child code {
    @extend .p-2;
    display: block;
-   background-color: unset;
 }
 
 .doc-signature > p:first-child code a {
