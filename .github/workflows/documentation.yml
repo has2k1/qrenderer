@@ -31,6 +31,7 @@ jobs:
         shell: bash
         run: |
           pip install .
+          pushd doc; make install-filters; popd
 
       - name: Build docs
         shell: bash

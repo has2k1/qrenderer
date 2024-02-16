@@ -24,6 +24,10 @@ clean:  ## Remove build artefacts
 	rm -rf _site/
 	rm -rf _inv/
 
+install-filters:  ## Install required pandoc filters
+	quarto add --no-prompt has2k1/issuey
+	quarto add --no-prompt has2k1/interlinks
+
 interlink:  ## Gather interlinks
 	quartodoc interlinks
 
