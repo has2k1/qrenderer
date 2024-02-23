@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING, cast
 
@@ -40,23 +40,23 @@ class __RenderDocMembersMixin(RenderDoc):
     i.e. modules and classes
     """
 
-    show_members: bool = field(init=False, default=True)
+    show_members: bool = True
     """All members (attributes, classes and functions) """
-    show_attributes: bool = field(init=False, default=True)
-    show_classes: bool = field(init=False, default=True)
-    show_functions: bool = field(init=False, default=True)
+    show_attributes: bool = True
+    show_classes: bool = True
+    show_functions: bool = True
 
-    show_members_summary: bool = field(init=False, default=True)
+    show_members_summary: bool = True
     """All member (attribute, class and function) summaries"""
-    show_attributes_summary: bool = field(init=False, default=True)
-    show_classes_summary: bool = field(init=False, default=True)
-    show_functions_summary: bool = field(init=False, default=True)
+    show_attributes_summary: bool = True
+    show_classes_summary: bool = True
+    show_functions_summary: bool = True
 
-    show_members_body: bool = field(init=False, default=True)
+    show_members_body: bool = True
     """All member (attribute, class and function) bodies"""
-    show_attributes_body: bool = field(init=False, default=True)
-    show_classes_body: bool = field(init=False, default=True)
-    show_functions_body: bool = field(init=False, default=True)
+    show_attributes_body: bool = True
+    show_classes_body: bool = True
+    show_functions_body: bool = True
 
     def __post_init__(self):
         super().__post_init__()

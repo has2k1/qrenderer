@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING
 
@@ -41,21 +41,19 @@ class __RenderBase(Block):
     """Renderer that holds the configured values"""
 
     level: int = 1
-    """The deepth of the object in the documentation"""
+    """The depth of the object in the documentation"""
 
-    # TODO: Convert all the show_* attributes into parameters
-
-    show_title: bool = field(init=False, default=True)
+    show_title: bool = True
     """Whether to show the title of the object"""
 
-    show_signature: bool = field(init=False, default=True)
+    show_signature: bool = True
     """
     Whether to show the signature
 
     This only applies to objects that have signatures
     """
 
-    show_description: bool = field(init=False, default=True)
+    show_description: bool = True
     """
     Whether to show the description of the object
 
@@ -65,7 +63,7 @@ class __RenderBase(Block):
     This attribute is not well defined and it may change in the future.
     """
 
-    show_body: bool = field(init=False, default=True)
+    show_body: bool = True
     """Whether to show the documentation body of the object"""
 
     def __str__(self):

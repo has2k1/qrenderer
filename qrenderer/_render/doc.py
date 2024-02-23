@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from functools import cached_property, singledispatchmethod
 from typing import TYPE_CHECKING, Literal, cast
 
@@ -44,7 +44,7 @@ class __RenderDoc(RenderBase):
     Render a layout.Doc object
     """
 
-    show_title: bool = field(init=False, default=True)
+    show_title: bool = True
     """
     Whether to show the title of the object
 
@@ -57,13 +57,13 @@ class __RenderDoc(RenderBase):
     Each of this can be independently turned off.
     """
 
-    show_signature: bool = field(init=False, default=True)
+    show_signature: bool = True
     """Whether to show the signature"""
 
-    show_signature_name: bool = field(init=False, default=True)
+    show_signature_name: bool = True
     """Whether to show the name of the object in the signature"""
 
-    show_signature_annotation: bool = field(init=False, default=False)
+    show_signature_annotation: bool = False
     """
     Where to show type annotations in the signature
 
@@ -71,21 +71,21 @@ class __RenderDoc(RenderBase):
     parameter definitions.
     """
 
-    show_object_name: bool = field(init=False, default=True)
+    show_object_name: bool = True
     """
     Whether to show the name of the object
 
     This is part of the title
     """
 
-    show_object_symbol: bool = field(init=False, default=True)
+    show_object_symbol: bool = True
     """
     Whether to show the symbol of the object
 
     This is part of the title
     """
 
-    show_object_labels: bool = field(init=False, default=True)
+    show_object_labels: bool = True
     """
     Whether to show the labels of the object
 
