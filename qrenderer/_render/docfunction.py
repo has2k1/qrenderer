@@ -21,7 +21,7 @@ class __RenderDocFunction(RenderDocCallMixin, RenderDoc):
         super().__post_init__()
         # We narrow the type with a TypeAlias since we do not expect
         # any subclasses to have narrower types
-        self.doc: layout.DocClass = self.doc
+        self.doc: layout.DocFunction = self.doc
         self.obj: dc.Function = self.obj
 
 

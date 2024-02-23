@@ -33,7 +33,10 @@ class __RenderDocModule(RenderDocMembersMixin, RenderDoc):
     def render_signature(self):
         if not self.signature_name:
             return None
-        return Div(Code(self.signature_name), Attr(classes=["doc-signature"]))
+        return Div(
+            Code(self.signature_name),
+            Attr(classes=["doc-signature", f"doc-{self.kind}"])
+        )
 
 
 @dataclass

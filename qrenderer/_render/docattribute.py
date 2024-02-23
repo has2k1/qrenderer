@@ -43,7 +43,10 @@ class __RenderDocAttribute(RenderDoc):
         declaration = str(
             self.render_variable_definition(name, annotation, self.obj.value)
         )
-        return Div(Code(declaration).html, Attr(classes=["doc-signature"]))
+        return Div(
+            Code(declaration).html,
+            Attr(classes=["doc-signature", f"doc-{self.kind}"])
+        )
 
     def render_type_signature(self) -> Block:
         """
@@ -62,7 +65,7 @@ class __RenderDocAttribute(RenderDoc):
         value = stmt[stmt.find("=") + 1 :].strip()
         return Div(
             Code(pretty_code(value)).html,
-            Attr(classes=["doc-signature"]),
+            Attr(classes=["doc-signature", f"doc-{self.kind}"]),
         )
 
 
