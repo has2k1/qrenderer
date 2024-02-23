@@ -398,8 +398,8 @@ class __RenderDoc(RenderBase):
         """
         Render a section of a docstring
 
-        Parameter
-        ---------
+        Parameters
+        ----------
         el :
             The section to render
 
