@@ -147,10 +147,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#qrenderer.RenderPage.body" id="toc-qrenderer.RenderPage.body" class="nav-link" data-scroll-target="#qrenderer.RenderPage.body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">body</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderPage.description" id="toc-qrenderer.RenderPage.description" class="nav-link" data-scroll-target="#qrenderer.RenderPage.description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">description</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
-  <li><a href="#qrenderer.RenderPage.show_body" id="toc-qrenderer.RenderPage.show_body" class="nav-link" data-scroll-target="#qrenderer.RenderPage.show_body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_body</span></a></li>
-  <li><a href="#qrenderer.RenderPage.show_description" id="toc-qrenderer.RenderPage.show_description" class="nav-link" data-scroll-target="#qrenderer.RenderPage.show_description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_description</span></a></li>
-  <li><a href="#qrenderer.RenderPage.show_signature" id="toc-qrenderer.RenderPage.show_signature" class="nav-link" data-scroll-target="#qrenderer.RenderPage.show_signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature</span></a></li>
-  <li><a href="#qrenderer.RenderPage.show_title" id="toc-qrenderer.RenderPage.show_title" class="nav-link" data-scroll-target="#qrenderer.RenderPage.show_title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_title</span></a></li>
   <li><a href="#qrenderer.RenderPage.signature" id="toc-qrenderer.RenderPage.signature" class="nav-link" data-scroll-target="#qrenderer.RenderPage.signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">signature</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderPage.summary" id="toc-qrenderer.RenderPage.summary" class="nav-link" data-scroll-target="#qrenderer.RenderPage.summary"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">summary</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderPage.title" id="toc-qrenderer.RenderPage.title" class="nav-link" data-scroll-target="#qrenderer.RenderPage.title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">title</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
@@ -177,7 +173,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </header>
 <div class="doc-signature doc-class">
-<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RenderPage(layout_obj, renderer, level<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>RenderPage(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    layout_obj,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    renderer,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    level<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    show_title<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    show_signature<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    show_description<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    show_body<span class="op">=</span><span class="va">True</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Extend Rendering of a layout.Page object</p>
@@ -196,7 +200,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>level: <a href="https://docs.python.org/3/library/functions.html#int">int</a> = 1</code></dt>
 <dd>
-<p>The deepth of the object in the documentation</p>
+<p>The depth of the object in the documentation</p>
+</dd>
+<dt><code>show_title: <a href="https://docs.python.org/3/library/functions.html#bool">bool</a> = True</code></dt>
+<dd>
+<p>Whether to show the title of the object</p>
+</dd>
+<dt><code>show_signature: <a href="https://docs.python.org/3/library/functions.html#bool">bool</a> = True</code></dt>
+<dd>
+<p>Whether to show the signature</p>
+<p>This only applies to objects that have signatures</p>
+</dd>
+<dt><code>show_description: <a href="https://docs.python.org/3/library/functions.html#bool">bool</a> = True</code></dt>
+<dd>
+<p>Whether to show the description of the object</p>
+<p>This only applies to objects that have descriptions that are not considered part of the body documentation body.</p>
+<p>This attribute is not well defined and it may change in the future.</p>
+</dd>
+<dt><code>show_body: <a href="https://docs.python.org/3/library/functions.html#bool">bool</a> = True</code></dt>
+<dd>
+<p>Whether to show the documentation body of the object</p>
 </dd>
 </dl>
 </div>
@@ -220,22 +243,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>The description that the documented object</td>
 </tr>
 <tr class="odd">
-<td><a href="#qrenderer.RenderPage.show_body">show_body</a></td>
-<td>Whether to show the documentation body of the object</td>
-</tr>
-<tr class="even">
-<td><a href="#qrenderer.RenderPage.show_description">show_description</a></td>
-<td>Whether to show the description of the object</td>
-</tr>
-<tr class="odd">
-<td><a href="#qrenderer.RenderPage.show_signature">show_signature</a></td>
-<td>Whether to show the signature</td>
-</tr>
-<tr class="even">
-<td><a href="#qrenderer.RenderPage.show_title">show_title</a></td>
-<td>Whether to show the title of the object</td>
-</tr>
-<tr class="odd">
 <td><a href="#qrenderer.RenderPage.signature">signature</a></td>
 <td>The signature of the object (if any)</td>
 </tr>
@@ -252,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderPage.body" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">body</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">body</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
+<p><code><span class="doc-parameter-name">body</span></code></p>
 </div>
 <div class="doc-text">
 <p>The body that the documented object</p>
@@ -262,56 +269,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderPage.description" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">description</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">description</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
+<p><code><span class="doc-parameter-name">description</span></code></p>
 </div>
 <div class="doc-text">
 <p>The description that the documented object</p>
 <p>Do not override this property.</p>
 </div>
 </section>
-<section id="qrenderer.RenderPage.show_body" class="level3 title doc-object doc-attribute">
-<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.show_body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_body</span></h3>
-<div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">show_body</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
-</div>
-<div class="doc-text">
-<p>Whether to show the documentation body of the object</p>
-</div>
-</section>
-<section id="qrenderer.RenderPage.show_description" class="level3 title doc-object doc-attribute">
-<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.show_description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_description</span></h3>
-<div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">show_description</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
-</div>
-<div class="doc-text">
-<p>Whether to show the description of the object</p>
-<p>This only applies to objects that have descriptions that are not considered part of the body documentation body.</p>
-<p>This attribute is not well defined and it may change in the future.</p>
-</div>
-</section>
-<section id="qrenderer.RenderPage.show_signature" class="level3 title doc-object doc-attribute">
-<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.show_signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature</span></h3>
-<div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">show_signature</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
-</div>
-<div class="doc-text">
-<p>Whether to show the signature</p>
-<p>This only applies to objects that have signatures</p>
-</div>
-</section>
-<section id="qrenderer.RenderPage.show_title" class="level3 title doc-object doc-attribute">
-<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.show_title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_title</span></h3>
-<div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">show_title</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, default=True)</span></code></p>
-</div>
-<div class="doc-text">
-<p>Whether to show the title of the object</p>
-</div>
-</section>
 <section id="qrenderer.RenderPage.signature" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">signature</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">signature</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
+<p><code><span class="doc-parameter-name">signature</span></code></p>
 </div>
 <div class="doc-text">
 <p>The signature of the object (if any)</p>
@@ -331,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderPage.title" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderPage.title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">title</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">title</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
+<p><code><span class="doc-parameter-name">title</span></code></p>
 </div>
 <div class="doc-text">
 <p>The title/header of a docstring, including any anchors</p>
