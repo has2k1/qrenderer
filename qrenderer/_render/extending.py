@@ -23,6 +23,15 @@ def extend_base_class(cls: type[RenderBase]):
     ----------
     cls :
         Class (Base class) being extended (sub-classed).
+
+    See Also
+    --------
+    qrenderer.QRenderer : The bridge between these renderers and
+        quartodoc's main renderers.
+
+    qrenderer.RenderDocClass, qrenderer.RenderDocFunction,
+        qrenderer.RenderDocAttribute, qrenderer.RenderDocModule : Classes
+        you are most likely to extend.
     """
     base = cls.mro()[1]
     attrs = [name for name in vars(cls) if name not in EXCLUDE_ATTRIBUTES]

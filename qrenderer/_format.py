@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, cast
 
 import griffe.dataclasses as dc
 import griffe.expressions as expr
+from quartodoc.pandoc.blocks import DefinitionList
 from quartodoc.pandoc.components import Attr
 from quartodoc.pandoc.inlines import Span
 
@@ -29,6 +30,16 @@ STRING_RE = re.compile(
     ")",
     flags=re.UNICODE,
 )
+
+# Pickout qualified path names at the beginning of every line
+_qualname = r"[a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*"
+QUALNAME_RE = re.compile(
+    rf"^((?:{_qualname},\s*)+{_qualname})|"
+    rf"^({_qualname})[^,]",
+    flags=re.MULTILINE
+)
+
+SEE_ALSO_MULTILINEITEM_RE = re.compile(r"\n +")
 
 # quotes in inline <code> are converted to curly quotes.
 # This translation table maps the quotes to html escape sequences
@@ -80,6 +91,22 @@ def highlight_strings(s: str) -> str:
     Wrap quoted sub-strings in s with a hightlight group for strings
     """
     return STRING_RE.sub(string_match_highlight_func, s)
+
+
+def format_see_also(s: str) -> str:
+    """
+    Convert qualified names in the see also section content into interlinks
+    """
+    def replace_func(m: re.Match[str]) -> str:
+        # There should only one string in the groups
+        txt = [g for g in m.groups() if g][0]
+        res = ", ".join([
+            str(InterLink(target=f"~{s.strip()}"))
+            for s in txt.split(",")
+        ])
+        return res
+    content = QUALNAME_RE.sub(replace_func, dedent(s))
+    return SEE_ALSO_MULTILINEITEM_RE.sub(" ", content)
 
 
 @singledispatch

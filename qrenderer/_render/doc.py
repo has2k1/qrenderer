@@ -14,6 +14,7 @@ from quartodoc.pandoc.blocks import (
     BlockContent,
     Blocks,
     CodeBlock,
+    DefinitionList,
     Div,
     Header,
 )
@@ -21,6 +22,7 @@ from quartodoc.pandoc.components import Attr
 from quartodoc.pandoc.inlines import Code, Inline, Inlines, Link, Span
 
 from .._format import (
+    format_see_also,
     markdown_escape,
     pretty_code,
     repr_obj,
@@ -32,6 +34,7 @@ from .base import RenderBase
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
+    from quartodoc.pandoc.blocks import DefinitionItem
     from quartodoc.pandoc.inlines import InlineContentItem
     from typing_extensions import Self
 
@@ -442,6 +445,20 @@ class __RenderDoc(RenderBase):
         This catches unofficial numpydoc sections
         """
         return el.value.description
+
+    @render_section.register
+    def _(self, el: qast.DocstringSectionSeeAlso):
+        """
+        Render See Also section
+        """
+        content = format_see_also(el.value)
+        items: list[DefinitionItem] = []
+        for line in content.split("\n"):
+            if not line.strip():
+                continue
+            term, *desc = line.split(":")
+            items.append((term, ":".join(desc)))
+        return DefinitionList(items)
 
     def render_summary(self):
         """
