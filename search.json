@@ -42,6 +42,13 @@
     "text": "Parameter Attributes\n\n\nheader_level: int = 1\n\n\n\nshow_signature: bool = True\n\n\n\ndisplay_name_format: DisplayNameFormat | Literal[\"auto\"] = \"auto\"\n\n\n\nsignature_name_format: DisplayNameFormat = \"name\"\n\n\n\ntyping_module_paths: list[str] = field(default_factory=list)"
   },
   {
+    "objectID": "reference/QRenderer.html#see-also",
+    "href": "reference/QRenderer.html#see-also",
+    "title": " qrenderer.QRenderer",
+    "section": "See Also",
+    "text": "See Also\n\nextend_base_class"
+  },
+  {
     "objectID": "reference/QRenderer.html#methods",
     "href": "reference/QRenderer.html#methods",
     "title": " qrenderer.QRenderer",
