@@ -5,7 +5,6 @@ from functools import cached_property
 from typing import TYPE_CHECKING
 
 from quartodoc.pandoc.blocks import (
-    BlockContent,
     Blocks,
     DefinitionItem,
     DefinitionList,
@@ -58,7 +57,7 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
 
     @cached_property
     def _sections(self):
-        sections, section_kinds  = super()._sections
+        sections, section_kinds = super()._sections
 
         # We only want to extend the sections for dataclasses
         # that do not have a parameters section

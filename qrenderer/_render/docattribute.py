@@ -45,7 +45,7 @@ class __RenderDocAttribute(RenderDoc):
         )
         return Div(
             Code(declaration).html,
-            Attr(classes=["doc-signature", f"doc-{self.kind}"])
+            Attr(classes=["doc-signature", f"doc-{self.kind}"]),
         )
 
     def render_type_signature(self) -> Block:
