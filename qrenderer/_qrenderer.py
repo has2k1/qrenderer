@@ -21,6 +21,10 @@ class QRenderer(Renderer):
     This class provides a scafolding around quartodocs base
     renderer and it helps connect the rendering done by this
     package to the official quartodoc renderer API.
+
+    See Also
+    --------
+    qrenderer.extend_base_class
     """
 
     header_level: int = 1

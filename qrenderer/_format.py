@@ -35,7 +35,7 @@ STRING_RE = re.compile(
 _qualname = r"[a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z_][a-zA-Z0-9_]*)*"
 QUALNAME_RE = re.compile(
     rf"^((?:{_qualname},\s*)+{_qualname})|"
-    rf"^({_qualname})[^,]",
+    rf"^({_qualname})(?!,)",
     flags=re.MULTILINE
 )
 
