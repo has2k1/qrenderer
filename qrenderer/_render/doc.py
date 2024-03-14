@@ -472,7 +472,6 @@ class __RenderDoc(RenderBase):
         return [(str(link), self._describe_object(self.obj))]
 
 
-@dataclass
 class RenderDoc(__RenderDoc):
     """
     Extend Rendering of a layout.Doc

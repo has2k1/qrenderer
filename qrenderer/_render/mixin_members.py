@@ -182,7 +182,6 @@ class __RenderDocMembersMixin(RenderDoc):
         return RenderedMembersGroup(title, summary, body)
 
 
-@dataclass
 class RenderDocMembersMixin(__RenderDocMembersMixin, RenderDoc):
     """
     Extend Rendering of objects that have members

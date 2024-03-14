@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING, TypeAlias, cast
 
@@ -167,7 +166,6 @@ class __RenderDocCallMixin(RenderDoc):
         return f"{name}{annotation}{default}"
 
 
-@dataclass
 class RenderDocCallMixin(__RenderDocCallMixin):
     """
     Extend Rendering of objects that can be called

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from .doc import RenderDoc
@@ -11,7 +10,6 @@ if TYPE_CHECKING:
     from quartodoc import layout
 
 
-@dataclass
 class __RenderDocFunction(RenderDocCallMixin, RenderDoc):
     """
     Render documentation for a function (layout.DocFunction)
@@ -25,7 +23,6 @@ class __RenderDocFunction(RenderDocCallMixin, RenderDoc):
         self.obj: dc.Function = self.obj
 
 
-@dataclass
 class RenderDocFunction(__RenderDocFunction):
     """
     Extend Rendering of a layout.DocFunction object

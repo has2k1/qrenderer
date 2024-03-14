@@ -20,6 +20,7 @@ classifiers = [
 ]
 dependencies = [
    "quartodoc@git+https://github.com/machow/quartodoc#egg=main",
+   "griffe>=0.42.0",
 ]
 requires-python = ">=3.9"
 

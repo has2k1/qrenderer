@@ -66,6 +66,11 @@ class __RenderBase(Block):
     show_body: bool = True
     """Whether to show the documentation body of the object"""
 
+    def __post_init__(self):
+        """
+        Makes it possible for sub-classes to extend the method
+        """
+
     def __str__(self):
         """
         The documentation as quarto markdown
@@ -168,7 +173,6 @@ class __RenderBase(Block):
         return []
 
 
-@dataclass
 class RenderBase(__RenderBase):
     """
     Extend the base render class

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from copy import copy
-from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING, cast
 
@@ -24,7 +23,6 @@ if TYPE_CHECKING:
     from qrenderer.typing import RenderObjType
 
 
-@dataclass
 class __RenderPage(RenderBase):
     """
     Render a Page object (layout.Page)
@@ -113,7 +111,6 @@ class __RenderPage(RenderBase):
         return items
 
 
-@dataclass
 class RenderPage(__RenderPage):
     """
     Extend Rendering of a layout.Page object

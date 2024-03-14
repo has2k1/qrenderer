@@ -21,7 +21,7 @@ class __RenderDocAttribute(RenderDoc):
     Render documentation for an attribute (layout.DocAttribute)
     """
 
-    show_signature_annotation = True
+    show_signature_annotation: bool = True
 
     def __post_init__(self):
         super().__post_init__()
@@ -69,7 +69,6 @@ class __RenderDocAttribute(RenderDoc):
         )
 
 
-@dataclass
 class RenderDocAttribute(__RenderDocAttribute):
     """
     Extend Rendering of a layout.DocAttribute object

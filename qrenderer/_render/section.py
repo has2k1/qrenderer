@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from typing import TYPE_CHECKING, cast
 
 from quartodoc import layout
@@ -17,7 +16,6 @@ if TYPE_CHECKING:
     from qrenderer.typing import RenderObjType
 
 
-@dataclass
 class __RenderSection(RenderBase):
     """
     Render a Section object (layout.Section)
@@ -64,7 +62,6 @@ class __RenderSection(RenderBase):
         )
 
 
-@dataclass
 class RenderSection(__RenderSection):
     """
     Extend Rendering of a layout.Section object

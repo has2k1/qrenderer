@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING
 
@@ -24,7 +23,6 @@ if TYPE_CHECKING:
     from quartodoc import layout
 
 
-@dataclass
 class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
     """
     Render documentation for a class (layout.DocClass)
@@ -93,32 +91,7 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         section_kinds.insert(idx, "parameter attributes")
         return sections, section_kinds
 
-    # NOTE: This method override is a temporary fix to
-    # https://github.com/mkdocstrings/griffe/issues/233
-    @cached_property
-    def function_parameters(self):
-        """
-        Override mixin method to exclude non-parameters
-        """
-        from griffe import dataclasses as dc
 
-        from .._utils import is_field_init_false
-
-        parameters = super().function_parameters
-
-        if self.is_dataclass:
-            parameters = dc.Parameters(
-                *[
-                    p
-                    for p in parameters
-                    if (not is_field_init_false(p) and p.annotation)
-                ]
-            )
-
-        return parameters
-
-
-@dataclass
 class RenderDocClass(__RenderDocClass):
     """
     Extend Rendering of a layout.DocClass object

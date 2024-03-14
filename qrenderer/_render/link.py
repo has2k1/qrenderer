@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from typing import cast
 
 from quartodoc import layout
@@ -15,7 +14,6 @@ from .._pandoc.inlines import InterLink
 from .base import RenderBase
 
 
-@dataclass
 class __RenderLink(RenderBase):
     """
     Render a Link object (layout.Link)
@@ -44,7 +42,6 @@ class __RenderLink(RenderBase):
         return [(str(link), self._describe_object(self.obj))]
 
 
-@dataclass
 class RenderLink(__RenderLink):
     """
     Extend Rendering of a layout.Link object

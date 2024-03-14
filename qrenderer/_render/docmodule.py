@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from quartodoc.pandoc.blocks import Div
@@ -15,7 +14,6 @@ if TYPE_CHECKING:
     from quartodoc import layout
 
 
-@dataclass
 class __RenderDocModule(RenderDocMembersMixin, RenderDoc):
     """
     Render documentation for a module (layout.DocModule)
@@ -39,7 +37,6 @@ class __RenderDocModule(RenderDocMembersMixin, RenderDoc):
         )
 
 
-@dataclass
 class RenderDocModule(__RenderDocModule):
     """
     Extend Rendering of a layout.DocModule object

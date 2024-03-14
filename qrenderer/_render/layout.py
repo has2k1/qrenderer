@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from typing import cast
 
 from quartodoc import layout
@@ -11,7 +10,6 @@ from quartodoc.pandoc.blocks import (
 from .base import RenderBase
 
 
-@dataclass
 class __RenderLayout(RenderBase):
     """
     Render a Layout object (layout.Layout)
@@ -51,7 +49,6 @@ class __RenderLayout(RenderBase):
         return Blocks(render_objs)
 
 
-@dataclass
 class RenderLayout(__RenderLayout):
     """
     Extend Rendering of a layout.Layout object
