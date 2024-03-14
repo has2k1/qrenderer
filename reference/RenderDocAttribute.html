@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -191,10 +191,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    show_description<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    show_body<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    show_signature_name<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    show_object_name<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    show_object_symbol<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    show_object_labels<span class="op">=</span><span class="va">True</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    show_signature_annotation<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    show_object_name<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    show_object_symbol<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    show_object_labels<span class="op">=</span><span class="va">True</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Extend Rendering of a layout.DocAttribute object</p>
@@ -241,6 +242,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dt><code>show_signature_name: <a href="https://docs.python.org/3/library/functions.html#bool">bool</a> = True</code></dt>
 <dd>
 <p>Whether to show the name of the object in the signature</p>
+</dd>
+<dt><code>show_signature_annotation: <a href="https://docs.python.org/3/library/functions.html#bool">bool</a> = True</code></dt>
+<dd>
+
 </dd>
 <dt><code>show_object_name: <a href="https://docs.python.org/3/library/functions.html#bool">bool</a> = True</code></dt>
 <dd>
@@ -303,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocAttribute.body" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocAttribute.body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">body</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">body</span></code></p>
+<p><code><span class="doc-parameter-name">body</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
 </div>
 <div class="doc-text">
 <p>The body that the documented object</p>
@@ -313,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocAttribute.description" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocAttribute.description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">description</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">description</span></code></p>
+<p><code><span class="doc-parameter-name">description</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
 </div>
 <div class="doc-text">
 <p>The description that the documented object</p>
@@ -323,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocAttribute.kind" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocAttribute.kind"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">kind</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">kind</span></code></p>
+<p><code><span class="doc-parameter-name">kind</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="../reference/typing.html#qrenderer.typing.DocObjectKind">DocObjectKind</a></span></code></p>
 </div>
 <div class="doc-text">
 <p>Return the object’s kind</p>
@@ -332,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocAttribute.labels" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocAttribute.labels"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">labels</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">labels</span></code></p>
+<p><code><span class="doc-parameter-name">labels</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence">Sequence</a>[<a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</span></code></p>
 </div>
 <div class="doc-text">
 <p>Return labels for an object (iff object is a function/method)</p>
@@ -341,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocAttribute.signature" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocAttribute.signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">signature</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">signature</span></code></p>
+<p><code><span class="doc-parameter-name">signature</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
 </div>
 <div class="doc-text">
 <p>The signature of the object (if any)</p>
@@ -361,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocAttribute.title" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocAttribute.title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">title</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">title</span></code></p>
+<p><code><span class="doc-parameter-name">title</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">BlockContent</span></code></p>
 </div>
 <div class="doc-text">
 <p>The title/header of a docstring, including any anchors</p>
@@ -660,6 +665,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -694,7 +717,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

@@ -108,7 +108,7 @@ qrenderer._render.base.__RenderBase.description py:attribute 1 reference/RenderD
 qrenderer.RenderDocClass.format_name py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.format_name -
 qrenderer._render.doc.__RenderDoc.format_name py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.format_name qrenderer.RenderDocClass.format_name
 qrenderer.RenderDocClass.function_parameters py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.function_parameters -
-qrenderer._render.docclass.__RenderDocClass.function_parameters py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.function_parameters qrenderer.RenderDocClass.function_parameters
+qrenderer._render.mixin_call.__RenderDocCallMixin.function_parameters py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.function_parameters qrenderer.RenderDocClass.function_parameters
 qrenderer.RenderDocClass.is_dataclass py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.is_dataclass -
 qrenderer._render.docclass.__RenderDocClass.is_dataclass py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.is_dataclass qrenderer.RenderDocClass.is_dataclass
 qrenderer.RenderDocClass.kind py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.kind -
