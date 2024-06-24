@@ -119,10 +119,13 @@ class __RenderDocCallMixin(RenderDoc):
         """
         params: list[str] = []
         prev, cur = 0, 1
-        state = (dc.ParameterKind.positional_or_keyword,) * 2
+        state: tuple[str, str] = (
+            dc.ParameterKind.positional_or_keyword,
+            dc.ParameterKind.positional_or_keyword
+        )
 
         for parameter in self.function_parameters:
-            state = state[cur], parameter.kind
+            state = state[cur], str(parameter.kind)
             append_transition_token = (
                 state[prev] != state[cur]
                 and state[prev] != dc.ParameterKind.var_positional
@@ -147,9 +150,9 @@ class __RenderDocCallMixin(RenderDoc):
 
         """
         default = None
-        if el.kind == dc.ParameterKind.var_keyword:
+        if str(el.kind) == dc.ParameterKind.var_keyword:
             name = f"**{el.name}"
-        elif el.kind == dc.ParameterKind.var_positional:
+        elif str(el.kind) == dc.ParameterKind.var_positional:
             name = f"*{el.name}"
         else:
             name = el.name
