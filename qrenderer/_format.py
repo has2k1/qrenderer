@@ -225,10 +225,10 @@ def render_attribute_declaration(el: dc.Attribute) -> str:
     return IDENTIFIER_RE.sub(interlink_func, definition_str)
 
 
-def render_dataclass_parameter_declaration(
+def render_dataclass_parameter(
     param: dc.Parameter,
     attr: dc.Attribute,
-):
+) -> str:
     """
     Render a dataclass parameter
 
@@ -243,4 +243,21 @@ def render_dataclass_parameter_declaration(
     lookup = canonical_path_lookup_table(annotation)
     interlink_func = partial(interlink_groups, lookup=lookup)
     definition_str = "\n".join(attr.lines)
+    return IDENTIFIER_RE.sub(interlink_func, definition_str)
+
+
+def render_dataclass_init_parameter(param: dc.Parameter) -> str:
+    """
+    Render a dataclass parameter
+
+    Parameters
+    ----------
+    param :
+        The parameter
+    """
+    annotation =  cast(expr.ExprSubscript, param.annotation).slice
+    lookup = canonical_path_lookup_table(annotation)
+    interlink_func = partial(interlink_groups, lookup=lookup)
+    default = f"=  {param.default}" if param.default else ""
+    definition_str = f"{param.name}: {annotation} {default}"
     return IDENTIFIER_RE.sub(interlink_func, definition_str)

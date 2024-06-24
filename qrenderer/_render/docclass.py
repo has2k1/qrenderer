@@ -13,7 +13,11 @@ from quartodoc.pandoc.blocks import (
 from quartodoc.pandoc.components import Attr
 from quartodoc.pandoc.inlines import Code
 
-from .._format import pretty_code, render_dataclass_parameter_declaration
+from .._format import (
+    pretty_code,
+    render_dataclass_init_parameter,
+    render_dataclass_parameter,
+)
 from .doc import RenderDoc
 from .mixin_call import RenderDocCallMixin
 from .mixin_members import RenderDocMembersMixin
@@ -21,6 +25,7 @@ from .mixin_members import RenderDocMembersMixin
 if TYPE_CHECKING:
     from griffe import dataclasses as dc
     from quartodoc import layout
+    from quartodoc.pandoc.blocks import Block
 
 
 class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
@@ -66,30 +71,76 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         ):
             return sections, section_kinds
 
-        # Create a "Parameter Attributes" section
+        # Create Parameters
+        idx = 1 if section_kinds and section_kinds[0] == "text" else 0
+
+        if section := self._init_parameters_section:
+            sections.insert(idx, section)
+            section_kinds.insert(idx, "init parameters")
+            idx += 1
+
+        if section := self._parameter_attributes_section:
+            sections.insert(idx, section)
+            section_kinds.insert(idx, "parameter attributes")
+
+        return sections, section_kinds
+
+    @cached_property
+    def _parameter_attributes_section(self) -> Block | None:
+        """
+        Create a "Parameter Attributes" section
+        """
+        items: list[DefinitionItem] = []
+        for p in self.function_parameters:
+            if p.name not in self.obj.attributes:
+                continue
+            a = self.obj.attributes[p.name]
+            desc = (a.docstring and a.docstring.value) or ""
+            stmt = render_dataclass_parameter(p, a)
+            items.append((Code(pretty_code(stmt)).html, desc))
+
+        if not items:
+            return
+
         header = Header(
             self.level + 1,
             "Parameter Attributes",
             Attr(classes=["doc-parameter-attributes"]),
         )
 
+        body = Div(
+            DefinitionList(items),
+            Attr(classes=["doc-definition-items"]),
+        )
+        return Blocks([header, body])
+
+    @cached_property
+    def _init_parameters_section(self) -> Block | None:
+        """
+        Create an "Init Parameters" section
+        """
         items: list[DefinitionItem] = []
         for p in self.function_parameters:
-            a = self.obj.attributes[p.name]
-            stmt = render_dataclass_parameter_declaration(p, a)
-            desc = (a.docstring and a.docstring.value) or ""
+            if p.name in self.obj.attributes:
+                continue
+            desc = (p.docstring and p.docstring.value) or ""
+            stmt = render_dataclass_init_parameter(p)
             items.append((Code(pretty_code(stmt)).html, desc))
+
+        if not items:
+            return
+
+        header = Header(
+            self.level + 1,
+            "Init Parameters",
+            Attr(classes=["doc-init-parameters"]),
+        )
 
         body = Div(
             DefinitionList(items),
             Attr(classes=["doc-definition-items"]),
         )
-
-        section = Blocks([header, body])
-        idx = 1 if section_kinds and section_kinds[0] == "text" else 0
-        sections.insert(idx, section)
-        section_kinds.insert(idx, "parameter attributes")
-        return sections, section_kinds
+        return Blocks([header, body])
 
 
 class RenderDocClass(__RenderDocClass):

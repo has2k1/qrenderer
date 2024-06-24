@@ -56,6 +56,16 @@ def is_typevar(obj: dc.Object | dc.Alias) -> bool:
     )
 
 
+def is_initvar(obj: str | expr.Expr | None) -> TypeGuard[expr.ExprSubscript]:
+    """
+    Return True if object is an an InitVar annotation
+    """
+    return (
+        isinstance(obj, expr.ExprSubscript) and
+        isinstance(obj.left, expr.ExprName) and
+        obj.left.canonical_path == "dataclasses.InitVar"
+    )
+
 class isDoc:
     """
     TypeGuards for layout.Doc objects

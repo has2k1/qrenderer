@@ -90,7 +90,6 @@ class __RenderDocCallMixin(RenderDoc):
         """
         obj = self.obj
 
-        # adapted from mkdocstrings-python jinja tempalate
         if not len(obj.parameters) > 0 or not obj.parent:
             return obj.parameters
 
