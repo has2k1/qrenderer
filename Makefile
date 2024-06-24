@@ -43,11 +43,11 @@ coverage:
 	$(BROWSER) htmlcov/index.html
 
 install: clean
-	pip install ".[extra]"
+	uv pip install "."
 
 develop: clean-cache
-	pip install -e ".[all]"
+	uv pip install -e ".[all]"
 
 develop-update: clean-cache
-	pip install --upgrade -e ".[all]"
+	uv pip install --upgrade -e ".[all]"
 	pre-commit autoupdate

@@ -30,7 +30,8 @@ jobs:
       - name: Install Package
         shell: bash
         run: |
-          pip install .
+          pip install uv
+          uv pip install --system "."
           pushd doc; make install-filters; popd
 
       - name: Build docs
