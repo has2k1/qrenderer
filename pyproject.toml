@@ -43,7 +43,7 @@ typing = [
 ]
 
 [project.urls]
-homepage = "https://plotnine.readthedocs.io/en/stable"
+homepage = "https://has2k1.github.io/qrenderer"
 repository = "https://github.com/has2k1/qrenderer"
 ci = "https://github.com/has2k1/qrenderer/actions"
 
@@ -73,9 +73,35 @@ version_scheme = 'post-release'
 testpaths = [
     "tests"
 ]
-doctest_optionflags = "ALLOW_BYTES NORMALIZE_WHITESPACE"
-addopts = "--pyargs --cov=plotnine --cov-report=xml --import-mode=importlib"
+addopts = "--pyargs --cov=qrenderer --cov-report=xml"
 
+########## Tool - Coverage ##########
+# Coverage.py
+[tool.coverage.run]
+branch = true
+source = ["qrenderer"]
+include = [
+   "qrenderer/*"
+]
+omit = [
+   "qrenderer/tests/*",
+   "qrendere/typing.py",
+]
+disable_warnings = ["include-ignored"]
+
+[tool.coverage.report]
+exclude_also = [
+   "pragma: no cover",
+   "^def test_",
+   "if __name__ == .__main__.:",
+   "if TYPE_CHECKING:",
+   "if typing.TYPE_CHECKING:",
+   "except ImportError:",
+   "except PackageNotFoundError:",
+   "@overload",
+   "\\s{4,}\\.\\.\\.",
+]
+precision = 1
 
 ########## Tool - Pyright ##########
 [tool.pyright]

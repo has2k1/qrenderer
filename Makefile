@@ -34,6 +34,14 @@ fix: format-fix lint-fix
 typecheck:
 	pyright
 
+test: clean-test
+	pytest
+
+coverage:
+	coverage report -m
+	coverage html
+	$(BROWSER) htmlcov/index.html
+
 install: clean
 	pip install ".[extra]"
 
