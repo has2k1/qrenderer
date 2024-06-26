@@ -120,21 +120,21 @@ class __RenderDocCallMixin(RenderDoc):
         params: list[str] = []
         prev, cur = 0, 1
         state: tuple[str, str] = (
-            dc.ParameterKind.positional_or_keyword,
-            dc.ParameterKind.positional_or_keyword
+            str(dc.ParameterKind.positional_or_keyword),
+            str(dc.ParameterKind.positional_or_keyword)
         )
 
         for parameter in self.function_parameters:
             state = state[cur], str(parameter.kind)
             append_transition_token = (
                 state[prev] != state[cur]
-                and state[prev] != dc.ParameterKind.var_positional
+                and state[prev] != str(dc.ParameterKind.var_positional)
             )
 
             if append_transition_token:
-                if state[cur] == dc.ParameterKind.positional_only:
+                if state[prev] == str(dc.ParameterKind.positional_only):
                     params.append("/")
-                if state[cur] == dc.ParameterKind.keyword_only:
+                if state[cur] == str(dc.ParameterKind.keyword_only):
                     params.append("*")
 
             params.append(self.render_signature_parameter(parameter))
