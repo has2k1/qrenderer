@@ -239,11 +239,17 @@ def render_dataclass_parameter(
     attr :
         The attribute form of the parameter
     """
-    annotation = cast(expr.Expr, param.annotation)
-    lookup = canonical_path_lookup_table(annotation)
-    interlink_func = partial(interlink_groups, lookup=lookup)
     definition_str = "\n".join(attr.lines)
-    return IDENTIFIER_RE.sub(interlink_func, definition_str)
+
+    match param.annotation:
+        case expr.Expr():
+            lookup = canonical_path_lookup_table(param.annotation)
+            interlink_func = partial(interlink_groups, lookup=lookup)
+            res = IDENTIFIER_RE.sub(interlink_func, definition_str)
+        case _:
+            res = definition_str
+
+    return res
 
 
 def render_dataclass_init_parameter(param: dc.Parameter) -> str:

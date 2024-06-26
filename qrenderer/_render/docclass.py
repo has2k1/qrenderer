@@ -92,7 +92,7 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         """
         items: list[DefinitionItem] = []
         for p in self.function_parameters:
-            if p.name not in self.obj.attributes:
+            if p.name not in self.obj.attributes or p.annotation is None:
                 continue
             a = self.obj.attributes[p.name]
             desc = (a.docstring and a.docstring.value) or ""
