@@ -1,4 +1,4 @@
-from .conftest import render
+from qrenderer.tools import render_code_variable
 
 
 def test_dataclass():
@@ -44,7 +44,7 @@ def test_dataclass():
         def derived_value(self):
             pass
     '''
-    qmd = render(code, "Derived")
+    qmd = render_code_variable(code, "Derived")
     assert "## Init Parameters {.doc-init-parameters}" in qmd
     assert "<code>a: [int](`int`) =  1</code>" in qmd
     assert "## Parameter Attributes {.doc-parameter-attributes}" in qmd
