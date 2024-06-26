@@ -94,8 +94,8 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         for p in self.function_parameters:
             if p.name not in self.obj.attributes or p.annotation is None:
                 continue
+            desc = (p.docstring and p.docstring.value) or ""
             a = self.obj.attributes[p.name]
-            desc = (a.docstring and a.docstring.value) or ""
             stmt = render_dataclass_parameter(p, a)
             items.append((Code(pretty_code(stmt)).html, desc))
 

@@ -1,7 +1,7 @@
 from qrenderer.tools import render_code_variable
 
 
-def test_dataclass():
+def test_dataclass_parameters():
     code = '''
     from dataclasses import InitVar, dataclass
     from typing import ClassVar
@@ -50,3 +50,17 @@ def test_dataclass():
     assert "## Parameter Attributes {.doc-parameter-attributes}" in qmd
     assert "<code>b: [float](`float`) = 2</code>" in qmd
     assert "<code>c: [float](`float`) = 3</code>" in qmd
+
+
+def test_dataclass_parameter_docstrings():
+    code = """
+    from dataclasses import dataclass
+
+    @dataclass(kw_only=True)
+    class Base:
+        a: str = "param a"
+        "Parameter a"
+    """
+
+    qmd = render_code_variable(code, "Base")
+    assert ":   Parameter a" in qmd
