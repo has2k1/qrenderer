@@ -11,7 +11,7 @@ from .._format import pretty_code, render_attribute_declaration
 from .doc import RenderDoc
 
 if TYPE_CHECKING:
-    from griffe import dataclasses as dc
+    import griffe as gf
     from quartodoc import layout
 
 
@@ -28,7 +28,7 @@ class __RenderDocAttribute(RenderDoc):
         # We narrow the type with a TypeAlias since we do not expect
         # any subclasses to have narrower types
         self.doc: layout.DocAttribute = self.doc
-        self.obj: dc.Attribute = self.obj
+        self.obj: gf.Attribute = self.obj
 
     def render_signature(self) -> Block:
         if self.kind in ("type", "typevar"):

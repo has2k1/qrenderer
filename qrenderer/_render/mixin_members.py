@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING, cast
 
-from griffe import dataclasses as dc
+import griffe as gf
 from quartodoc import layout
 from quartodoc.pandoc.blocks import (
     Block,
@@ -61,7 +61,7 @@ class __RenderDocMembersMixin(RenderDoc):
     def __post_init__(self):
         super().__post_init__()
         self.doc = cast(layout.DocClass | layout.DocModule, self.doc)  # pyright: ignore[reportUnnecessaryCast]
-        self.obj = cast(dc.Class | dc.Module, self.obj)  # pyright: ignore[reportUnnecessaryCast]
+        self.obj = cast(gf.Class | gf.Module, self.obj)  # pyright: ignore[reportUnnecessaryCast]
 
     def render_body(self) -> BlockContent:
         """

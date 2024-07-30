@@ -3,8 +3,7 @@ from __future__ import annotations
 from functools import cached_property
 from typing import TYPE_CHECKING, TypeAlias, cast
 
-from griffe import dataclasses as dc
-from griffe.docstrings import dataclasses as ds
+import griffe as gf
 from quartodoc import layout
 from quartodoc.pandoc.blocks import (
     CodeBlock,
@@ -23,14 +22,14 @@ if TYPE_CHECKING:
 
 # singledispatch needs this type at runtime
 DocstringSectionWithDefinitions: TypeAlias = (
-    ds.DocstringSectionParameters
-    | ds.DocstringSectionOtherParameters
-    | ds.DocstringSectionReturns
-    | ds.DocstringSectionYields
-    | ds.DocstringSectionReceives
-    | ds.DocstringSectionRaises
-    | ds.DocstringSectionWarns
-    | ds.DocstringSectionAttributes
+    gf.DocstringSectionParameters
+    | gf.DocstringSectionOtherParameters
+    | gf.DocstringSectionReturns
+    | gf.DocstringSectionYields
+    | gf.DocstringSectionReceives
+    | gf.DocstringSectionRaises
+    | gf.DocstringSectionWarns
+    | gf.DocstringSectionAttributes
 )
 
 
@@ -45,7 +44,7 @@ class __RenderDocCallMixin(RenderDoc):
         super().__post_init__()
 
         self.doc = cast(layout.DocFunction | layout.DocClass, self.doc)  # pyright: ignore[reportUnnecessaryCast]
-        self.obj = cast(dc.Function, self.obj)  # pyright: ignore[reportUnnecessaryCast]
+        self.obj = cast(gf.Function, self.obj)  # pyright: ignore[reportUnnecessaryCast]
 
     @RenderDoc.render_section.register  # type: ignore
     def _(self, el: DocstringSectionWithDefinitions):
@@ -84,7 +83,7 @@ class __RenderDocCallMixin(RenderDoc):
         )
 
     @cached_property
-    def function_parameters(self) -> dc.Parameters:
+    def function_parameters(self) -> gf.Parameters:
         """
         Return the parameters of the function
         """
@@ -99,7 +98,7 @@ class __RenderDocCallMixin(RenderDoc):
         ) or (obj.parent.is_module and obj.is_class and param == "self")
 
         if omit_first_parameter:
-            return dc.Parameters(*list(obj.parameters)[1:])
+            return gf.Parameters(*list(obj.parameters)[1:])
 
         return obj.parameters
 
@@ -120,27 +119,27 @@ class __RenderDocCallMixin(RenderDoc):
         params: list[str] = []
         prev, cur = 0, 1
         state: tuple[str, str] = (
-            str(dc.ParameterKind.positional_or_keyword),
-            str(dc.ParameterKind.positional_or_keyword)
+            str(gf.ParameterKind.positional_or_keyword),
+            str(gf.ParameterKind.positional_or_keyword)
         )
 
         for parameter in self.function_parameters:
             state = state[cur], str(parameter.kind)
             append_transition_token = (
                 state[prev] != state[cur]
-                and state[prev] != str(dc.ParameterKind.var_positional)
+                and state[prev] != str(gf.ParameterKind.var_positional)
             )
 
             if append_transition_token:
-                if state[prev] == str(dc.ParameterKind.positional_only):
+                if state[prev] == str(gf.ParameterKind.positional_only):
                     params.append("/")
-                if state[cur] == str(dc.ParameterKind.keyword_only):
+                if state[cur] == str(gf.ParameterKind.keyword_only):
                     params.append("*")
 
             params.append(self.render_signature_parameter(parameter))
         return params
 
-    def render_signature_parameter(self, el: dc.Parameter) -> str:
+    def render_signature_parameter(self, el: gf.Parameter) -> str:
         """
         Parameter for the function/method signature
 
@@ -150,9 +149,9 @@ class __RenderDocCallMixin(RenderDoc):
 
         """
         default = None
-        if str(el.kind) == dc.ParameterKind.var_keyword:
+        if str(el.kind) == gf.ParameterKind.var_keyword:
             name = f"**{el.name}"
-        elif str(el.kind) == dc.ParameterKind.var_positional:
+        elif str(el.kind) == gf.ParameterKind.var_positional:
             name = f"*{el.name}"
         else:
             name = el.name

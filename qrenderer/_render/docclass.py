@@ -23,7 +23,7 @@ from .mixin_call import RenderDocCallMixin
 from .mixin_members import RenderDocMembersMixin
 
 if TYPE_CHECKING:
-    from griffe import dataclasses as dc
+    import griffe as gf
     from quartodoc import layout
     from quartodoc.pandoc.blocks import Block
 
@@ -38,7 +38,7 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         # We narrow the type with a TypeAlias since we do not expect
         # any subclasses to have narrower types
         self.doc: layout.DocClass = self.doc
-        self.obj: dc.Class = self.obj
+        self.obj: gf.Class = self.obj
 
     @cached_property
     def is_dataclass(self):

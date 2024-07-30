@@ -23,7 +23,7 @@ from ._render import (
 from ._utils import griffe_to_doc, is_protocol, is_typealias, is_typevar
 
 if TYPE_CHECKING:
-    from griffe import dataclasses as dc
+    import griffe as gf
 
     from ._qrenderer import QRenderer
 
@@ -142,7 +142,7 @@ class TypeInformation(Block):
 
     @cached_property
     def sections(self) -> TypeSections:
-        def make_item(obj: dc.Object | dc.Alias) -> layout.Item:
+        def make_item(obj: gf.Object | gf.Alias) -> layout.Item:
             """
             Return item of typing object
             """

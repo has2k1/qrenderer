@@ -3,8 +3,7 @@ from __future__ import annotations
 from dataclasses import field
 from typing import TYPE_CHECKING, cast
 
-from griffe import dataclasses as dc
-from griffe import expressions as expr
+import griffe as gf
 from quartodoc import layout
 
 if TYPE_CHECKING:
@@ -15,54 +14,54 @@ if TYPE_CHECKING:
     T = TypeVar("T")
 
 
-def is_typealias(obj: dc.Object | dc.Alias) -> bool:
+def is_typealias(obj: gf.Object | gf.Alias) -> bool:
     """
     Return True if obj is a declaration of a TypeAlias
     """
     # TODO:
     # Figure out if this handles new-style typealiases introduced
     # in python 3.12 to handle
-    if not (isinstance(obj, dc.Attribute) and obj.annotation):
+    if not (isinstance(obj, gf.Attribute) and obj.annotation):
         return False
-    elif isinstance(obj.annotation, expr.ExprName):
+    elif isinstance(obj.annotation, gf.ExprName):
         return obj.annotation.name == "TypeAlias"
     elif isinstance(obj.annotation, str):
         return True
     return False
 
 
-def is_protocol(obj: dc.Object | dc.Alias) -> bool:
+def is_protocol(obj: gf.Object | gf.Alias) -> bool:
     """
     Return True if obj is a class defining a typing Protocol
     """
     return (
-        isinstance(obj, dc.Class)
+        isinstance(obj, gf.Class)
         and len(obj.bases) > 0
-        and isinstance(obj.bases[-1], expr.ExprName)
+        and isinstance(obj.bases[-1], gf.ExprName)
         and obj.bases[-1].canonical_path == "typing.Protocol"
     )
 
 
-def is_typevar(obj: dc.Object | dc.Alias) -> bool:
+def is_typevar(obj: gf.Object | gf.Alias) -> bool:
     """
     Return True if obj is a declaration of a TypeVar
     """
     return (
-        isinstance(obj, dc.Attribute)
+        isinstance(obj, gf.Attribute)
         and hasattr(obj, "value")
-        and isinstance(obj.value, expr.ExprCall)
-        and isinstance(obj.value.function, expr.ExprName)
+        and isinstance(obj.value, gf.ExprCall)
+        and isinstance(obj.value.function, gf.ExprName)
         and obj.value.function.name == "TypeVar"
     )
 
 
-def is_initvar(obj: str | expr.Expr | None) -> TypeGuard[expr.ExprSubscript]:
+def is_initvar(obj: str | gf.Expr | None) -> TypeGuard[gf.ExprSubscript]:
     """
     Return True if object is an an InitVar annotation
     """
     return (
-        isinstance(obj, expr.ExprSubscript) and
-        isinstance(obj.left, expr.ExprName) and
+        isinstance(obj, gf.ExprSubscript) and
+        isinstance(obj.left, gf.ExprName) and
         obj.left.canonical_path == "dataclasses.InitVar"
     )
 
@@ -88,7 +87,7 @@ class isDoc:
         return el.obj.is_attribute
 
 
-def griffe_to_doc(obj: dc.Object | dc.Alias) -> DocType:
+def griffe_to_doc(obj: gf.Object | gf.Alias) -> DocType:
     """
     Convert griffe object to a quartodoc documentable type
 
@@ -108,17 +107,17 @@ def no_init(default: T) -> T:
     return field(init=False, default=default)
 
 
-def is_field_init_false(el: dc.Parameter) -> bool:
+def is_field_init_false(el: gf.Parameter) -> bool:
     """
     Return True if parameter is a field(init=False, ...) expression
     """
     if not (
-        isinstance(el.default, expr.ExprCall)
-        and isinstance(el.default.function, expr.ExprName)
+        isinstance(el.default, gf.ExprCall)
+        and isinstance(el.default.function, gf.ExprName)
         and el.default.function.name == "field"
     ):
         return False
 
     # field has only keyword arguments
-    exprs = cast(list[expr.ExprKeyword], el.default.arguments)
+    exprs = cast(list[gf.ExprKeyword], el.default.arguments)
     return any(expr.value == "False" for expr in exprs if expr.name == "init")

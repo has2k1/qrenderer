@@ -18,7 +18,7 @@ classifiers = [
 ]
 dependencies = [
    "quartodoc",
-   "griffe>=0.47.0",
+   "griffe>=0.48.0",
 ]
 requires-python = ">=3.11"
 

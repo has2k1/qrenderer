@@ -2,8 +2,7 @@ from __future__ import annotations
 
 from typing import Literal, TypeAlias
 
-import griffe.expressions as expr
-from griffe.docstrings import dataclasses as ds
+import griffe as gf
 from quartodoc.layout import (
     Doc,
     DocAttribute,
@@ -43,13 +42,13 @@ DocObjectKind: TypeAlias = Literal[
 ]
 
 DocstringDefinitionType: TypeAlias = (
-    ds.DocstringParameter
-    | ds.DocstringAttribute
-    | ds.DocstringReturn
-    | ds.DocstringYield
-    | ds.DocstringReceive
-    | ds.DocstringRaise
-    | ds.DocstringWarn
+    gf.DocstringParameter
+    | gf.DocstringAttribute
+    | gf.DocstringReturn
+    | gf.DocstringYield
+    | gf.DocstringReceive
+    | gf.DocstringRaise
+    | gf.DocstringWarn
 )
 
 Documentable: TypeAlias = (
@@ -77,7 +76,7 @@ RenderObjType: TypeAlias = (
     | RenderSection
 )
 
-Annotation: TypeAlias = str | expr.Expr
+Annotation: TypeAlias = str | gf.Expr
 
 DocType: TypeAlias = DocClass | DocFunction | DocAttribute | DocModule
 

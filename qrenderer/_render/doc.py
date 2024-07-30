@@ -4,9 +4,7 @@ from dataclasses import dataclass
 from functools import cached_property, singledispatchmethod
 from typing import TYPE_CHECKING, Literal, cast
 
-import griffe.expressions as expr
-from griffe import dataclasses as dc
-from griffe.docstrings import dataclasses as ds  # noqa: TCH002
+import griffe as gf
 from quartodoc import ast as qast
 from quartodoc import layout
 from quartodoc.pandoc.blocks import (
@@ -238,8 +236,8 @@ class __RenderDoc(RenderBase):
         """
         if annotation is None:
             if not (
-                isinstance(self.obj, dc.Attribute)
-                or (isinstance(self.obj, dc.Alias) and self.obj.is_attribute)
+                isinstance(self.obj, gf.Attribute)
+                or (isinstance(self.obj, gf.Alias) and self.obj.is_attribute)
             ):
                 msg = f"Cannot render annotation for type {type(self.obj)}."
                 raise TypeError(msg)
@@ -252,10 +250,10 @@ class __RenderDoc(RenderBase):
                 return ""
             elif isinstance(ann, str):
                 return repr_obj(ann)
-            elif isinstance(ann, expr.ExprName):
+            elif isinstance(ann, gf.ExprName):
                 return InterLink(markdown_escape(ann.name), ann.canonical_path)
             else:
-                assert isinstance(ann, expr.Expr)
+                assert isinstance(ann, gf.Expr)
                 # A type annotation with ~ removes the qualname prefix
                 path_str = ann.canonical_path
                 if path_str[0] == "~":
@@ -268,7 +266,7 @@ class __RenderDoc(RenderBase):
         self,
         name: str,
         annotation: str | None,
-        default: str | expr.Expr | None,
+        default: str | gf.Expr | None,
     ) -> Inline:
         """
         Create code snippet that declares a variable
@@ -364,7 +362,7 @@ class __RenderDoc(RenderBase):
             return sections, section_kinds
 
         patched_sections = cast(
-            list[ds.DocstringSection],
+            list[gf.DocstringSection],
             qast.transform(self.obj.docstring.parsed),
         )
         for section in patched_sections:
@@ -397,7 +395,7 @@ class __RenderDoc(RenderBase):
         return Blocks(sections)
 
     @singledispatchmethod
-    def render_section(self, el: ds.DocstringSection) -> BlockContent:
+    def render_section(self, el: gf.DocstringSection) -> BlockContent:
         """
         Render a section of a docstring
 
@@ -418,13 +416,13 @@ class __RenderDoc(RenderBase):
         return el.value
 
     @render_section.register
-    def _(self, el: ds.DocstringSectionExamples):
+    def _(self, el: gf.DocstringSectionExamples):
         return Blocks(
             [self.render_section(qast.transform(c)) for c in el.value]
         )
 
     @render_section.register
-    def _(self, el: ds.DocstringSectionDeprecated):
+    def _(self, el: gf.DocstringSectionDeprecated):
         content = Div(
             Inlines(
                 [
@@ -440,7 +438,7 @@ class __RenderDoc(RenderBase):
         return str(content)
 
     @render_section.register
-    def _(self, el: ds.DocstringSectionAdmonition):
+    def _(self, el: gf.DocstringSectionAdmonition):
         """
         This catches unofficial numpydoc sections
         """

@@ -5,8 +5,7 @@ from functools import partial, singledispatch
 from textwrap import dedent
 from typing import TYPE_CHECKING, cast
 
-import griffe.dataclasses as dc
-import griffe.expressions as expr
+import griffe as gf
 from quartodoc.pandoc.components import Attr
 from quartodoc.pandoc.inlines import Span
 
@@ -114,7 +113,7 @@ def repr_obj(obj: Any) -> str:
 
 
 @repr_obj.register
-def _(obj: expr.Expr) -> str:
+def _(obj: gf.Expr) -> str:
     """
     Representation of an expression as code
     """
@@ -134,20 +133,20 @@ def _(s: str) -> str:
 
 
 @repr_obj.register
-def _(obj: expr.ExprName) -> str:
+def _(obj: gf.ExprName) -> str:
     """
     A named expression
     """
     return obj.name
 
 
-def canonical_path_lookup_table(el: expr.Expr):
+def canonical_path_lookup_table(el: gf.Expr):
     # Create lookup table
     lookup = {"TypeAlias": "typing.TypeAlias"}
     for o in el.iterate():
         # Assumes that name of an expresssion is a valid python
         # identifier
-        if isinstance(o, expr.ExprName):
+        if isinstance(o, gf.ExprName):
             lookup[o.name] = o.canonical_path
     return lookup
 
@@ -212,7 +211,7 @@ def interlink_groups(m: re.Match[str], lookup: dict[str, str]) -> str:
     return str(InterLink(identifier_str, canonical_path))
 
 
-def render_attribute_declaration(el: dc.Attribute) -> str:
+def render_attribute_declaration(el: gf.Attribute) -> str:
     """
     Render expression with identifiers in them interlinked
     """
@@ -226,8 +225,8 @@ def render_attribute_declaration(el: dc.Attribute) -> str:
 
 
 def render_dataclass_parameter(
-    param: dc.Parameter,
-    attr: dc.Attribute,
+    param: gf.Parameter,
+    attr: gf.Attribute,
 ) -> str:
     """
     Render a dataclass parameter
@@ -242,7 +241,7 @@ def render_dataclass_parameter(
     definition_str = "\n".join(attr.lines)
 
     match param.annotation:
-        case expr.Expr():
+        case gf.Expr():
             lookup = canonical_path_lookup_table(param.annotation)
             interlink_func = partial(interlink_groups, lookup=lookup)
             res = IDENTIFIER_RE.sub(interlink_func, definition_str)
@@ -252,7 +251,7 @@ def render_dataclass_parameter(
     return res
 
 
-def render_dataclass_init_parameter(param: dc.Parameter) -> str:
+def render_dataclass_init_parameter(param: gf.Parameter) -> str:
     """
     Render a dataclass parameter
 
@@ -261,7 +260,7 @@ def render_dataclass_init_parameter(param: dc.Parameter) -> str:
     param :
         The parameter
     """
-    annotation =  cast(expr.ExprSubscript, param.annotation).slice
+    annotation =  cast(gf.ExprSubscript, param.annotation).slice
     lookup = canonical_path_lookup_table(annotation)
     interlink_func = partial(interlink_groups, lookup=lookup)
     default = f"=  {param.default}" if param.default else ""

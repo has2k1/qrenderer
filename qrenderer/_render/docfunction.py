@@ -6,7 +6,7 @@ from .doc import RenderDoc
 from .mixin_call import RenderDocCallMixin
 
 if TYPE_CHECKING:
-    from griffe import dataclasses as dc
+    import griffe as gf
     from quartodoc import layout
 
 
@@ -20,7 +20,7 @@ class __RenderDocFunction(RenderDocCallMixin, RenderDoc):
         # We narrow the type with a TypeAlias since we do not expect
         # any subclasses to have narrower types
         self.doc: layout.DocFunction = self.doc
-        self.obj: dc.Function = self.obj
+        self.obj: gf.Function = self.obj
 
 
 class RenderDocFunction(__RenderDocFunction):

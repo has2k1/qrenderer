@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING
 
-from griffe.docstrings import dataclasses as ds
+import griffe as gf
 from quartodoc.pandoc.blocks import (
     Block,
     BlockContent,
@@ -12,7 +12,6 @@ from quartodoc.pandoc.blocks import (
 )
 
 if TYPE_CHECKING:
-    from griffe import dataclasses as dc
     from quartodoc import layout
 
     from .. import QRenderer
@@ -132,7 +131,7 @@ class __RenderBase(Block):
         """
         return self.render_summary()
 
-    def _describe_object(self, obj: dc.Object | dc.Alias) -> str:
+    def _describe_object(self, obj: gf.Object | gf.Alias) -> str:
         """
         Return oneline description of the griffe object
         """
@@ -142,7 +141,7 @@ class __RenderBase(Block):
         section = parts[0] if parts else None
         return (
             section.value.split("\n")[0]
-            if isinstance(section, ds.DocstringSectionText)
+            if isinstance(section, gf.DocstringSectionText)
             else ""
         )
 

@@ -10,7 +10,7 @@ from .doc import RenderDoc
 from .mixin_members import RenderDocMembersMixin
 
 if TYPE_CHECKING:
-    from griffe import dataclasses as dc
+    import griffe as gf
     from quartodoc import layout
 
 
@@ -24,7 +24,7 @@ class __RenderDocModule(RenderDocMembersMixin, RenderDoc):
         # We narrow the type with a TypeAlias since we do not expect
         # any subclasses to have narrower types
         self.doc: layout.DocModule = self.doc
-        self.obj: dc.Module = self.obj
+        self.obj: gf.Module = self.obj
 
     # TODO: Verify that this is really required.
     # Why isn't the header/title enough?

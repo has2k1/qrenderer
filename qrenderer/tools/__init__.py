@@ -1,7 +1,7 @@
 """
 Little functions that can be used in userland
 """
-import griffe.dataclasses as dc
+import griffe as gf
 import quartodoc.layout as layout
 from griffe.tests import temporary_visited_package
 from quartodoc import get_object
@@ -32,16 +32,16 @@ def _canonical_path(klass: type) -> str:
     return f"{module}.{klass.__qualname__}"
 
 
-def _render(obj: dc.Object):
+def _render(obj: gf.Object):
     """
-    Render dc.Object to qmd
+    Render gf.Object to qmd
     """
-    def toDocObject(obj: dc.Object):
+    def toDocObject(obj: gf.Object):
         members = [
             toDocObject(m) for m in obj.members.values()
-            # imported variables are of type dc.Alias and we are
+            # imported variables are of type gf.Alias and we are
             # not interested in dealing with them.
-            if not isinstance(m, dc.Alias)
+            if not isinstance(m, gf.Alias)
         ]
         return layout.Doc.from_griffe(obj.name, obj, members=members)
 
