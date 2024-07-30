@@ -1,6 +1,7 @@
 """
 Extending the rendering
 """
+
 from __future__ import annotations
 
 from types import CellType, FunctionType

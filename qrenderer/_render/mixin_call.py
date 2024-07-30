@@ -120,15 +120,14 @@ class __RenderDocCallMixin(RenderDoc):
         prev, cur = 0, 1
         state: tuple[str, str] = (
             str(gf.ParameterKind.positional_or_keyword),
-            str(gf.ParameterKind.positional_or_keyword)
+            str(gf.ParameterKind.positional_or_keyword),
         )
 
         for parameter in self.function_parameters:
             state = state[cur], str(parameter.kind)
-            append_transition_token = (
-                state[prev] != state[cur]
-                and state[prev] != str(gf.ParameterKind.var_positional)
-            )
+            append_transition_token = state[prev] != state[cur] and state[
+                prev
+            ] != str(gf.ParameterKind.var_positional)
 
             if append_transition_token:
                 if state[prev] == str(gf.ParameterKind.positional_only):

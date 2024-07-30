@@ -1,6 +1,7 @@
 """
 Little functions that can be used in userland
 """
+
 import griffe as gf
 import quartodoc.layout as layout
 from griffe.tests import temporary_visited_package
@@ -36,9 +37,11 @@ def _render(obj: gf.Object):
     """
     Render gf.Object to qmd
     """
+
     def toDocObject(obj: gf.Object):
         members = [
-            toDocObject(m) for m in obj.members.values()
+            toDocObject(m)
+            for m in obj.members.values()
             # imported variables are of type gf.Alias and we are
             # not interested in dealing with them.
             if not isinstance(m, gf.Alias)

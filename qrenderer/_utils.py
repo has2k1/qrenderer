@@ -60,10 +60,11 @@ def is_initvar(obj: str | gf.Expr | None) -> TypeGuard[gf.ExprSubscript]:
     Return True if object is an an InitVar annotation
     """
     return (
-        isinstance(obj, gf.ExprSubscript) and
-        isinstance(obj.left, gf.ExprName) and
-        obj.left.canonical_path == "dataclasses.InitVar"
+        isinstance(obj, gf.ExprSubscript)
+        and isinstance(obj.left, gf.ExprName)
+        and obj.left.canonical_path == "dataclasses.InitVar"
     )
+
 
 class isDoc:
     """

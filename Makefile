@@ -16,7 +16,7 @@ clean-test:
 	rm -fr htmlcov/
 
 ruff:
-	ruff . $(args)
+	ruff check . $(args)
 
 format:
 	ruff format . --check

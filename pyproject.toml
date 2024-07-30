@@ -45,7 +45,7 @@ build = [
 ]
 
 typing = [
-    "pyright==1.1.368",
+    "pyright==1.1.373",
 ]
 
 dev = [
