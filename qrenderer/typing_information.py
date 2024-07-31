@@ -173,5 +173,5 @@ class TypeInformation(Block):
         Write typing information to qmd file
         """
         self.builder.items.extend(self.sections.items)
-        filepath = Path(self.base_uri).with_suffix(".qmd")
+        filepath = Path(f"{self.base_uri}.qmd")
         _ = filepath.write_text(str(self))
