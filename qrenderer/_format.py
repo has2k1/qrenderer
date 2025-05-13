@@ -260,7 +260,7 @@ def render_dataclass_init_parameter(param: gf.Parameter) -> str:
     param :
         The parameter
     """
-    annotation = cast(gf.ExprSubscript, param.annotation).slice
+    annotation = cast("gf.ExprSubscript", param.annotation).slice
     lookup = canonical_path_lookup_table(annotation)
     interlink_func = partial(interlink_groups, lookup=lookup)
     default = f"=  {param.default}" if param.default else ""

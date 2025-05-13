@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from typing import cast
+from typing import TYPE_CHECKING, cast
 
-from quartodoc import layout
 from quartodoc.pandoc.blocks import (
     Blocks,
     Div,
@@ -13,6 +12,9 @@ from .._format import markdown_escape
 from .._pandoc.inlines import InterLink
 from .base import RenderBase
 
+if TYPE_CHECKING:
+    from quartodoc.layout import Link
+
 
 class __RenderLink(RenderBase):
     """
@@ -20,7 +22,7 @@ class __RenderLink(RenderBase):
     """
 
     def __post_init__(self):
-        self.link = cast(layout.Link, self.layout_obj)
+        self.link = cast("Link", self.layout_obj)
         """Link being documented"""
 
         self.obj = self.link.obj

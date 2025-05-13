@@ -44,15 +44,15 @@ class TypeSections(Block):
             return get_render_type(docable)(docable, self.renderer, 3)
 
         self.typevars_renders = cast(
-            list[RenderDocAttribute],
+            "list[RenderDocAttribute]",
             [make_render(item) for item in self.typevars_items],
         )
         self.protocols_renders = cast(
-            list[RenderDocClass],
+            "list[RenderDocClass]",
             [make_render(item) for item in self.protocols_items],
         )
         self.typealiases_renders = cast(
-            list[RenderDocAttribute],
+            "list[RenderDocAttribute]",
             [make_render(item) for item in self.typealiases_items],
         )
 

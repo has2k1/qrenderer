@@ -4,8 +4,7 @@ from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING, cast
 
-import griffe as gf
-from quartodoc import layout
+from quartodoc.layout import DocClass
 from quartodoc.pandoc.blocks import (
     Block,
     BlockContent,
@@ -20,6 +19,9 @@ from .doc import RenderDoc
 
 if TYPE_CHECKING:
     from typing import Literal
+
+    import griffe as gf
+    from quartodoc.layout import DocAttribute, DocFunction, DocModule
 
 
 @dataclass
@@ -60,8 +62,8 @@ class __RenderDocMembersMixin(RenderDoc):
 
     def __post_init__(self):
         super().__post_init__()
-        self.doc = cast(layout.DocClass | layout.DocModule, self.doc)  # pyright: ignore[reportUnnecessaryCast]
-        self.obj = cast(gf.Class | gf.Module, self.obj)  # pyright: ignore[reportUnnecessaryCast]
+        self.doc = cast("DocClass | DocModule", self.doc)  # pyright: ignore[reportUnnecessaryCast]
+        self.obj = cast("gf.Class | gf.Module", self.obj)  # pyright: ignore[reportUnnecessaryCast]
 
     def render_body(self) -> BlockContent:
         """
@@ -85,15 +87,15 @@ class __RenderDocMembersMixin(RenderDoc):
         ]
 
     @cached_property
-    def _attribute_members(self) -> list[layout.DocAttribute]:
+    def _attribute_members(self) -> list[DocAttribute]:
         return [x for x in self.doc.members if isDoc.Attribute(x)]
 
     @cached_property
-    def _class_members(self) -> list[layout.DocClass]:
+    def _class_members(self) -> list[DocClass]:
         return [x for x in self.doc.members if isDoc.Class(x)]
 
     @cached_property
-    def _function_members(self) -> list[layout.DocFunction]:
+    def _function_members(self) -> list[DocFunction]:
         return [x for x in self.doc.members if isDoc.Function(x)]
 
     def render_classes(self) -> RenderedMembersGroup | None:
@@ -157,7 +159,7 @@ class __RenderDocMembersMixin(RenderDoc):
         show_body: bool = getattr(self, f"show_{group}_body")
         slug = (
             "methods"
-            if group == "functions" and isinstance(self.doc, layout.DocClass)
+            if group == "functions" and isinstance(self.doc, DocClass)
             else group
         )
 

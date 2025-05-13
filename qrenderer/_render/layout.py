@@ -1,13 +1,15 @@
 from __future__ import annotations
 
-from typing import cast
+from typing import TYPE_CHECKING, cast
 
-from quartodoc import layout
 from quartodoc.pandoc.blocks import (
     Blocks,
 )
 
 from .base import RenderBase
+
+if TYPE_CHECKING:
+    from quartodoc.layout import Layout
 
 
 class __RenderLayout(RenderBase):
@@ -19,7 +21,7 @@ class __RenderLayout(RenderBase):
     """
 
     def __post_init__(self):
-        self.layout = cast(layout.Layout, self.layout_obj)
+        self.layout = cast("Layout", self.layout_obj)
         """The layout of the reference page"""
 
         self.sections = self.layout.sections

@@ -120,5 +120,5 @@ def is_field_init_false(el: gf.Parameter) -> bool:
         return False
 
     # field has only keyword arguments
-    exprs = cast(list[gf.ExprKeyword], el.default.arguments)
+    exprs = cast("list[gf.ExprKeyword]", el.default.arguments)
     return any(expr.value == "False" for expr in exprs if expr.name == "init")

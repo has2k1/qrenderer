@@ -100,7 +100,7 @@ class __RenderDoc(RenderBase):
         # For convenience, we create attributes with narrower types
         # using cast instead of TypeAlias so that subclasses can
         # create narrower types.
-        self.doc = cast(layout.Doc, self.layout_obj)
+        self.doc = cast("layout.Doc", self.layout_obj)
         """Doc Object"""
 
         self.obj = self.doc.obj
@@ -119,7 +119,7 @@ class __RenderDoc(RenderBase):
         obj = self.obj
         kind = obj.kind.value
         kind = cast(
-            Literal["class", "function", "attribute", "module", "alias"],
+            "Literal['class', 'function', 'attribute', 'module', 'alias']",
             obj.kind.value,
         )
         if obj.is_function and obj.parent and obj.parent.is_class:
@@ -362,7 +362,7 @@ class __RenderDoc(RenderBase):
             return sections, section_kinds
 
         patched_sections = cast(
-            list[gf.DocstringSection],
+            "list[gf.DocstringSection]",
             qast.transform(self.obj.docstring.parsed),
         )
         for section in patched_sections:

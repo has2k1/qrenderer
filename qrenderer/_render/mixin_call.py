@@ -4,7 +4,6 @@ from functools import cached_property
 from typing import TYPE_CHECKING, TypeAlias, cast
 
 import griffe as gf
-from quartodoc import layout
 from quartodoc.pandoc.blocks import (
     CodeBlock,
     DefinitionItem,
@@ -18,6 +17,8 @@ from .._format import formatted_signature, pretty_code, repr_obj
 from .doc import RenderDoc
 
 if TYPE_CHECKING:
+    from quartodoc.layout import DocClass, DocFunction
+
     from ..typing import DocstringDefinitionType
 
 # singledispatch needs this type at runtime
@@ -43,8 +44,8 @@ class __RenderDocCallMixin(RenderDoc):
     def __post_init__(self):
         super().__post_init__()
 
-        self.doc = cast(layout.DocFunction | layout.DocClass, self.doc)  # pyright: ignore[reportUnnecessaryCast]
-        self.obj = cast(gf.Function, self.obj)  # pyright: ignore[reportUnnecessaryCast]
+        self.doc = cast("DocFunction | DocClass", self.doc)  # pyright: ignore[reportUnnecessaryCast]
+        self.obj = cast("gf.Function", self.obj)  # pyright: ignore[reportUnnecessaryCast]
 
     @RenderDoc.render_section.register  # type: ignore
     def _(self, el: DocstringSectionWithDefinitions):

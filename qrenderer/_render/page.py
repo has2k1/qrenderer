@@ -4,7 +4,6 @@ from copy import copy
 from functools import cached_property
 from typing import TYPE_CHECKING, cast
 
-from quartodoc import layout
 from quartodoc.pandoc.blocks import (
     Block,
     BlockContent,
@@ -20,6 +19,9 @@ from .._pandoc.blocks import RawHTMLBlockTag
 from .base import RenderBase
 
 if TYPE_CHECKING:
+    from quartodoc.layout import Page
+
+    from qrenderer import RenderDoc
     from qrenderer.typing import RenderObjType
 
 
@@ -29,7 +31,7 @@ class __RenderPage(RenderBase):
     """
 
     def __post_init__(self):
-        self.page = cast(layout.Page, self.layout_obj)
+        self.page = cast("Page", self.layout_obj)
         """Page in the documentation"""
 
     def __str__(self):
@@ -61,13 +63,11 @@ class __RenderPage(RenderBase):
         # If a page documents a single object, lift-up the title of
         # that object to be the quarto-title of the page.
         if self._has_one_object:
-            body = cast(Blocks, self.body)
+            body = cast("Blocks", self.body)
             if body.elements:
-                from .. import RenderDoc
-
-                rendered_obj = cast(RenderDoc, body.elements[0])
+                rendered_obj = cast("RenderDoc", body.elements[0])
                 rendered_obj.show_title = False
-                title = cast(Header, copy(rendered_obj.title))
+                title = cast("Header", copy(rendered_obj.title))
         elif self.page.summary:
             title = Header(self.level, markdown_escape(self.page.summary.name))
 

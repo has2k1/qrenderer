@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, cast
 
-from quartodoc import layout
 from quartodoc.pandoc.blocks import (
     Div,
     Header,
@@ -13,6 +12,8 @@ from tabulate import tabulate
 from .base import RenderBase
 
 if TYPE_CHECKING:
+    from quartodoc.layout import Section
+
     from qrenderer.typing import RenderObjType
 
 
@@ -24,7 +25,7 @@ class __RenderSection(RenderBase):
     """
 
     def __post_init__(self):
-        self.section = cast(layout.Section, self.layout_obj)
+        self.section = cast("Section", self.layout_obj)
         """Section of the reference page"""
 
     def render_title(self):
