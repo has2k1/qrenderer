@@ -2,6 +2,24 @@
 
 clean: clean-build clean-cache clean-test
 
+# Use uv (if it is installed) to run all python related commands,
+# and prefere the active environment over .venv in a parent folder
+ifeq ($(OS),Windows_NT)
+  HAS_UV := $(if $(shell where uv 2>NUL),true,false)
+else
+  HAS_UV := $(if $(shell command -v uv 2>/dev/null),true,false)
+endif
+
+ifeq ($(HAS_UV),true)
+  PYTHON ?= uv run --active python
+  PIP ?= uv pip
+  UVRUN ?= uv run --active
+else
+  PYTHON ?= python
+  PIP ?= pip
+  UVRUN ?=
+endif
+
 clean-build:
 	rm -fr build/
 	rm -fr dist/
@@ -16,13 +34,13 @@ clean-test:
 	rm -fr htmlcov/
 
 ruff:
-	ruff check . $(args)
+	$(UVRUN) ruff check . $(args)
 
 format:
-	ruff format . --check
+	$(UVRUN) ruff format . --check
 
 format-fix:
-	ruff format .
+	$(UVRUN) ruff format .
 
 lint: ruff
 
@@ -32,22 +50,22 @@ lint-fix:
 fix: format-fix lint-fix
 
 typecheck:
-	pyright
+	$(UVRUN) pyright
 
 test: clean-test
-	pytest
+	$(UVRUN) pytest
 
 coverage:
-	coverage report -m
-	coverage html
+	$(UVRUN) coverage report -m
+	$(UVRUN) coverage html
 	$(BROWSER) htmlcov/index.html
 
 install: clean
-	uv pip install "."
+	$(PIP) install "."
 
 develop: clean-cache
-	uv pip install -e ".[all]"
+	$(PIP) install -e ".[all]"
 
 develop-update: clean-cache
-	uv pip install --upgrade -e ".[all]"
-	pre-commit autoupdate
+	$(PIP) install --upgrade -e ".[all]"
+	$(UVRUN) pre-commit autoupdate

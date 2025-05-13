@@ -19,26 +19,25 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ["3.11", "3.12"]
+        python-version: ["3.11", "3.13"]
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Install uv and set python version
+        uses: astral-sh/setup-uv@v6
         with:
           python-version: ${{ matrix.python-version }}
+          activate-environment: true
 
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install Package
-        shell: bash
+      - name: Install Package and Doc Dependencies
         run: |
-          pip install uv
-          uv pip install --system ".[build,test]"
-          pushd doc; make install-all; popd
+          uv pip install ".[build,test]"
+          make -C doc install-all
 
       - name: Run Tests
-        shell: bash
         run: make test
