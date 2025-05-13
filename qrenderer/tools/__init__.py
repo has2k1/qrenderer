@@ -4,7 +4,6 @@ Little functions that can be used in userland
 
 import griffe as gf
 import quartodoc.layout as layout
-from griffe.tests import temporary_visited_package
 from quartodoc import get_object
 
 from qrenderer import (
@@ -67,7 +66,7 @@ def render_code_variable(code: str, name: str | None = None) -> str:
 
     If name is None, return code rendered as a module
     """
-    with temporary_visited_package("package", {"__init__.py": code}) as m:
+    with gf.temporary_visited_package("package", {"__init__.py": code}) as m:
         obj = m[name] if name else m
     return _render(obj)
 
