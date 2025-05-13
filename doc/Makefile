@@ -28,6 +28,11 @@ install-filters:  ## Install required pandoc filters
 	quarto add --no-prompt has2k1/issuey
 	quarto add --no-prompt has2k1/interlinks
 
+install-stylesheets:  ## Install qrenderer stylesheet(s)
+	python -m qrenderer.stylesheets.install $(CURDIR)
+
+install-all: install-filters install-stylesheets  ## Install All Dependencies
+
 interlink:  ## Gather interlinks
 	quartodoc interlinks
 

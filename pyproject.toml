@@ -15,6 +15,7 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
    "quartodoc",
@@ -78,6 +79,9 @@ include = ["qrenderer*"]
 [tool.setuptools_scm]
 fallback_version = "999"
 version_scheme = 'post-release'
+
+[tool.setuptools.package-data]
+"qrenderer" = ["stylesheets/*.scss"]
 
 ########## Tool - Pytest ##########
 [tool.pytest.ini_options]

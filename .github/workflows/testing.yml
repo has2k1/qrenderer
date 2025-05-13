@@ -37,7 +37,7 @@ jobs:
         run: |
           pip install uv
           uv pip install --system ".[build,test]"
-          pushd doc; make install-filters; popd
+          pushd doc; make install-all; popd
 
       - name: Run Tests
         shell: bash

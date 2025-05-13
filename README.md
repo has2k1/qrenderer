@@ -47,7 +47,7 @@ $ pip install git+https://github.com/has2k1/qrenderer.git
       documentation of one or more objects. i.e. links from the
       Reference lead to this type of page.
 
-4. Wheen overriding the defaults, the common methods to extend are:
+4. When overriding the defaults, the common methods to extend are:
 
    - `render_title`
    - `render_signature`
@@ -59,9 +59,15 @@ $ pip install git+https://github.com/has2k1/qrenderer.git
    methods. e.g. `modules` and `attributes` do not have signatures so
    extending the `render_signature` method would not have an effect.
 
-5. Download
+5. Download qrenderer stylesheet(s) into your doc directory.
    [qrenderer.scss](https://raw.githubusercontent.com/has2k1/qrenderer/main/doc/qrenderer.scss)
    into your `doc` directory.
+
+   ```bash
+   cd doc
+   python -m qrenderer.stylesheets.install .
+   ```
+
 
 ## Example
 
