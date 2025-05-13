@@ -118,10 +118,6 @@ class __RenderDoc(RenderBase):
         """
         obj = self.obj
         kind = obj.kind.value
-        kind = cast(
-            "Literal['class', 'function', 'attribute', 'module', 'alias']",
-            obj.kind.value,
-        )
         if obj.is_function and obj.parent and obj.parent.is_class:
             kind = "method"
         if kind == "attribute":

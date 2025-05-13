@@ -2,6 +2,8 @@
 Little functions that can be used in userland
 """
 
+from typing import TYPE_CHECKING
+
 import griffe as gf
 import quartodoc.layout as layout
 from quartodoc import get_object
@@ -13,6 +15,10 @@ from qrenderer import (
     RenderDocFunction,
     RenderDocModule,
 )
+
+if TYPE_CHECKING:
+    from qrenderer.typing import DocType
+
 
 __all__ = (
     "render_code_variable",
@@ -37,7 +43,7 @@ def _render(obj: gf.Object):
     Render gf.Object to qmd
     """
 
-    def toDocObject(obj: gf.Object):
+    def toDocObject(obj: gf.Object) -> "DocType":
         members = [
             toDocObject(m)
             for m in obj.members.values()
