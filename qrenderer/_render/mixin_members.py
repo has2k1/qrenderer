@@ -170,7 +170,7 @@ class __RenderDocMembersMixin(RenderDoc):
         )
 
         render_objs = [
-            Render(obj, self.renderer, self.level + 2).clear_page_path()
+            Render(obj, self.renderer, self.level + 2, contained=True)
             for obj in docables
         ]
 

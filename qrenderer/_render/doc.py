@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from functools import cached_property, singledispatchmethod
 from typing import TYPE_CHECKING, Literal, cast
 
@@ -34,7 +34,6 @@ if TYPE_CHECKING:
 
     from quartodoc.pandoc.blocks import DefinitionItem
     from quartodoc.pandoc.inlines import InlineContentItem
-    from typing_extensions import Self
 
     from ..typing import Annotation, DisplayNameFormat, DocObjectKind
 
@@ -93,6 +92,34 @@ class __RenderDoc(RenderBase):
     This is part of the title
     """
 
+    contained: bool = False
+    """
+    Whether to this object's documentation will be contained within
+    that of another. e.g. a method's documentation is commonly contained
+    within that of a class.
+    """
+
+    page_path: str = field(init=False, repr=False, default="")
+    """
+    Name of the page where this object's rendered content
+    will be written. It should be the name of the object
+    as listed in the quartodoc yaml section. e.g
+
+    Given
+
+        sections:
+          - title: RenderClasses
+            - name: base.RenderBase
+              package: qrenderer._render
+            - RenderDoc
+
+    `RenderBase` will be writtend to "*/base.RenderBase.qmd" and
+    `RenderDoc` will be written to "*/RenderDoc.qmd"
+
+    If the object isn't listed, e.g the class methods of `RenderDoc`
+    this the page_path will be an empty string.
+    """
+
     def __post_init__(self):
         # The layout_obj is too general. It is typed to include all
         # classes of documentable objects. And for layout.Doc objects,
@@ -106,25 +133,10 @@ class __RenderDoc(RenderBase):
         self.obj = self.doc.obj
         """Griffe object (or alias)"""
 
-        self.page_path = f"{self.doc.name}.qmd"
-        """
-        Name of the page where this object's rendered content
-        will be written. It should be the name of the object
-        as listed in the quartodoc yaml section. e.g
-
-        Given
-
-            sections:
-              - title: RenderClasses
-                - name: base.RenderBase
-                  package: qrenderer._render
-                - RenderDoc
-
-        `RenderBase` will be writtend to "*/base.RenderBase.qmd" and
-        `RenderDoc` will be written to "*/RenderDoc.qmd"
-        """
-
         self.show_signature = self.renderer.show_signature
+
+        if not self.contained:
+            self.page_path = f"{self.doc.name}.qmd"
 
     @cached_property
     def kind(self) -> DocObjectKind:
@@ -182,15 +194,6 @@ class __RenderDoc(RenderBase):
     @cached_property
     def signature_name(self) -> str:
         return self.format_name(self.renderer.signature_name_format)
-
-    def clear_page_path(self) -> Self:
-        """
-        Set the page to the page where object will be rendered to nothing
-
-        Do this for objects contained on a parent page
-        """
-        self.page_path = ""
-        return self
 
     def format_name(self, format: DisplayNameFormat = "relative") -> str:
         """

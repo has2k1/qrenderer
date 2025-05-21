@@ -64,3 +64,16 @@ def test_dataclass_parameter_docstrings():
 
     qmd = render_code_variable(code, "Base")
     assert ":   Parameter a" in qmd
+
+
+def test_contained_docstring_link():
+    code = """
+    from dataclasses import dataclass
+
+    class Base:
+        def meth(self):
+            "Interesting method of class Base"
+    """
+
+    qmd = render_code_variable(code, "Base")
+    assert "[meth](#package.Base.meth)" in qmd
