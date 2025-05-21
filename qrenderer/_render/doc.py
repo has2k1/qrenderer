@@ -113,8 +113,9 @@ class __RenderDoc(RenderBase):
               package: qrenderer._render
             - RenderDoc
 
-    `RenderBase` will be writtend to "*/base.RenderBase.qmd" and
-    `RenderDoc` will be written to "*/RenderDoc.qmd"
+    `RenderBase` will be written to "*/base.RenderBase.qmd" and
+    `RenderDoc` will be written to "*/RenderDoc.qmd". By default,
+    they will also be summarised as `base.RenderBase` and `RenderDoc`.
 
     If the object isn't listed, e.g the class methods of `RenderDoc`
     this the page_path will be an empty string.
@@ -472,13 +473,20 @@ class __RenderDoc(RenderBase):
             items.append((term, ":".join(desc)))
         return DefinitionList(items)
 
+    @property
+    def summary_name(self) -> str:
+        """
+        The name of object as it will appear in the summary table
+        """
+        return self.doc.name
+
     def render_summary(self):
         """
         Return a line item that summarises the object
         """
         # The page where this object will be written
         link = Link(
-            markdown_escape(self.doc.name),
+            markdown_escape(self.summary_name),
             f"{self.page_path}#{self.doc.anchor}",
         )
         return [(str(link), self._describe_object(self.obj))]
