@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-2d87b755ed7e211fac1364e13a17ec90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b929e4a7df7f2ca4a8193277307781c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -151,13 +151,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#qrenderer.RenderDocAttribute.description" id="toc-qrenderer.RenderDocAttribute.description" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">description</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.kind" id="toc-qrenderer.RenderDocAttribute.kind" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.kind"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">kind</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.labels" id="toc-qrenderer.RenderDocAttribute.labels" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.labels"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">labels</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderDocAttribute.page_path" id="toc-qrenderer.RenderDocAttribute.page_path" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.page_path"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">page_path</span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.signature" id="toc-qrenderer.RenderDocAttribute.signature" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">signature</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.summary" id="toc-qrenderer.RenderDocAttribute.summary" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.summary"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">summary</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.title" id="toc-qrenderer.RenderDocAttribute.title" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">title</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   </ul></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#qrenderer.RenderDocAttribute.clear_page_path" id="toc-qrenderer.RenderDocAttribute.clear_page_path" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.clear_page_path"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">clear_page_path</span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.format_name" id="toc-qrenderer.RenderDocAttribute.format_name" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.format_name"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">format_name</span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.render_annotation" id="toc-qrenderer.RenderDocAttribute.render_annotation" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.render_annotation"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_annotation</span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.render_body" id="toc-qrenderer.RenderDocAttribute.render_body" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.render_body"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">render_body</span></a></li>
@@ -196,8 +196,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    show_signature_annotation<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    show_object_name<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    show_object_symbol<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    show_object_labels<span class="op">=</span><span class="va">True</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    show_object_labels<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    contained<span class="op">=</span><span class="va">False</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="doc-text">
 <p>Extend Rendering of a layout.DocAttribute object</p>
@@ -264,6 +265,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Whether to show the labels of the object</p>
 <p>This is part of the title</p>
 </dd>
+<dt><code>contained: <a href="https://docs.python.org/3/library/functions.html#bool">bool</a> = False</code></dt>
+<dd>
+<p>Whether to this object’s documentation will be contained within that of another. e.g.&nbsp;a method’s documentation is commonly contained within that of a class.</p>
+</dd>
 </dl>
 </div>
 </section>
@@ -294,14 +299,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Return labels for an object (iff object is a function/method)</td>
 </tr>
 <tr class="odd">
+<td><a href="#qrenderer.RenderDocAttribute.page_path">page_path</a></td>
+<td>Name of the page where this object’s rendered content</td>
+</tr>
+<tr class="even">
 <td><a href="#qrenderer.RenderDocAttribute.signature">signature</a></td>
 <td>The signature of the object (if any)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocAttribute.summary">summary</a></td>
 <td>The summary of the documented object</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocAttribute.title">title</a></td>
 <td>The title/header of a docstring, including any anchors</td>
 </tr>
@@ -343,6 +352,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="doc-text">
 <p>Return labels for an object (iff object is a function/method)</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocAttribute.page_path" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocAttribute.page_path"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">page_path</span></h3>
+<div class="doc-signature doc-attribute">
+<p><code><span class="doc-parameter-name">page_path</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">field(init=False, repr=False, default=<span class="st">""</span>)</span></code></p>
+</div>
+<div class="doc-text">
+<p>Name of the page where this object’s rendered content will be written. It should be the name of the object as listed in the quartodoc yaml section. e.g</p>
+<p>Given</p>
+<pre><code>sections:
+  - title: RenderClasses
+    - name: base.RenderBase
+      package: qrenderer._render
+    - RenderDoc</code></pre>
+<p><code>RenderBase</code> will be writtend to “<em>/base.RenderBase.qmd” and <code>RenderDoc</code> will be written to ”</em>/RenderDoc.qmd”</p>
+<p>If the object isn’t listed, e.g the class methods of <code>RenderDoc</code> this the page_path will be an empty string.</p>
 </div>
 </section>
 <section id="qrenderer.RenderDocAttribute.signature" class="level3 title doc-object doc-attribute">
@@ -387,61 +413,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="#qrenderer.RenderDocAttribute.clear_page_path">clear_page_path</a></td>
-<td>Set the page to the page where object will be rendered to nothing</td>
-</tr>
-<tr class="even">
 <td><a href="#qrenderer.RenderDocAttribute.format_name">format_name</a></td>
 <td>Return a name to use for the object</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocAttribute.render_annotation">render_annotation</a></td>
 <td>Render an annotation</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocAttribute.render_body">render_body</a></td>
 <td>Render the docsting of the Doc object</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocAttribute.render_description">render_description</a></td>
 <td>Render the description of the documentation page</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocAttribute.render_labels">render_labels</a></td>
 <td>Create codes used for doc labels</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocAttribute.render_section">render_section</a></td>
 <td>Render a section of a docstring</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocAttribute.render_summary">render_summary</a></td>
 <td>Return a line item that summarises the object</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocAttribute.render_title">render_title</a></td>
 <td>Render the header of a docstring, including any anchors</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocAttribute.render_type_signature">render_type_signature</a></td>
 <td>The signature of a TypeAlias</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderDocAttribute.render_variable_definition">render_variable_definition</a></td>
 <td>Create code snippet that declares a variable</td>
 </tr>
 </tbody>
 </table>
-<section id="qrenderer.RenderDocAttribute.clear_page_path" class="level3 title doc-object doc-method">
-<h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocAttribute.clear_page_path"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">clear_page_path</span></h3>
-<div class="doc-signature doc-method">
-<div class="sourceCode" id="cb3"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>clear_page_path()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="doc-text">
-<p>Set the page to the page where object will be rendered to nothing</p>
-<p>Do this for objects contained on a parent page</p>
-</div>
-</section>
 <section id="qrenderer.RenderDocAttribute.format_name" class="level3 title doc-object doc-method">
 <h3 class="title doc-object doc-method anchored" data-anchor-id="qrenderer.RenderDocAttribute.format_name"><code class="doc-symbol doc-symbol-method"></code> <span class="doc-object-name doc-method-name">format_name</span></h3>
 <div class="doc-signature doc-method">

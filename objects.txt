@@ -39,8 +39,8 @@ qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderBase.ht
 qrenderer._render.base.RenderBase py:class 1 reference/RenderBase.html#qrenderer._render.base.RenderBase -
 qrenderer.RenderDoc.body py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.body -
 qrenderer._render.base.__RenderBase.body py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.body qrenderer.RenderDoc.body
-qrenderer.RenderDoc.clear_page_path py:function 1 reference/RenderDoc.html#qrenderer.RenderDoc.clear_page_path -
-qrenderer._render.doc.__RenderDoc.clear_page_path py:function 1 reference/RenderDoc.html#qrenderer.RenderDoc.clear_page_path qrenderer.RenderDoc.clear_page_path
+qrenderer.RenderDoc.contained py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.contained -
+qrenderer._render.doc.__RenderDoc.contained py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.contained qrenderer.RenderDoc.contained
 qrenderer.RenderDoc.description py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.description -
 qrenderer._render.base.__RenderBase.description py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.description qrenderer.RenderDoc.description
 qrenderer.RenderDoc.format_name py:function 1 reference/RenderDoc.html#qrenderer.RenderDoc.format_name -
@@ -53,6 +53,8 @@ qrenderer.RenderDoc.layout_obj py:attribute 1 reference/RenderDoc.html#qrenderer
 qrenderer._render.base.__RenderBase.layout_obj py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.layout_obj qrenderer.RenderDoc.layout_obj
 qrenderer.RenderDoc.level py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.level -
 qrenderer._render.base.__RenderBase.level py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.level qrenderer.RenderDoc.level
+qrenderer.RenderDoc.page_path py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.page_path -
+qrenderer._render.doc.__RenderDoc.page_path py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.page_path qrenderer.RenderDoc.page_path
 qrenderer.RenderDoc.render_annotation py:function 1 reference/RenderDoc.html#qrenderer.RenderDoc.render_annotation -
 qrenderer._render.doc.__RenderDoc.render_annotation py:function 1 reference/RenderDoc.html#qrenderer.RenderDoc.render_annotation qrenderer.RenderDoc.render_annotation
 qrenderer.RenderDoc.render_body py:function 1 reference/RenderDoc.html#qrenderer.RenderDoc.render_body -
@@ -101,8 +103,8 @@ qrenderer.RenderDoc py:class 1 reference/RenderDoc.html#qrenderer.RenderDoc -
 qrenderer._render.doc.RenderDoc py:class 1 reference/RenderDoc.html#qrenderer.RenderDoc qrenderer.RenderDoc
 qrenderer.RenderDocClass.body py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.body -
 qrenderer._render.base.__RenderBase.body py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.body qrenderer.RenderDocClass.body
-qrenderer.RenderDocClass.clear_page_path py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.clear_page_path -
-qrenderer._render.doc.__RenderDoc.clear_page_path py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.clear_page_path qrenderer.RenderDocClass.clear_page_path
+qrenderer.RenderDocClass.contained py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.contained -
+qrenderer._render.doc.__RenderDoc.contained py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.contained qrenderer.RenderDocClass.contained
 qrenderer.RenderDocClass.description py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.description -
 qrenderer._render.base.__RenderBase.description py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.description qrenderer.RenderDocClass.description
 qrenderer.RenderDocClass.format_name py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.format_name -
@@ -119,6 +121,8 @@ qrenderer.RenderDocClass.layout_obj py:attribute 1 reference/RenderDocClass.html
 qrenderer._render.base.__RenderBase.layout_obj py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.layout_obj qrenderer.RenderDocClass.layout_obj
 qrenderer.RenderDocClass.level py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.level -
 qrenderer._render.base.__RenderBase.level py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.level qrenderer.RenderDocClass.level
+qrenderer.RenderDocClass.page_path py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.page_path -
+qrenderer._render.doc.__RenderDoc.page_path py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.page_path qrenderer.RenderDocClass.page_path
 qrenderer.RenderDocClass.render_annotation py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_annotation -
 qrenderer._render.doc.__RenderDoc.render_annotation py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_annotation qrenderer.RenderDocClass.render_annotation
 qrenderer.RenderDocClass.render_attributes py:function 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.render_attributes -
@@ -183,8 +187,8 @@ qrenderer.RenderDocClass py:class 1 reference/RenderDocClass.html#qrenderer.Rend
 qrenderer._render.docclass.RenderDocClass py:class 1 reference/RenderDocClass.html#qrenderer.RenderDocClass qrenderer.RenderDocClass
 qrenderer.RenderDocFunction.body py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.body -
 qrenderer._render.base.__RenderBase.body py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.body qrenderer.RenderDocFunction.body
-qrenderer.RenderDocFunction.clear_page_path py:function 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.clear_page_path -
-qrenderer._render.doc.__RenderDoc.clear_page_path py:function 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.clear_page_path qrenderer.RenderDocFunction.clear_page_path
+qrenderer.RenderDocFunction.contained py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.contained -
+qrenderer._render.doc.__RenderDoc.contained py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.contained qrenderer.RenderDocFunction.contained
 qrenderer.RenderDocFunction.description py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.description -
 qrenderer._render.base.__RenderBase.description py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.description qrenderer.RenderDocFunction.description
 qrenderer.RenderDocFunction.format_name py:function 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.format_name -
@@ -199,6 +203,8 @@ qrenderer.RenderDocFunction.layout_obj py:attribute 1 reference/RenderDocFunctio
 qrenderer._render.base.__RenderBase.layout_obj py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.layout_obj qrenderer.RenderDocFunction.layout_obj
 qrenderer.RenderDocFunction.level py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.level -
 qrenderer._render.base.__RenderBase.level py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.level qrenderer.RenderDocFunction.level
+qrenderer.RenderDocFunction.page_path py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.page_path -
+qrenderer._render.doc.__RenderDoc.page_path py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.page_path qrenderer.RenderDocFunction.page_path
 qrenderer.RenderDocFunction.render_annotation py:function 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.render_annotation -
 qrenderer._render.doc.__RenderDoc.render_annotation py:function 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.render_annotation qrenderer.RenderDocFunction.render_annotation
 qrenderer.RenderDocFunction.render_body py:function 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.render_body -
@@ -249,8 +255,8 @@ qrenderer.RenderDocFunction py:class 1 reference/RenderDocFunction.html#qrendere
 qrenderer._render.docfunction.RenderDocFunction py:class 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction qrenderer.RenderDocFunction
 qrenderer.RenderDocAttribute.body py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.body -
 qrenderer._render.base.__RenderBase.body py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.body qrenderer.RenderDocAttribute.body
-qrenderer.RenderDocAttribute.clear_page_path py:function 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.clear_page_path -
-qrenderer._render.doc.__RenderDoc.clear_page_path py:function 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.clear_page_path qrenderer.RenderDocAttribute.clear_page_path
+qrenderer.RenderDocAttribute.contained py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.contained -
+qrenderer._render.doc.__RenderDoc.contained py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.contained qrenderer.RenderDocAttribute.contained
 qrenderer.RenderDocAttribute.description py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.description -
 qrenderer._render.base.__RenderBase.description py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.description qrenderer.RenderDocAttribute.description
 qrenderer.RenderDocAttribute.format_name py:function 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.format_name -
@@ -263,6 +269,8 @@ qrenderer.RenderDocAttribute.layout_obj py:attribute 1 reference/RenderDocAttrib
 qrenderer._render.base.__RenderBase.layout_obj py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.layout_obj qrenderer.RenderDocAttribute.layout_obj
 qrenderer.RenderDocAttribute.level py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.level -
 qrenderer._render.base.__RenderBase.level py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.level qrenderer.RenderDocAttribute.level
+qrenderer.RenderDocAttribute.page_path py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.page_path -
+qrenderer._render.doc.__RenderDoc.page_path py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.page_path qrenderer.RenderDocAttribute.page_path
 qrenderer.RenderDocAttribute.render_annotation py:function 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.render_annotation -
 qrenderer._render.doc.__RenderDoc.render_annotation py:function 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.render_annotation qrenderer.RenderDocAttribute.render_annotation
 qrenderer.RenderDocAttribute.render_body py:function 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.render_body -
@@ -309,8 +317,8 @@ qrenderer.RenderDocAttribute py:class 1 reference/RenderDocAttribute.html#qrende
 qrenderer._render.docattribute.RenderDocAttribute py:class 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute qrenderer.RenderDocAttribute
 qrenderer.RenderDocModule.body py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.body -
 qrenderer._render.base.__RenderBase.body py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.body qrenderer.RenderDocModule.body
-qrenderer.RenderDocModule.clear_page_path py:function 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.clear_page_path -
-qrenderer._render.doc.__RenderDoc.clear_page_path py:function 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.clear_page_path qrenderer.RenderDocModule.clear_page_path
+qrenderer.RenderDocModule.contained py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.contained -
+qrenderer._render.doc.__RenderDoc.contained py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.contained qrenderer.RenderDocModule.contained
 qrenderer.RenderDocModule.description py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.description -
 qrenderer._render.base.__RenderBase.description py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.description qrenderer.RenderDocModule.description
 qrenderer.RenderDocModule.format_name py:function 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.format_name -
@@ -323,6 +331,8 @@ qrenderer.RenderDocModule.layout_obj py:attribute 1 reference/RenderDocModule.ht
 qrenderer._render.base.__RenderBase.layout_obj py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.layout_obj qrenderer.RenderDocModule.layout_obj
 qrenderer.RenderDocModule.level py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.level -
 qrenderer._render.base.__RenderBase.level py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.level qrenderer.RenderDocModule.level
+qrenderer.RenderDocModule.page_path py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.page_path -
+qrenderer._render.doc.__RenderDoc.page_path py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.page_path qrenderer.RenderDocModule.page_path
 qrenderer.RenderDocModule.render_annotation py:function 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.render_annotation -
 qrenderer._render.doc.__RenderDoc.render_annotation py:function 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.render_annotation qrenderer.RenderDocModule.render_annotation
 qrenderer.RenderDocModule.render_attributes py:function 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.render_attributes -
@@ -383,8 +393,8 @@ qrenderer.RenderDocModule py:class 1 reference/RenderDocModule.html#qrenderer.Re
 qrenderer._render.docmodule.RenderDocModule py:class 1 reference/RenderDocModule.html#qrenderer.RenderDocModule qrenderer.RenderDocModule
 qrenderer.RenderDocCallMixin.body py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.body -
 qrenderer._render.base.__RenderBase.body py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.body qrenderer.RenderDocCallMixin.body
-qrenderer.RenderDocCallMixin.clear_page_path py:function 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.clear_page_path -
-qrenderer._render.doc.__RenderDoc.clear_page_path py:function 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.clear_page_path qrenderer.RenderDocCallMixin.clear_page_path
+qrenderer.RenderDocCallMixin.contained py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.contained -
+qrenderer._render.doc.__RenderDoc.contained py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.contained qrenderer.RenderDocCallMixin.contained
 qrenderer.RenderDocCallMixin.description py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.description -
 qrenderer._render.base.__RenderBase.description py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.description qrenderer.RenderDocCallMixin.description
 qrenderer.RenderDocCallMixin.format_name py:function 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.format_name -
@@ -399,6 +409,8 @@ qrenderer.RenderDocCallMixin.layout_obj py:attribute 1 reference/RenderDocCallMi
 qrenderer._render.base.__RenderBase.layout_obj py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.layout_obj qrenderer.RenderDocCallMixin.layout_obj
 qrenderer.RenderDocCallMixin.level py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.level -
 qrenderer._render.base.__RenderBase.level py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.level qrenderer.RenderDocCallMixin.level
+qrenderer.RenderDocCallMixin.page_path py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.page_path -
+qrenderer._render.doc.__RenderDoc.page_path py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.page_path qrenderer.RenderDocCallMixin.page_path
 qrenderer.RenderDocCallMixin.render_annotation py:function 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.render_annotation -
 qrenderer._render.doc.__RenderDoc.render_annotation py:function 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.render_annotation qrenderer.RenderDocCallMixin.render_annotation
 qrenderer.RenderDocCallMixin.render_body py:function 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.render_body -
@@ -449,8 +461,8 @@ qrenderer.RenderDocCallMixin py:class 1 reference/RenderDocCallMixin.html#qrende
 qrenderer._render.mixin_call.RenderDocCallMixin py:class 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin qrenderer.RenderDocCallMixin
 qrenderer.RenderDocMembersMixin.body py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.body -
 qrenderer._render.base.__RenderBase.body py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.body qrenderer.RenderDocMembersMixin.body
-qrenderer.RenderDocMembersMixin.clear_page_path py:function 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.clear_page_path -
-qrenderer._render.doc.__RenderDoc.clear_page_path py:function 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.clear_page_path qrenderer.RenderDocMembersMixin.clear_page_path
+qrenderer.RenderDocMembersMixin.contained py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.contained -
+qrenderer._render.doc.__RenderDoc.contained py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.contained qrenderer.RenderDocMembersMixin.contained
 qrenderer.RenderDocMembersMixin.description py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.description -
 qrenderer._render.base.__RenderBase.description py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.description qrenderer.RenderDocMembersMixin.description
 qrenderer.RenderDocMembersMixin.format_name py:function 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.format_name -
@@ -463,6 +475,8 @@ qrenderer.RenderDocMembersMixin.layout_obj py:attribute 1 reference/RenderDocMem
 qrenderer._render.base.__RenderBase.layout_obj py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.layout_obj qrenderer.RenderDocMembersMixin.layout_obj
 qrenderer.RenderDocMembersMixin.level py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.level -
 qrenderer._render.base.__RenderBase.level py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.level qrenderer.RenderDocMembersMixin.level
+qrenderer.RenderDocMembersMixin.page_path py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.page_path -
+qrenderer._render.doc.__RenderDoc.page_path py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.page_path qrenderer.RenderDocMembersMixin.page_path
 qrenderer.RenderDocMembersMixin.render_annotation py:function 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.render_annotation -
 qrenderer._render.doc.__RenderDoc.render_annotation py:function 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.render_annotation qrenderer.RenderDocMembersMixin.render_annotation
 qrenderer.RenderDocMembersMixin.render_attributes py:function 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.render_attributes -
