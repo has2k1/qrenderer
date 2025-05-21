@@ -34,6 +34,8 @@ qrenderer._render.base.RenderBase.signature py:attribute 1 reference/RenderBase.
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderBase.html#qrenderer._render.base.RenderBase.signature qrenderer._render.base.RenderBase.signature
 qrenderer._render.base.RenderBase.summary py:attribute 1 reference/RenderBase.html#qrenderer._render.base.RenderBase.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderBase.html#qrenderer._render.base.RenderBase.summary qrenderer._render.base.RenderBase.summary
+qrenderer._render.base.RenderBase.summary_name py:attribute 1 reference/RenderBase.html#qrenderer._render.base.RenderBase.summary_name -
+qrenderer._render.base.__RenderBase.summary_name py:attribute 1 reference/RenderBase.html#qrenderer._render.base.RenderBase.summary_name qrenderer._render.base.RenderBase.summary_name
 qrenderer._render.base.RenderBase.title py:attribute 1 reference/RenderBase.html#qrenderer._render.base.RenderBase.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderBase.html#qrenderer._render.base.RenderBase.title qrenderer._render.base.RenderBase.title
 qrenderer._render.base.RenderBase py:class 1 reference/RenderBase.html#qrenderer._render.base.RenderBase -
@@ -581,6 +583,8 @@ qrenderer.RenderLayout.signature py:attribute 1 reference/RenderLayout.html#qren
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderLayout.html#qrenderer.RenderLayout.signature qrenderer.RenderLayout.signature
 qrenderer.RenderLayout.summary py:attribute 1 reference/RenderLayout.html#qrenderer.RenderLayout.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderLayout.html#qrenderer.RenderLayout.summary qrenderer.RenderLayout.summary
+qrenderer.RenderLayout.summary_name py:attribute 1 reference/RenderLayout.html#qrenderer.RenderLayout.summary_name -
+qrenderer._render.base.__RenderBase.summary_name py:attribute 1 reference/RenderLayout.html#qrenderer.RenderLayout.summary_name qrenderer.RenderLayout.summary_name
 qrenderer.RenderLayout.title py:attribute 1 reference/RenderLayout.html#qrenderer.RenderLayout.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderLayout.html#qrenderer.RenderLayout.title qrenderer.RenderLayout.title
 qrenderer.RenderLayout py:class 1 reference/RenderLayout.html#qrenderer.RenderLayout -
@@ -615,6 +619,8 @@ qrenderer.RenderPage.signature py:attribute 1 reference/RenderPage.html#qrendere
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderPage.html#qrenderer.RenderPage.signature qrenderer.RenderPage.signature
 qrenderer.RenderPage.summary py:attribute 1 reference/RenderPage.html#qrenderer.RenderPage.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderPage.html#qrenderer.RenderPage.summary qrenderer.RenderPage.summary
+qrenderer.RenderPage.summary_name py:attribute 1 reference/RenderPage.html#qrenderer.RenderPage.summary_name -
+qrenderer._render.base.__RenderBase.summary_name py:attribute 1 reference/RenderPage.html#qrenderer.RenderPage.summary_name qrenderer.RenderPage.summary_name
 qrenderer.RenderPage.title py:attribute 1 reference/RenderPage.html#qrenderer.RenderPage.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderPage.html#qrenderer.RenderPage.title qrenderer.RenderPage.title
 qrenderer.RenderPage py:class 1 reference/RenderPage.html#qrenderer.RenderPage -
@@ -645,6 +651,8 @@ qrenderer.RenderSection.signature py:attribute 1 reference/RenderSection.html#qr
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderSection.html#qrenderer.RenderSection.signature qrenderer.RenderSection.signature
 qrenderer.RenderSection.summary py:attribute 1 reference/RenderSection.html#qrenderer.RenderSection.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderSection.html#qrenderer.RenderSection.summary qrenderer.RenderSection.summary
+qrenderer.RenderSection.summary_name py:attribute 1 reference/RenderSection.html#qrenderer.RenderSection.summary_name -
+qrenderer._render.base.__RenderBase.summary_name py:attribute 1 reference/RenderSection.html#qrenderer.RenderSection.summary_name qrenderer.RenderSection.summary_name
 qrenderer.RenderSection.title py:attribute 1 reference/RenderSection.html#qrenderer.RenderSection.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderSection.html#qrenderer.RenderSection.title qrenderer.RenderSection.title
 qrenderer.RenderSection py:class 1 reference/RenderSection.html#qrenderer.RenderSection -
