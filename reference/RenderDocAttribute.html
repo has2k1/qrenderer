@@ -154,6 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#qrenderer.RenderDocAttribute.page_path" id="toc-qrenderer.RenderDocAttribute.page_path" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.page_path"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">page_path</span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.signature" id="toc-qrenderer.RenderDocAttribute.signature" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">signature</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.summary" id="toc-qrenderer.RenderDocAttribute.summary" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.summary"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">summary</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderDocAttribute.summary_name" id="toc-qrenderer.RenderDocAttribute.summary_name" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.summary_name"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">summary_name</span> <span class="doc-labels"><code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderDocAttribute.title" id="toc-qrenderer.RenderDocAttribute.title" class="nav-link" data-scroll-target="#qrenderer.RenderDocAttribute.title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">title</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   </ul></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
@@ -311,6 +312,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>The summary of the documented object</td>
 </tr>
 <tr class="even">
+<td><a href="#qrenderer.RenderDocAttribute.summary_name">summary_name</a></td>
+<td>The name of object as it will appear in the summary table</td>
+</tr>
+<tr class="odd">
 <td><a href="#qrenderer.RenderDocAttribute.title">title</a></td>
 <td>The title/header of a docstring, including any anchors</td>
 </tr>
@@ -367,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     - name: base.RenderBase
       package: qrenderer._render
     - RenderDoc</code></pre>
-<p><code>RenderBase</code> will be writtend to “<em>/base.RenderBase.qmd” and <code>RenderDoc</code> will be written to ”</em>/RenderDoc.qmd”</p>
+<p><code>RenderBase</code> will be written to “<em>/base.RenderBase.qmd” and <code>RenderDoc</code> will be written to ”</em>/RenderDoc.qmd”. By default, they will also be summarised as <code>base.RenderBase</code> and <code>RenderDoc</code>.</p>
 <p>If the object isn’t listed, e.g the class methods of <code>RenderDoc</code> this the page_path will be an empty string.</p>
 </div>
 </section>
@@ -389,6 +394,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="doc-text">
 <p>The summary of the documented object</p>
 <p>Do not override this property.</p>
+</div>
+</section>
+<section id="qrenderer.RenderDocAttribute.summary_name" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocAttribute.summary_name"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">summary_name</span> <span class="doc-labels"><code class="doc-label doc-label-property"></code></span></h3>
+<div class="doc-signature doc-attribute">
+<p><code><span class="doc-parameter-name">summary_name</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span></code></p>
+</div>
+<div class="doc-text">
+<p>The name of object as it will appear in the summary table</p>
 </div>
 </section>
 <section id="qrenderer.RenderDocAttribute.title" class="level3 title doc-object doc-attribute">

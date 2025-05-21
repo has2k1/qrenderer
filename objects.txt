@@ -97,6 +97,8 @@ qrenderer.RenderDoc.signature py:attribute 1 reference/RenderDoc.html#qrenderer.
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.signature qrenderer.RenderDoc.signature
 qrenderer.RenderDoc.summary py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.summary qrenderer.RenderDoc.summary
+qrenderer.RenderDoc.summary_name py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.summary_name -
+qrenderer._render.doc.__RenderDoc.summary_name py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.summary_name qrenderer.RenderDoc.summary_name
 qrenderer.RenderDoc.title py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderDoc.html#qrenderer.RenderDoc.title qrenderer.RenderDoc.title
 qrenderer.RenderDoc py:class 1 reference/RenderDoc.html#qrenderer.RenderDoc -
@@ -181,6 +183,8 @@ qrenderer.RenderDocClass.signature py:attribute 1 reference/RenderDocClass.html#
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.signature qrenderer.RenderDocClass.signature
 qrenderer.RenderDocClass.summary py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.summary qrenderer.RenderDocClass.summary
+qrenderer.RenderDocClass.summary_name py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.summary_name -
+qrenderer._render.doc.__RenderDoc.summary_name py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.summary_name qrenderer.RenderDocClass.summary_name
 qrenderer.RenderDocClass.title py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.title qrenderer.RenderDocClass.title
 qrenderer.RenderDocClass py:class 1 reference/RenderDocClass.html#qrenderer.RenderDocClass -
@@ -249,6 +253,8 @@ qrenderer.RenderDocFunction.signature py:attribute 1 reference/RenderDocFunction
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.signature qrenderer.RenderDocFunction.signature
 qrenderer.RenderDocFunction.summary py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.summary qrenderer.RenderDocFunction.summary
+qrenderer.RenderDocFunction.summary_name py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.summary_name -
+qrenderer._render.doc.__RenderDoc.summary_name py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.summary_name qrenderer.RenderDocFunction.summary_name
 qrenderer.RenderDocFunction.title py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction.title qrenderer.RenderDocFunction.title
 qrenderer.RenderDocFunction py:class 1 reference/RenderDocFunction.html#qrenderer.RenderDocFunction -
@@ -311,6 +317,8 @@ qrenderer.RenderDocAttribute.signature py:attribute 1 reference/RenderDocAttribu
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.signature qrenderer.RenderDocAttribute.signature
 qrenderer.RenderDocAttribute.summary py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.summary qrenderer.RenderDocAttribute.summary
+qrenderer.RenderDocAttribute.summary_name py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.summary_name -
+qrenderer._render.doc.__RenderDoc.summary_name py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.summary_name qrenderer.RenderDocAttribute.summary_name
 qrenderer.RenderDocAttribute.title py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute.title qrenderer.RenderDocAttribute.title
 qrenderer.RenderDocAttribute py:class 1 reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute -
@@ -387,6 +395,8 @@ qrenderer.RenderDocModule.signature py:attribute 1 reference/RenderDocModule.htm
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.signature qrenderer.RenderDocModule.signature
 qrenderer.RenderDocModule.summary py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.summary qrenderer.RenderDocModule.summary
+qrenderer.RenderDocModule.summary_name py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.summary_name -
+qrenderer._render.doc.__RenderDoc.summary_name py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.summary_name qrenderer.RenderDocModule.summary_name
 qrenderer.RenderDocModule.title py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderDocModule.html#qrenderer.RenderDocModule.title qrenderer.RenderDocModule.title
 qrenderer.RenderDocModule py:class 1 reference/RenderDocModule.html#qrenderer.RenderDocModule -
@@ -455,6 +465,8 @@ qrenderer.RenderDocCallMixin.signature py:attribute 1 reference/RenderDocCallMix
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.signature qrenderer.RenderDocCallMixin.signature
 qrenderer.RenderDocCallMixin.summary py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.summary qrenderer.RenderDocCallMixin.summary
+qrenderer.RenderDocCallMixin.summary_name py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.summary_name -
+qrenderer._render.doc.__RenderDoc.summary_name py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.summary_name qrenderer.RenderDocCallMixin.summary_name
 qrenderer.RenderDocCallMixin.title py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin.title qrenderer.RenderDocCallMixin.title
 qrenderer.RenderDocCallMixin py:class 1 reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin -
@@ -533,6 +545,8 @@ qrenderer.RenderDocMembersMixin.signature py:attribute 1 reference/RenderDocMemb
 qrenderer._render.base.__RenderBase.signature py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.signature qrenderer.RenderDocMembersMixin.signature
 qrenderer.RenderDocMembersMixin.summary py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.summary -
 qrenderer._render.base.__RenderBase.summary py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.summary qrenderer.RenderDocMembersMixin.summary
+qrenderer.RenderDocMembersMixin.summary_name py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.summary_name -
+qrenderer._render.doc.__RenderDoc.summary_name py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.summary_name qrenderer.RenderDocMembersMixin.summary_name
 qrenderer.RenderDocMembersMixin.title py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.title -
 qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin.title qrenderer.RenderDocMembersMixin.title
 qrenderer.RenderDocMembersMixin py:class 1 reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin -
