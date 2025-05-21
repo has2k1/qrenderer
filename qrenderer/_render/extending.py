@@ -8,9 +8,11 @@ from types import CellType, FunctionType
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from typing import Any
+    from typing import Any, TypeVar
 
     from .base import RenderBase
+
+    T = TypeVar("T")
 
 # Attributes that should not be copied when extending a base class
 EXCLUDE_ATTRIBUTES = {"__module__", "__dict__", "__weakref__", "__doc__"}
@@ -44,9 +46,11 @@ def set_class_attr(cls: type[RenderBase], name: str, value: Any):
     """
     Set class attribute
 
-    Unlike the builtin setattr, this function make sure that values that
-    are functions/methods, that use super() will work on the class on
-    which they are attached.
+    Properly handles super() in functions and properties.
+
+    Unlike the builtin setattr, this function ensures that values
+    that are functions/methods or properties that use super() will
+    work properly on the class they are attached to.
 
     Parameters
     ----------
@@ -55,17 +59,30 @@ def set_class_attr(cls: type[RenderBase], name: str, value: Any):
     name :
         Name of attribute.
     value :
-        The value to set he attribute to.
+        The value to set the attribute to.
     """
+
     # When a method uses super(), the python compiler wraps that method as
     # a closure over the __class__ in which the method is defined. If a
     # function is a closure, we rebuild it with __class__ changed to the
     # class being attached to.
-    if isinstance(value, FunctionType) and value.__closure__:
-        value = FunctionType(
-            value.__code__.replace(co_freevars=("__class__",)),
-            value.__globals__,
-            closure=(CellType(cls),),
-        )
+    def adjust_closure(obj: T) -> T:
+        """Adjust __class__ closure for a function"""
+        if isinstance(obj, FunctionType) and obj.__closure__:
+            obj = FunctionType(
+                obj.__code__.replace(co_freevars=("__class__",)),
+                obj.__globals__,
+                closure=(CellType(cls),),
+            )
+        return obj
+
+    if isinstance(value, property):
+        # Adjust all methods of a property and recreate it
+        fget = adjust_closure(value.fget)
+        fset = adjust_closure(value.fset)
+        fdel = adjust_closure(value.fdel)
+        value = property(fget=fget, fset=fset, fdel=fdel, doc=value.__doc__)
+    else:
+        value = adjust_closure(value)
 
     setattr(cls, name, value)

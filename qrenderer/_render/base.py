@@ -165,6 +165,13 @@ class __RenderBase(Block):
         Render the body of the object being documented
         """
 
+    @property
+    def summary_name(self) -> str:
+        """
+        The name of object as it will appear in the summary table
+        """
+        return ""
+
     def render_summary(self) -> list[SummaryItem]:
         """
         Return a line(s) item that summarises the object
