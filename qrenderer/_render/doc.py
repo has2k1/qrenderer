@@ -106,8 +106,23 @@ class __RenderDoc(RenderBase):
         self.obj = self.doc.obj
         """Griffe object (or alias)"""
 
-        self.page_path = f"{self.obj.name}.qmd"
-        """Name of the page where this object will be written"""
+        self.page_path = f"{self.doc.name}.qmd"
+        """
+        Name of the page where this object's rendered content
+        will be written. It should be the name of the object
+        as listed in the quartodoc yaml section. e.g
+
+        Given
+
+            sections:
+              - title: RenderClasses
+                - name: base.RenderBase
+                  package: qrenderer._render
+                - RenderDoc
+
+        `RenderBase` will be writtend to "*/base.RenderBase.qmd" and
+        `RenderDoc` will be written to "*/RenderDoc.qmd"
+        """
 
         self.show_signature = self.renderer.show_signature
 
