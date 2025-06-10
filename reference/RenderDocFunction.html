@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b929e4a7df7f2ca4a8193277307781c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a9050ab2bebed60147d11453b3541dcd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -383,12 +383,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="doc-text">
 <p>Name of the page where this object’s rendered content will be written. It should be the name of the object as listed in the quartodoc yaml section. e.g</p>
 <p>Given</p>
-<pre><code>sections:
-  - title: RenderClasses
-    - name: base.RenderBase
-      package: qrenderer._render
-    - RenderDoc</code></pre>
-<p><code>RenderBase</code> will be written to “<em>/base.RenderBase.qmd” and <code>RenderDoc</code> will be written to ”</em>/RenderDoc.qmd”. By default, they will also be summarised as <code>base.RenderBase</code> and <code>RenderDoc</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sections</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">title</span><span class="kw">:</span><span class="at"> RenderClasses</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> base.RenderBase</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">package</span><span class="kw">:</span><span class="at"> qrenderer._render</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> RenderDoc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>RenderBase</code> will be written to <code>*/base.RenderBase.qmd</code> and <code>RenderDoc</code> will be written to <code>*/RenderDoc.qmd</code>. By default, they will also be summarised as <code>base.RenderBase</code> and <code>RenderDoc</code>.</p>
 <p>If the object isn’t listed, e.g the class methods of <code>RenderDoc</code> this the page_path will be an empty string.</p>
 </div>
 </section>
@@ -405,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="qrenderer.RenderDocFunction.summary" class="level3 title doc-object doc-attribute">
 <h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderDocFunction.summary"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">summary</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></h3>
 <div class="doc-signature doc-attribute">
-<p><code><span class="doc-parameter-name">summary</span></code></p>
+<p><code><span class="doc-parameter-name">summary</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a href="../reference/typing.html#qrenderer.typing.SummaryItem">SummaryItem</a>]</span></code></p>
 </div>
 <div class="doc-text">
 <p>The summary of the documented object</p>
