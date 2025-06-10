@@ -121,9 +121,8 @@ class __RenderBase(Block):
         """
         return self.render_body()
 
-    # TODO: Finish typeing me
     @cached_property
-    def summary(self):
+    def summary(self) -> list[SummaryItem]:
         """
         The summary of the documented object
 
