@@ -107,14 +107,16 @@ class __RenderDoc(RenderBase):
 
     Given
 
-        sections:
-          - title: RenderClasses
-            - name: base.RenderBase
-              package: qrenderer._render
-            - RenderDoc
+    ```yaml
+    sections:
+      - title: RenderClasses
+        - name: base.RenderBase
+          package: qrenderer._render
+        - RenderDoc
+    ```
 
-    `RenderBase` will be written to "*/base.RenderBase.qmd" and
-    `RenderDoc` will be written to "*/RenderDoc.qmd". By default,
+    `RenderBase` will be written to `*/base.RenderBase.qmd` and
+    `RenderDoc` will be written to `*/RenderDoc.qmd`. By default,
     they will also be summarised as `base.RenderBase` and `RenderDoc`.
 
     If the object isn't listed, e.g the class methods of `RenderDoc`
