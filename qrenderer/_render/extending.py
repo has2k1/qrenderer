@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from types import CellType, FunctionType
 from functools import cached_property
+from types import CellType, FunctionType, MethodType
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -87,6 +88,10 @@ def set_class_attr(cls: type[RenderBase], name: str, value: Any):
         func = adjust_closure(value.func)
         value = cached_property(func)
         value.__set_name__(cls, name)
+    elif isinstance(value, MethodType):
+        # This is for @staticmethods
+        func = adjust_closure(value.__func__)
+        value = MethodType(func, cls)
     else:
         value = adjust_closure(value)
 
