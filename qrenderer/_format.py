@@ -260,7 +260,12 @@ def render_dataclass_init_parameter(param: gf.Parameter) -> str:
     param :
         The parameter
     """
-    annotation = cast("gf.ExprSubscript", param.annotation).slice
+    try:
+        annotation = cast("gf.ExprSubscript", param.annotation).slice
+    except AttributeError:
+        # A dataclass that also defines an __init__ may have parameters
+        # that do not have annotations.
+        return param.name
     lookup = canonical_path_lookup_table(annotation)
     interlink_func = partial(interlink_groups, lookup=lookup)
     default = f"=  {param.default}" if param.default else ""
