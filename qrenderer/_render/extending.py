@@ -5,6 +5,7 @@ Extending the rendering
 from __future__ import annotations
 
 from types import CellType, FunctionType
+from functools import cached_property
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -82,6 +83,10 @@ def set_class_attr(cls: type[RenderBase], name: str, value: Any):
         fset = adjust_closure(value.fset)
         fdel = adjust_closure(value.fdel)
         value = property(fget=fget, fset=fset, fdel=fdel, doc=value.__doc__)
+    elif isinstance(value, cached_property):
+        func = adjust_closure(value.func)
+        value = cached_property(func)
+        value.__set_name__(cls, name)
     else:
         value = adjust_closure(value)
 
