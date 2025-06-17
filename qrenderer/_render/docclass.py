@@ -48,11 +48,11 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         return "dataclass" in self.obj.labels
 
     @cached_property
-    def _attribute_members(self) -> list[layout.DocAttribute]:
+    def member_attributes(self) -> list[layout.DocAttribute]:
         """
         Override to exclude dataclass parameters
         """
-        attributes = super()._attribute_members
+        attributes = super().member_attributes
         if self.is_dataclass:
             params = {p.name for p in self.function_parameters}
             attributes = [a for a in attributes if a.name not in params]

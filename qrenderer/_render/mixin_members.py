@@ -87,15 +87,45 @@ class __RenderDocMembersMixin(RenderDoc):
         ]
 
     @cached_property
-    def _attribute_members(self) -> list[DocAttribute]:
+    def member_attributes(self) -> list[DocAttribute]:
+        """
+        Members that are attributes
+
+        For a module, this will be the objects at the top level that
+        are not classes or functions.
+        """
         return [x for x in self.doc.members if isDoc.Attribute(x)]
 
     @cached_property
-    def _class_members(self) -> list[DocClass]:
+    def member_classes(self) -> list[DocClass]:
+        """
+        Members that are classes
+
+        For a module, this will be the classes at the top level.
+        For a class, this will be the nested classes e.g. classes
+        B and C below:
+
+        ```python
+        class A:
+
+            class B:
+                pass
+
+            class C:
+                pass
+        ```
+        """
         return [x for x in self.doc.members if isDoc.Class(x)]
 
     @cached_property
-    def _function_members(self) -> list[DocFunction]:
+    def member_functions(self) -> list[DocFunction]:
+        """
+        Members that are functions
+
+        For a module, this will be functions at the top level.
+        For a class, this will be the instance methods, static methods
+        and class methods.
+        """
         return [x for x in self.doc.members if isDoc.Function(x)]
 
     def render_classes(self) -> RenderedMembersGroup | None:
@@ -146,11 +176,11 @@ class __RenderDocMembersMixin(RenderDoc):
         from . import RenderDocAttribute, RenderDocClass, RenderDocFunction
 
         if group == "classes":
-            docables, Render = self._class_members, RenderDocClass
+            docables, Render = self.member_classes, RenderDocClass
         elif group == "attributes":
-            docables, Render = self._attribute_members, RenderDocAttribute
+            docables, Render = self.member_attributes, RenderDocAttribute
         else:
-            docables, Render = self._function_members, RenderDocFunction
+            docables, Render = self.member_functions, RenderDocFunction
 
         if not docables:
             return None
