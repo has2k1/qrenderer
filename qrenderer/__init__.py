@@ -4,7 +4,11 @@ from ._render.docattribute import RenderDocAttribute
 from ._render.docclass import RenderDocClass
 from ._render.docfunction import RenderDocFunction
 from ._render.docmodule import RenderDocModule
-from ._render.extending import extend_base_class
+from ._render.extending import (
+    exclude_attributes,
+    exclude_parameters,
+    extend_base_class,
+)
 from ._render.layout import RenderLayout
 from ._render.mixin_call import RenderDocCallMixin
 from ._render.mixin_members import RenderDocMembersMixin
@@ -23,5 +27,7 @@ __all__ = (
     "RenderLayout",
     "RenderPage",
     "RenderSection",
+    "exclude_attributes",
+    "exclude_parameters",
     "extend_base_class",
 )

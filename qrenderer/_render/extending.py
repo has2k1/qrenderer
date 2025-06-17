@@ -4,20 +4,17 @@ Extending the rendering
 
 from __future__ import annotations
 
-from types import CellType, FunctionType
 from functools import cached_property
 from types import CellType, FunctionType, MethodType
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
     from typing import Any, TypeVar
 
     from .base import RenderBase
 
     T = TypeVar("T")
-
-# Attributes that should not be copied when extending a base class
-EXCLUDE_ATTRIBUTES = {"__module__", "__dict__", "__weakref__", "__doc__"}
 
 
 def extend_base_class(cls: type[RenderBase]):
@@ -38,8 +35,10 @@ def extend_base_class(cls: type[RenderBase]):
         qrenderer.RenderDocAttribute, qrenderer.RenderDocModule : Classes
         you are most likely to extend.
     """
+    # Attributes that should not be copied when extending a base class
+    exclude = {"__module__", "__dict__", "__weakref__", "__doc__"}
     base = cls.mro()[1]
-    attrs = [name for name in vars(cls) if name not in EXCLUDE_ATTRIBUTES]
+    attrs = [name for name in vars(cls) if name not in exclude]
     for name in attrs:
         set_class_attr(base, name, getattr(cls, name))
 
@@ -96,3 +95,49 @@ def set_class_attr(cls: type[RenderBase], name: str, value: Any):
         value = adjust_closure(value)
 
     setattr(cls, name, value)
+
+
+def exclude_parameters(spec: dict[str, str | Sequence[str]]):
+    """
+    Exclude the parameters of functions/class in the documentation
+
+    When a function has a deprecated parameter, we may want to exclude it from
+    the documentation. Use this function in your `_renderer.py` file to
+    specify them.
+
+    Parameters
+    ----------
+    spec :
+        Object path and the parameter(s) to exclude.
+        The object path is as shown on the API page and _not_ the
+        canonical path.
+
+    Notes
+    -----
+    When you exclude the parameter of a dataclass, it will show up in the
+    attributes unless you use [](`~qrenderer.exclude_attributes`) to remove
+    it from there as well.
+    """
+    from qrenderer._globals import EXCLUDE_PARAMETERS
+
+    EXCLUDE_PARAMETERS.update(spec)
+
+
+def exclude_attributes(spec: dict[str, str | Sequence[str]]):
+    """
+    Exclude the parameters of functions/class in the documentation
+
+    When a function has a deprecated attribute, we may want to exclude it from
+    the documentation. Use this function in your `_renderer.py` file to
+    specify them.
+
+    Parameters
+    ----------
+    spec :
+        Object path and the attribute(s) to exclude.
+        The object path is as shown on the API page and _not_ the
+        canonical path.
+    """
+    from qrenderer._globals import EXCLUDE_ATTRIBUTES
+
+    EXCLUDE_ATTRIBUTES.update(spec)

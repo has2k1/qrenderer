@@ -2,6 +2,8 @@
 Little functions that can be used in userland
 """
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import griffe as gf
@@ -17,6 +19,10 @@ from qrenderer import (
 )
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+    from quartodoc.layout import DocAttribute
+
     from qrenderer.typing import DocType
 
 

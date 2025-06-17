@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING, TypeAlias, cast
 
@@ -14,6 +15,7 @@ from quartodoc.pandoc.components import Attr
 from quartodoc.pandoc.inlines import Code
 
 from .._format import formatted_signature, pretty_code, repr_obj
+from .._globals import EXCLUDE_PARAMETERS
 from .doc import RenderDoc
 
 if TYPE_CHECKING:
@@ -46,6 +48,11 @@ class __RenderDocCallMixin(RenderDoc):
 
         self.doc = cast("DocFunction | DocClass", self.doc)  # pyright: ignore[reportUnnecessaryCast]
         self.obj = cast("gf.Function", self.obj)  # pyright: ignore[reportUnnecessaryCast]
+
+        params = EXCLUDE_PARAMETERS.get(self.obj.path, ())
+        if isinstance(params, str):
+            params = (params,)
+        self._exclude_parameters: set[str] = set(params)
 
     @RenderDoc.render_section.register  # type: ignore
     def _(self, el: DocstringSectionWithDefinitions):
@@ -89,6 +96,8 @@ class __RenderDocCallMixin(RenderDoc):
         Return the parameters of the function
         """
         obj = self.obj
+        exclude = self._exclude_parameters
+        parameters = obj.parameters
 
         if not len(obj.parameters) > 0 or not obj.parent:
             return obj.parameters
@@ -99,9 +108,14 @@ class __RenderDocCallMixin(RenderDoc):
         ) or (obj.parent.is_module and obj.is_class and param == "self")
 
         if omit_first_parameter:
-            return gf.Parameters(*list(obj.parameters)[1:])
+            parameters = gf.Parameters(*list(parameters)[1:])
 
-        return obj.parameters
+        if exclude:
+            parameters = gf.Parameters(
+                *[p for p in parameters if p.name not in exclude]
+            )
+
+        return parameters
 
     def render_signature(self):
         name = self.signature_name if self.show_signature_name else ""

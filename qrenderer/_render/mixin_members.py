@@ -14,6 +14,8 @@ from quartodoc.pandoc.blocks import (
 from quartodoc.pandoc.components import Attr
 from tabulate import tabulate
 
+from qrenderer._globals import EXCLUDE_ATTRIBUTES
+
 from .._utils import isDoc
 from .doc import RenderDoc
 
@@ -65,6 +67,11 @@ class __RenderDocMembersMixin(RenderDoc):
         self.doc = cast("DocClass | DocModule", self.doc)  # pyright: ignore[reportUnnecessaryCast]
         self.obj = cast("gf.Class | gf.Module", self.obj)  # pyright: ignore[reportUnnecessaryCast]
 
+        attrs = EXCLUDE_ATTRIBUTES.get(self.obj.path, ())
+        if isinstance(attrs, str):
+            attrs = (attrs,)
+        self._exclude_attributes: set[str] = set(attrs)
+
     def render_body(self) -> BlockContent:
         """
         Render the docstring and member docs
@@ -94,7 +101,11 @@ class __RenderDocMembersMixin(RenderDoc):
         For a module, this will be the objects at the top level that
         are not classes or functions.
         """
-        return [x for x in self.doc.members if isDoc.Attribute(x)]
+        return [
+            x
+            for x in self.doc.members
+            if isDoc.Attribute(x) and x.name not in self._exclude_attributes
+        ]
 
     @cached_property
     def member_classes(self) -> list[DocClass]:
