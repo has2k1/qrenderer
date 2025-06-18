@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – Renderer for Quartodoc</title>
+<title>exclude_attributes – Renderer for Quartodoc</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -89,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../reference/index.html" aria-current="page"> 
+    <a class="nav-link" href="../reference/index.html"> 
 <span class="menu-text">Reference</span></a>
   </li>  
 </ul>
@@ -108,110 +143,65 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#api-reference" id="toc-api-reference" class="nav-link active" data-scroll-target="#api-reference">API Reference</a>
-  <ul class="collapse">
-  <li><a href="#render-classes" id="toc-render-classes" class="nav-link" data-scroll-target="#render-classes">Render classes</a></li>
-  <li><a href="#extending-the-render-classes" id="toc-extending-the-render-classes" class="nav-link" data-scroll-target="#extending-the-render-classes">Extending the Render classes</a></li>
-  </ul></li>
+  <li><a href="#qrenderer.exclude_attributes" id="toc-qrenderer.exclude_attributes" class="nav-link active" data-scroll-target="#qrenderer.exclude_attributes"><code class="doc-symbol doc-symbol-function"></code> <span class="doc-object-name doc-function-name">qrenderer.exclude_attributes</span></a></li>
+  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">Parameters</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
 
 
 
-<section id="api-reference" class="level1 doc doc-index">
-<h1 class="doc doc-index">API Reference</h1>
-<section id="render-classes" class="level2 doc-summary">
-<h2 class="doc-summary anchored" data-anchor-id="render-classes">Render classes</h2>
-<div class="doc-summary-table">
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><a href="../reference/RenderBase.html#qrenderer._render.base.RenderBase">RenderBase</a></td>
-<td>Extend the base render class</td>
-</tr>
-<tr class="even">
-<td><a href="../reference/RenderDoc.html#qrenderer.RenderDoc">RenderDoc</a></td>
-<td>Extend Rendering of a layout.Doc</td>
-</tr>
-<tr class="odd">
-<td><a href="../reference/RenderDocClass.html#qrenderer.RenderDocClass">RenderDocClass</a></td>
-<td>Extend Rendering of a layout.DocClass object</td>
-</tr>
-<tr class="even">
-<td><a href="../reference/RenderDocFunction.html#qrenderer.RenderDocFunction">RenderDocFunction</a></td>
-<td>Extend Rendering of a layout.DocFunction object</td>
-</tr>
-<tr class="odd">
-<td><a href="../reference/RenderDocAttribute.html#qrenderer.RenderDocAttribute">RenderDocAttribute</a></td>
-<td>Extend Rendering of a layout.DocAttribute object</td>
-</tr>
-<tr class="even">
-<td><a href="../reference/RenderDocModule.html#qrenderer.RenderDocModule">RenderDocModule</a></td>
-<td>Extend Rendering of a layout.DocModule object</td>
-</tr>
-<tr class="odd">
-<td><a href="../reference/RenderDocCallMixin.html#qrenderer.RenderDocCallMixin">RenderDocCallMixin</a></td>
-<td>Extend Rendering of objects that can be called</td>
-</tr>
-<tr class="even">
-<td><a href="../reference/RenderDocMembersMixin.html#qrenderer.RenderDocMembersMixin">RenderDocMembersMixin</a></td>
-<td>Extend Rendering of objects that have members</td>
-</tr>
-<tr class="odd">
-<td><a href="../reference/RenderLayout.html#qrenderer.RenderLayout">RenderLayout</a></td>
-<td>Extend Rendering of a layout.Layout object</td>
-</tr>
-<tr class="even">
-<td><a href="../reference/RenderPage.html#qrenderer.RenderPage">RenderPage</a></td>
-<td>Extend Rendering of a layout.Page object</td>
-</tr>
-<tr class="odd">
-<td><a href="../reference/RenderSection.html#qrenderer.RenderSection">RenderSection</a></td>
-<td>Extend Rendering of a layout.Section object</td>
-</tr>
-</tbody>
-</table>
+<header id="title-block-header" class="quarto-title-block default">
+<section id="qrenderer.exclude_attributes" class="level1 title doc-object doc-function quarto-title display-7">
+<h1 class="title doc-object doc-function"><code class="doc-symbol doc-symbol-function"></code> <span class="doc-object-name doc-function-name">qrenderer.exclude_attributes</span></h1>
+</section>
+</header>
+<div class="doc-signature doc-function">
+<div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>exclude_attributes(spec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="doc-text">
+<p>Exclude the parameters of functions/class in the documentation</p>
+<p>When a function has a deprecated attribute, we may want to exclude it from the documentation. Use this function in your <code>_renderer.py</code> file to specify them.</p>
+</div>
+<section id="parameters" class="level2 doc-parameters">
+<h2 class="doc-parameters anchored" data-anchor-id="parameters">Parameters</h2>
+<div class="doc-definition-items">
+<dl>
+<dt><code><span class="doc-parameter-name">spec</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence">Sequence</a>[<a href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]]</span></code></dt>
+<dd>
+<p>Parent object path and the attribute(s) to exclude. The object path is as shown on the API page and <em>not</em> the canonical path. e.g.</p>
+</dd>
+</dl>
 </div>
 </section>
-<section id="extending-the-render-classes" class="level2 doc-summary">
-<h2 class="doc-summary anchored" data-anchor-id="extending-the-render-classes">Extending the Render classes</h2>
-<div class="doc-summary-table">
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><a href="../reference/QRenderer.html#qrenderer.QRenderer">QRenderer</a></td>
-<td>Render strings to markdown</td>
-</tr>
-<tr class="even">
-<td><a href="../reference/extend_base_class.html#qrenderer.extend_base_class">extend_base_class</a></td>
-<td>Class decorator to help extend (customise) the render classes</td>
-</tr>
-<tr class="odd">
-<td><a href="../reference/exclude_attributes.html#qrenderer.exclude_attributes">exclude_attributes</a></td>
-<td>Exclude the parameters of functions/class in the documentation</td>
-</tr>
-<tr class="even">
-<td><a href="../reference/exclude_classes.html#qrenderer.exclude_classes">exclude_classes</a></td>
-<td>Exclude the classes in a class or module from the documentation</td>
-</tr>
-<tr class="odd">
-<td><a href="../reference/exclude_functions.html#qrenderer.exclude_functions">exclude_functions</a></td>
-<td>Exclude the methods of a class or functions of a module from documentation</td>
-</tr>
-<tr class="even">
-<td><a href="../reference/exclude_parameters.html#qrenderer.exclude_parameters">exclude_parameters</a></td>
-<td>Exclude the parameters of functions/class in the documentation</td>
-</tr>
-</tbody>
-</table>
-</div>
+<section id="examples" class="level2 doc-examples">
+<h2 class="doc-examples anchored" data-anchor-id="examples">Examples</h2>
+<p>Assuming we are documenting <code>ClassA</code> and <code>ClassB</code> with the deprecated attributes marked as shown below.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ClassA:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    a: <span class="bu">int</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    b: <span class="bu">str</span> <span class="op">=</span> <span class="st">"rock"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    c: <span class="bu">bool</span> <span class="op">=</span> <span class="va">False</span>   <span class="co"># deprecated</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ClassB:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    a: <span class="bu">int</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    b: <span class="bu">str</span> <span class="op">=</span> <span class="st">"paper"</span>  <span class="co"># deprecated</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> value(<span class="va">self</span>):  <span class="co"># deprecated</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We would use this to exclude the attributes from the documentation.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qrenderer <span class="im">import</span> exclude_attributes</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>exclude_attributes({</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"package.ClassA"</span>: <span class="st">"c"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"package.ClassB"</span>: (<span class="st">"b"</span>, <span class="st">"value"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

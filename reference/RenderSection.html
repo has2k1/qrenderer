@@ -149,6 +149,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#qrenderer.RenderSection.body" id="toc-qrenderer.RenderSection.body" class="nav-link" data-scroll-target="#qrenderer.RenderSection.body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">body</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderSection.description" id="toc-qrenderer.RenderSection.description" class="nav-link" data-scroll-target="#qrenderer.RenderSection.description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">description</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
+  <li><a href="#qrenderer.RenderSection.layout_obj" id="toc-qrenderer.RenderSection.layout_obj" class="nav-link" data-scroll-target="#qrenderer.RenderSection.layout_obj"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">layout_obj</span></a></li>
+  <li><a href="#qrenderer.RenderSection.level" id="toc-qrenderer.RenderSection.level" class="nav-link" data-scroll-target="#qrenderer.RenderSection.level"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">level</span></a></li>
+  <li><a href="#qrenderer.RenderSection.renderer" id="toc-qrenderer.RenderSection.renderer" class="nav-link" data-scroll-target="#qrenderer.RenderSection.renderer"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">renderer</span></a></li>
+  <li><a href="#qrenderer.RenderSection.show_body" id="toc-qrenderer.RenderSection.show_body" class="nav-link" data-scroll-target="#qrenderer.RenderSection.show_body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_body</span></a></li>
+  <li><a href="#qrenderer.RenderSection.show_description" id="toc-qrenderer.RenderSection.show_description" class="nav-link" data-scroll-target="#qrenderer.RenderSection.show_description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_description</span></a></li>
+  <li><a href="#qrenderer.RenderSection.show_signature" id="toc-qrenderer.RenderSection.show_signature" class="nav-link" data-scroll-target="#qrenderer.RenderSection.show_signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature</span></a></li>
+  <li><a href="#qrenderer.RenderSection.show_title" id="toc-qrenderer.RenderSection.show_title" class="nav-link" data-scroll-target="#qrenderer.RenderSection.show_title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_title</span></a></li>
   <li><a href="#qrenderer.RenderSection.signature" id="toc-qrenderer.RenderSection.signature" class="nav-link" data-scroll-target="#qrenderer.RenderSection.signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">signature</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderSection.summary" id="toc-qrenderer.RenderSection.summary" class="nav-link" data-scroll-target="#qrenderer.RenderSection.summary"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">summary</span> <span class="doc-labels"><code class="doc-label doc-label-cached"></code> <code class="doc-label doc-label-property"></code></span></a></li>
   <li><a href="#qrenderer.RenderSection.summary_name" id="toc-qrenderer.RenderSection.summary_name" class="nav-link" data-scroll-target="#qrenderer.RenderSection.summary_name"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">summary_name</span> <span class="doc-labels"><code class="doc-label doc-label-property"></code></span></a></li>
@@ -244,18 +251,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>The description that the documented object</td>
 </tr>
 <tr class="odd">
+<td><a href="#qrenderer.RenderSection.layout_obj">layout_obj</a></td>
+<td>Layout object to be documented</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderSection.level">level</a></td>
+<td>The depth of the object in the documentation</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderSection.renderer">renderer</a></td>
+<td>Renderer that holds the configured values</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderSection.show_body">show_body</a></td>
+<td>Whether to show the documentation body of the object</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderSection.show_description">show_description</a></td>
+<td>Whether to show the description of the object</td>
+</tr>
+<tr class="even">
+<td><a href="#qrenderer.RenderSection.show_signature">show_signature</a></td>
+<td>Whether to show the signature</td>
+</tr>
+<tr class="odd">
+<td><a href="#qrenderer.RenderSection.show_title">show_title</a></td>
+<td>Whether to show the title of the object</td>
+</tr>
+<tr class="even">
 <td><a href="#qrenderer.RenderSection.signature">signature</a></td>
 <td>The signature of the object (if any)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderSection.summary">summary</a></td>
 <td>The summary of the documented object</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#qrenderer.RenderSection.summary_name">summary_name</a></td>
 <td>The name of object as it will appear in the summary table</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#qrenderer.RenderSection.title">title</a></td>
 <td>The title/header of a docstring, including any anchors</td>
 </tr>
@@ -279,6 +314,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="doc-text">
 <p>The description that the documented object</p>
 <p>Do not override this property.</p>
+</div>
+</section>
+<section id="qrenderer.RenderSection.layout_obj" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderSection.layout_obj"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">layout_obj</span></h3>
+<div class="doc-signature doc-attribute">
+<p><code><span class="doc-parameter-name">layout_obj</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation">layout.DocClass | layout.DocFunction | layout.DocAttribute | layout.DocModule | layout.Page | layout.Section | layout.Link | layout.Layout</span></code></p>
+</div>
+<div class="doc-text">
+<p>Layout object to be documented</p>
+</div>
+</section>
+<section id="qrenderer.RenderSection.level" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderSection.level"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">level</span></h3>
+<div class="doc-signature doc-attribute">
+<p><code><span class="doc-parameter-name">level</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">1</span></code></p>
+</div>
+<div class="doc-text">
+<p>The depth of the object in the documentation</p>
+</div>
+</section>
+<section id="qrenderer.RenderSection.renderer" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderSection.renderer"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">renderer</span></h3>
+<div class="doc-signature doc-attribute">
+<p><code><span class="doc-parameter-name">renderer</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="../reference/QRenderer.html#qrenderer.QRenderer">QRenderer</a></span></code></p>
+</div>
+<div class="doc-text">
+<p>Renderer that holds the configured values</p>
+</div>
+</section>
+<section id="qrenderer.RenderSection.show_body" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderSection.show_body"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_body</span></h3>
+<div class="doc-signature doc-attribute">
+<p><code><span class="doc-parameter-name">show_body</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">True</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the documentation body of the object</p>
+</div>
+</section>
+<section id="qrenderer.RenderSection.show_description" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderSection.show_description"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_description</span></h3>
+<div class="doc-signature doc-attribute">
+<p><code><span class="doc-parameter-name">show_description</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">True</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the description of the object</p>
+<p>This only applies to objects that have descriptions that are not considered part of the body documentation body.</p>
+<p>This attribute is not well defined and it may change in the future.</p>
+</div>
+</section>
+<section id="qrenderer.RenderSection.show_signature" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderSection.show_signature"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_signature</span></h3>
+<div class="doc-signature doc-attribute">
+<p><code><span class="doc-parameter-name">show_signature</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">True</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the signature</p>
+<p>This only applies to objects that have signatures</p>
+</div>
+</section>
+<section id="qrenderer.RenderSection.show_title" class="level3 title doc-object doc-attribute">
+<h3 class="title doc-object doc-attribute anchored" data-anchor-id="qrenderer.RenderSection.show_title"><code class="doc-symbol doc-symbol-attribute"></code> <span class="doc-object-name doc-attribute-name">show_title</span></h3>
+<div class="doc-signature doc-attribute">
+<p><code><span class="doc-parameter-name">show_title</span> <span class="doc-parameter-annotation-sep">:</span> <span class="doc-parameter-annotation"><a href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="doc-parameter-default-sep">=</span> <span class="doc-parameter-default">True</span></code></p>
+</div>
+<div class="doc-text">
+<p>Whether to show the title of the object</p>
 </div>
 </section>
 <section id="qrenderer.RenderSection.signature" class="level3 title doc-object doc-attribute">
