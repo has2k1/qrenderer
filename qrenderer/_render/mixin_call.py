@@ -14,7 +14,6 @@ from quartodoc.pandoc.components import Attr
 from quartodoc.pandoc.inlines import Code
 
 from .._format import formatted_signature, pretty_code, repr_obj
-from .._globals import EXCLUDE_PARAMETERS
 from .doc import RenderDoc
 
 if TYPE_CHECKING:
@@ -47,11 +46,6 @@ class __RenderDocCallMixin(RenderDoc):
 
         self.doc = cast("DocFunction | DocClass", self.doc)  # pyright: ignore[reportUnnecessaryCast]
         self.obj = cast("gf.Function", self.obj)  # pyright: ignore[reportUnnecessaryCast]
-
-        params = EXCLUDE_PARAMETERS.get(self.obj.path, ())
-        if isinstance(params, str):
-            params = (params,)
-        self._exclude_parameters: set[str] = set(params)
 
     @RenderDoc.render_section.register  # type: ignore
     def _(self, el: DocstringSectionWithDefinitions):
@@ -94,12 +88,18 @@ class __RenderDocCallMixin(RenderDoc):
         """
         Return the parameters of the callable
         """
+        from qrenderer._globals import EXCLUDE_PARAMETERS
+
         obj = self.obj
-        exclude = self._exclude_parameters
         parameters = obj.parameters
 
-        if not len(obj.parameters) > 0 or not obj.parent:
-            return obj.parameters
+        exclude = EXCLUDE_PARAMETERS.get(self.obj.path, ())
+        if isinstance(exclude, str):
+            exclude = (exclude,)
+        exclude = set(exclude)
+
+        if not len(parameters) > 0 or not obj.parent:
+            return parameters
 
         param = obj.parameters[0].name
         omit_first_parameter = (
