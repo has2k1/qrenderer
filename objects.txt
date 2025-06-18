@@ -106,7 +106,7 @@ qrenderer._render.base.__RenderBase.title py:attribute 1 reference/RenderDoc.htm
 qrenderer.RenderDoc py:class 1 reference/RenderDoc.html#qrenderer.RenderDoc -
 qrenderer._render.doc.RenderDoc py:class 1 reference/RenderDoc.html#qrenderer.RenderDoc qrenderer.RenderDoc
 qrenderer.RenderDocClass.attributes py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.attributes -
-qrenderer._render.mixin_members.__RenderDocMembersMixin.attributes py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.attributes qrenderer.RenderDocClass.attributes
+qrenderer._render.docclass.__RenderDocClass.attributes py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.attributes qrenderer.RenderDocClass.attributes
 qrenderer.RenderDocClass.body py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.body -
 qrenderer._render.base.__RenderBase.body py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.body qrenderer.RenderDocClass.body
 qrenderer.RenderDocClass.classes py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.classes -
@@ -129,8 +129,6 @@ qrenderer.RenderDocClass.layout_obj py:attribute 1 reference/RenderDocClass.html
 qrenderer._render.base.__RenderBase.layout_obj py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.layout_obj qrenderer.RenderDocClass.layout_obj
 qrenderer.RenderDocClass.level py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.level -
 qrenderer._render.base.__RenderBase.level py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.level qrenderer.RenderDocClass.level
-qrenderer.RenderDocClass.member_attributes py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.member_attributes -
-qrenderer._render.docclass.__RenderDocClass.member_attributes py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.member_attributes qrenderer.RenderDocClass.member_attributes
 qrenderer.RenderDocClass.page_path py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.page_path -
 qrenderer._render.doc.__RenderDoc.page_path py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.page_path qrenderer.RenderDocClass.page_path
 qrenderer.RenderDocClass.parameters py:attribute 1 reference/RenderDocClass.html#qrenderer.RenderDocClass.parameters -
