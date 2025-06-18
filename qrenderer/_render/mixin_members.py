@@ -94,7 +94,7 @@ class __RenderDocMembersMixin(RenderDoc):
         ]
 
     @cached_property
-    def member_attributes(self) -> list[DocAttribute]:
+    def attributes(self) -> list[DocAttribute]:
         """
         Members that are attributes
 
@@ -108,7 +108,7 @@ class __RenderDocMembersMixin(RenderDoc):
         ]
 
     @cached_property
-    def member_classes(self) -> list[DocClass]:
+    def classes(self) -> list[DocClass]:
         """
         Members that are classes
 
@@ -129,7 +129,7 @@ class __RenderDocMembersMixin(RenderDoc):
         return [x for x in self.doc.members if isDoc.Class(x)]
 
     @cached_property
-    def member_functions(self) -> list[DocFunction]:
+    def functions(self) -> list[DocFunction]:
         """
         Members that are functions
 
@@ -187,11 +187,11 @@ class __RenderDocMembersMixin(RenderDoc):
         from . import RenderDocAttribute, RenderDocClass, RenderDocFunction
 
         if group == "classes":
-            docables, Render = self.member_classes, RenderDocClass
+            docables, Render = self.classes, RenderDocClass
         elif group == "attributes":
-            docables, Render = self.member_attributes, RenderDocAttribute
+            docables, Render = self.attributes, RenderDocAttribute
         else:
-            docables, Render = self.member_functions, RenderDocFunction
+            docables, Render = self.functions, RenderDocFunction
 
         if not docables:
             return None

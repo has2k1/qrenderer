@@ -52,7 +52,7 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         """
         Override to exclude dataclass parameters
         """
-        attributes = super().member_attributes
+        attributes = super().attributes
         if self.is_dataclass:
             params = {p.name for p in self.function_parameters}
             attributes = [a for a in attributes if a.name not in params]
