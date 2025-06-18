@@ -67,4 +67,6 @@ quartodoc:
         - QRenderer
         - extend_base_class
         - exclude_attributes
+        - exclude_classes
+        - exclude_functions
         - exclude_parameters

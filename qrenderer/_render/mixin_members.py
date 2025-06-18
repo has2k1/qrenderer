@@ -14,7 +14,6 @@ from quartodoc.pandoc.blocks import (
 from quartodoc.pandoc.components import Attr
 from tabulate import tabulate
 
-
 from .._utils import isDoc
 from .doc import RenderDoc
 
@@ -65,7 +64,6 @@ class __RenderDocMembersMixin(RenderDoc):
         super().__post_init__()
         self.doc = cast("DocClass | DocModule", self.doc)  # pyright: ignore[reportUnnecessaryCast]
         self.obj = cast("gf.Class | gf.Module", self.obj)  # pyright: ignore[reportUnnecessaryCast]
-
 
     def render_body(self) -> BlockContent:
         """
@@ -128,7 +126,18 @@ class __RenderDocMembersMixin(RenderDoc):
                 pass
         ```
         """
-        return [x for x in self.doc.members if isDoc.Class(x)]
+        from qrenderer._globals import EXCLUDE_CLASSES
+
+        exclude = EXCLUDE_CLASSES.get(self.obj.path, ())
+        if isinstance(exclude, str):
+            exclude = (exclude,)
+        exclude = set(exclude)
+
+        return [
+            x
+            for x in self.doc.members
+            if isDoc.Class(x) and x.name not in exclude
+        ]
 
     @cached_property
     def functions(self) -> list[DocFunction]:
@@ -139,7 +148,18 @@ class __RenderDocMembersMixin(RenderDoc):
         For a class, this will be the instance methods, static methods
         and class methods.
         """
-        return [x for x in self.doc.members if isDoc.Function(x)]
+        from qrenderer._globals import EXCLUDE_FUNCTIONS
+
+        exclude = EXCLUDE_FUNCTIONS.get(self.obj.path, ())
+        if isinstance(exclude, str):
+            exclude = (exclude,)
+        exclude = set(exclude)
+
+        return [
+            x
+            for x in self.doc.members
+            if isDoc.Function(x) and x.name not in exclude
+        ]
 
     def render_classes(self) -> RenderedMembersGroup | None:
         """

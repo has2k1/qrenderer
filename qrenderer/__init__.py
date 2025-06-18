@@ -6,6 +6,8 @@ from ._render.docfunction import RenderDocFunction
 from ._render.docmodule import RenderDocModule
 from ._render.extending import (
     exclude_attributes,
+    exclude_classes,
+    exclude_functions,
     exclude_parameters,
     extend_base_class,
 )
@@ -28,6 +30,8 @@ __all__ = (
     "RenderPage",
     "RenderSection",
     "exclude_attributes",
+    "exclude_classes",
+    "exclude_functions",
     "exclude_parameters",
     "extend_base_class",
 )

@@ -204,3 +204,92 @@ def exclude_attributes(spec: dict[str, str | Sequence[str]]):
     from qrenderer._globals import EXCLUDE_ATTRIBUTES
 
     EXCLUDE_ATTRIBUTES.update(spec)
+
+
+def exclude_functions(spec: dict[str, str | Sequence[str]]):
+    """
+    Exclude the methods of a class or functions of a module from documentation
+
+    When a class has deprecated method(s) or a module has deprecated
+    function(s), we may want to exclude them from the documentation.
+    Use this function in your `_renderer.py` file to specify them.
+
+    Parameters
+    ----------
+    spec :
+        Parent object path and the function(s) to exclude.
+        The object path is as shown on the API page and _not_ the
+        canonical path. e.g.
+
+    Examples
+    --------
+    If we are documenting `ClassA` with the deprecated methods marked as
+    shown below.
+
+    ```python
+    class ClassA:
+        def func_a(self):  # deprecated
+            return "a"
+
+        def func_b(self):
+            return "b"
+    ```
+
+    We would use this to exclude the functions from being listed in the
+    documentation.
+
+    ```python
+    from qrenderer import exclude_functions
+
+    exclude_functions({
+        "package.ClassA": "func_a",
+    })
+    ```
+    """
+    from qrenderer._globals import EXCLUDE_FUNCTIONS
+
+    EXCLUDE_FUNCTIONS.update(spec)
+
+
+def exclude_classes(spec: dict[str, str | Sequence[str]]):
+    """
+    Exclude the classes in a class or module from the documentation
+
+    When a class or module has deprecated classes or a module has
+    deprecated classes, we may want to exclude them from the
+    documentation. Use this function in your `_renderer.py` file
+    to specify them.
+
+    Parameters
+    ----------
+    spec :
+        Parent object path and the class(es) to exclude.
+        The object path is as shown on the API page and _not_ the
+        canonical path. e.g.
+
+    Examples
+    --------
+    Assuming we are documenting `ClassA` with the deprecated
+    contained class marked as shown below.
+
+    ```python
+    class ClassA:
+        class Contained1:  # deprecated
+            pass
+        class Contained2:
+            pass
+    ```
+
+    We would use this to exclude the class from the documentation.
+
+    ```python
+    from qrenderer import exclude_classes
+
+    exclude_classes({
+        "package.ClassA": "Contained1",
+    })
+    ```
+    """
+    from qrenderer._globals import EXCLUDE_CLASSES
+
+    EXCLUDE_CLASSES.update(spec)
