@@ -112,6 +112,38 @@ def exclude_parameters(spec: dict[str, str | Sequence[str]]):
         The object path is as shown on the API page and _not_ the
         canonical path.
 
+
+    Examples
+    --------
+    Assuming we are documenting `package` and we want to modify these
+    signatures where some parameters are deprecated:
+
+    ```python
+    ClassA(p1, p2)          # deprecated: p1
+    ClassB(p1, p2, p3, p4)  # deprecated: p1, p2
+    nice_function(a, b, c)  # deprecated: c
+    ```
+
+    We would use
+
+    ```python
+    from qrenderer import exclude_parameters
+
+    exclude_parameters({
+        "package.ClassA": "p1",
+        "package.ClassB": ("p1", "p2")
+        "package.nice_function": "c"
+    })
+    ```
+
+    and the documentation would have:
+
+    ```python
+    ClassA(p2)
+    ClassB(p3, p4)
+    nice_function(a, b)
+    ```
+
     Notes
     -----
     When you exclude the parameter of a dataclass, it will show up in the
@@ -134,9 +166,40 @@ def exclude_attributes(spec: dict[str, str | Sequence[str]]):
     Parameters
     ----------
     spec :
-        Object path and the attribute(s) to exclude.
+        Parent object path and the attribute(s) to exclude.
         The object path is as shown on the API page and _not_ the
-        canonical path.
+        canonical path. e.g.
+
+    Examples
+    --------
+    Assuming we are documenting `ClassA` and `ClassB` with the deprecated
+    attributes marked as shown below.
+
+    ```python
+    class ClassA:
+        a: int = 1
+        b: str = "rock"
+        c: bool = False   # deprecated
+
+    class ClassB:
+        a: int = 1
+        b: str = "paper"  # deprecated
+
+        @property
+        def value(self):  # deprecated
+            return 1
+    ```
+
+    We would use this to exclude the attributes from the documentation.
+
+    ```python
+    from qrenderer import exclude_attributes
+
+    exclude_attributes({
+        "package.ClassA": "c",
+        "package.ClassB": ("b", "value")
+    })
+    ```
     """
     from qrenderer._globals import EXCLUDE_ATTRIBUTES
 
