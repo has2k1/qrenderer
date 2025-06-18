@@ -54,7 +54,7 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         """
         attributes = super().attributes
         if self.is_dataclass:
-            params = {p.name for p in self.function_parameters}
+            params = {p.name for p in self.parameters}
             attributes = [a for a in attributes if a.name not in params]
         return attributes
 
@@ -67,7 +67,7 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         if (
             not self.is_dataclass
             or "parameters" in set(section_kinds)
-            or not len(self.function_parameters)
+            or not len(self.parameters)
         ):
             return sections, section_kinds
 
@@ -91,7 +91,7 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         Create a "Parameter Attributes" section
         """
         items: list[DefinitionItem] = []
-        for p in self.function_parameters:
+        for p in self.parameters:
             if p.name not in self.obj.attributes or p.annotation is None:
                 continue
             desc = (p.docstring and p.docstring.value) or ""
@@ -120,7 +120,7 @@ class __RenderDocClass(RenderDocMembersMixin, RenderDocCallMixin, RenderDoc):
         Create an "Init Parameters" section
         """
         items: list[DefinitionItem] = []
-        for p in self.function_parameters:
+        for p in self.parameters:
             if p.name in self.obj.attributes:
                 continue
             desc = (p.docstring and p.docstring.value) or ""

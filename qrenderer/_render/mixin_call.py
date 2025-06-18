@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from functools import cached_property
 from typing import TYPE_CHECKING, TypeAlias, cast
 
@@ -91,9 +90,9 @@ class __RenderDocCallMixin(RenderDoc):
         )
 
     @cached_property
-    def function_parameters(self) -> gf.Parameters:
+    def parameters(self) -> gf.Parameters:
         """
-        Return the parameters of the function
+        Return the parameters of the callable
         """
         obj = self.obj
         exclude = self._exclude_parameters
@@ -138,7 +137,7 @@ class __RenderDocCallMixin(RenderDoc):
             str(gf.ParameterKind.positional_or_keyword),
         )
 
-        for parameter in self.function_parameters:
+        for parameter in self.parameters:
             state = state[cur], str(parameter.kind)
             append_transition_token = state[prev] != state[cur] and state[
                 prev
