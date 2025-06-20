@@ -156,6 +156,11 @@ section.doc-methods > section.doc-method {
 }
 
 // sidebar
+.sidebar nav li > a > code {
+   color: $code-color;
+   background-color: $gray-100;
+   padding: 0.075rem 0.075rem;
+}
 
 .sidebar code.doc-symbol {
    @extend .px-1;
