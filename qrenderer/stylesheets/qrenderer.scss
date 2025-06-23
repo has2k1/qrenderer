@@ -151,7 +151,7 @@ section.doc-methods > section.doc-method {
 // Give all the tables on the index page the same with.
 // It looks better, but as table cells do not respond to
 // min-width styling, this is not a perfect solution.
-.doc-index .doc-summary-table td:first-child{
+.doc-summary-table td:first-child{
    width: 30%;
 }
 
