@@ -11,6 +11,8 @@ from quartodoc.pandoc.blocks import (
     Blocks,
 )
 
+from .extending import extend_base_class
+
 if TYPE_CHECKING:
     from quartodoc import layout
 
@@ -185,3 +187,25 @@ class RenderBase(__RenderBase):
     This class is meant for internal use. Users should not have
     to extend it.
     """
+
+    def __init_subclass__(cls) -> None:
+        super().__init_subclass__()
+
+        # We want users to extend the rendering by subclassing a Render*
+        # class and overriding methods and/or attributes as necessary.
+        #
+        # This hook customises how user-defined Render subclasses behave.
+        #
+        # The package defines a set of empty base classes—extension points,
+        # which contain no methods or attributes by default. Users are
+        # encouraged to subclass a provided Render class and override these
+        # extension points with their own methods and attributes.
+        #
+        # Internally, we also subclass these empty base classes. This ensures
+        # that any user-defined overrides "fill in" the base and are used
+        # throughout the package.
+        #
+        # The "filling in" should only happen when extending the Render*
+        # classes outside the package.
+        if cls.__module__[:10] != "qrenderer.":
+            extend_base_class(cls)

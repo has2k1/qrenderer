@@ -65,7 +65,6 @@ quartodoc:
     - title: Extending the Render classes
       contents:
         - QRenderer
-        - extend_base_class
         - exclude_attributes
         - exclude_classes
         - exclude_functions

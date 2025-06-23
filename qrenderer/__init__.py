@@ -9,7 +9,6 @@ from ._render.extending import (
     exclude_classes,
     exclude_functions,
     exclude_parameters,
-    extend_base_class,
 )
 from ._render.layout import RenderLayout
 from ._render.mixin_call import RenderDocCallMixin
@@ -33,5 +32,4 @@ __all__ = (
     "exclude_classes",
     "exclude_functions",
     "exclude_parameters",
-    "extend_base_class",
 )

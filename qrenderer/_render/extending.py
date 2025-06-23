@@ -19,12 +19,15 @@ if TYPE_CHECKING:
 
 def extend_base_class(cls: type[RenderBase]):
     """
-    Class decorator to help extend (customise) the render classes
+    Copy methods & attributes defined in cls into it's immediate base class
+
+    This helps with customising the Render classes
 
     Parameters
     ----------
     cls :
-        Class (Base class) being extended (sub-classed).
+        Class defined by the user that is subclassing an extension
+        point (empty base class).
 
     See Also
     --------
