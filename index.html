@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1a9f21bea9f0fff8aa0384f92cceb5cc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2d7766b33712546f9e46b15b1c104229.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -180,7 +180,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="how-to-extend-quartodoc-with-qrenderer">How to extend quartodoc with qrenderer</h2>
 <ol type="1">
 <li><p>Import <a href="./reference/QRenderer.html#qrenderer.QRenderer"><code>QRenderer</code></a> which is the bridge between this renderer and quartodoc’s current rendering system.</p></li>
-<li><p>Import the decorator <a href="./reference/extend_base_class.html#qrenderer.extend_base_class"><code>extend_base_class</code></a> that make makes it possible to modify the classes that you extend.</p></li>
 <li><p>Import any Render classes that you want to extend. The options are:</p>
 <ul>
 <li><p><a href="./reference/RenderDoc.html#qrenderer.RenderDoc"><code>RenderDoc</code></a> to extend the common parts to <code>classes</code>, <code>functions</code>, <code>attributes</code> and <code>modules</code>.</p></li>
@@ -213,17 +212,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Keeping the original signature of a class, we add a line of text below it.</p>
 <p><strong>_renderer.py</strong></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> quartodoc.pandoc.blocks <span class="im">import</span> Blocks</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qrenderer <span class="im">import</span> QRenderer, extend_base_class, RenderDocClass</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qrenderer <span class="im">import</span> QRenderer, RenderDocClass</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Renderer(QRenderer):</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">@extend_base_class</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> _RenderDocClass(RenderDocClass):</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> render_signature(<span class="va">self</span>):</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        sig <span class="op">=</span> <span class="bu">super</span>().render_signature()</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> Blocks([sig, <span class="st">"Line below the class signature"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> _RenderDocClass(RenderDocClass):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> render_signature(<span class="va">self</span>):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        sig <span class="op">=</span> <span class="bu">super</span>().render_signature()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> Blocks([sig, <span class="st">"Line below the class signature"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then your minimal configuration file should contain</p>
 <p><strong>_quarto.yml</strong></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>

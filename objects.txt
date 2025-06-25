@@ -681,8 +681,6 @@ qrenderer.QRenderer.summarize py:function 1 reference/QRenderer.html#qrenderer.Q
 qrenderer._qrenderer.QRenderer.summarize py:function 1 reference/QRenderer.html#qrenderer.QRenderer.summarize qrenderer.QRenderer.summarize
 qrenderer.QRenderer py:class 1 reference/QRenderer.html#qrenderer.QRenderer -
 qrenderer._qrenderer.QRenderer py:class 1 reference/QRenderer.html#qrenderer.QRenderer qrenderer.QRenderer
-qrenderer.extend_base_class py:function 1 reference/extend_base_class.html#qrenderer.extend_base_class -
-qrenderer._render.extending.extend_base_class py:function 1 reference/extend_base_class.html#qrenderer.extend_base_class qrenderer.extend_base_class
 qrenderer.exclude_attributes py:function 1 reference/exclude_attributes.html#qrenderer.exclude_attributes -
 qrenderer._render.extending.exclude_attributes py:function 1 reference/exclude_attributes.html#qrenderer.exclude_attributes qrenderer.exclude_attributes
 qrenderer.exclude_classes py:function 1 reference/exclude_classes.html#qrenderer.exclude_classes -
