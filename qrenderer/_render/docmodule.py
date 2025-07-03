@@ -12,6 +12,7 @@ from .mixin_members import RenderDocMembersMixin
 if TYPE_CHECKING:
     import griffe as gf
     from quartodoc import layout
+    from quartodoc.pandoc.blocks import BlockContent
 
 
 class __RenderDocModule(RenderDocMembersMixin, RenderDoc):
@@ -28,7 +29,7 @@ class __RenderDocModule(RenderDocMembersMixin, RenderDoc):
 
     # TODO: Verify that this is really required.
     # Why isn't the header/title enough?
-    def render_signature(self):
+    def render_signature(self) -> BlockContent:
         if not self.signature_name:
             return None
         return Div(

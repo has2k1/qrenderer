@@ -337,7 +337,7 @@ class __RenderDoc(RenderBase):
             )
         return Inlines(lst)
 
-    def render_title(self) -> Header:
+    def render_title(self) -> BlockContent:
         """
         Render the header of a docstring, including any anchors
         """

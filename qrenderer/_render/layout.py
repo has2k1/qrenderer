@@ -10,6 +10,7 @@ from .base import RenderBase
 
 if TYPE_CHECKING:
     from quartodoc.layout import Layout
+    from quartodoc.pandoc.blocks import BlockContent
 
 
 class __RenderLayout(RenderBase):
@@ -32,7 +33,7 @@ class __RenderLayout(RenderBase):
 
         self.options = self.layout.options
 
-    def render_title(self):
+    def render_title(self) -> BlockContent:
         """
         The title page
         """
@@ -41,7 +42,7 @@ class __RenderLayout(RenderBase):
         # We need to know title of the page. It is not passed
         # to the renderer.
 
-    def render_body(self):
+    def render_body(self) -> BlockContent:
         from . import get_render_type
 
         render_objs = [

@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, cast
 
 from quartodoc.pandoc.blocks import (
+    BlockContent,
     Div,
     Header,
 )
@@ -28,7 +29,7 @@ class __RenderSection(RenderBase):
         self.section = cast("Section", self.layout_obj)
         """Section of the reference page"""
 
-    def render_title(self):
+    def render_title(self) -> BlockContent:
         section = self.section
         if section.title:
             return Header(
@@ -43,10 +44,10 @@ class __RenderSection(RenderBase):
                 Attr(classes=["doc-summary-subgroup"]),
             )
 
-    def render_description(self):
+    def render_description(self) -> BlockContent:
         return self.section.desc
 
-    def render_body(self):
+    def render_body(self) -> BlockContent:
         if not self.section.contents:
             return
 

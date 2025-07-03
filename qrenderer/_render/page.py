@@ -5,7 +5,6 @@ from functools import cached_property
 from typing import TYPE_CHECKING, cast
 
 from quartodoc.pandoc.blocks import (
-    Block,
     BlockContent,
     Blocks,
     Div,
@@ -57,7 +56,7 @@ class __RenderPage(RenderBase):
         ]
         return render_objs
 
-    def render_title(self) -> Block:
+    def render_title(self) -> BlockContent:
         """
         Render the title/header of a docstring, including any anchors
         """

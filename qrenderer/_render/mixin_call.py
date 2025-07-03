@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING, TypeAlias, cast
 
 import griffe as gf
 from quartodoc.pandoc.blocks import (
+    BlockContent,
     CodeBlock,
     DefinitionItem,
     DefinitionList,
@@ -116,7 +117,7 @@ class __RenderDocCallMixin(RenderDoc):
 
         return parameters
 
-    def render_signature(self):
+    def render_signature(self) -> BlockContent:
         name = self.signature_name if self.show_signature_name else ""
         sig = formatted_signature(name, self.render_signature_parameters())
         return Div(

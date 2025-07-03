@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from quartodoc.pandoc.blocks import Block, Div
+from quartodoc.pandoc.blocks import Div
 from quartodoc.pandoc.components import Attr
 from quartodoc.pandoc.inlines import Code
 
@@ -13,6 +13,7 @@ from .doc import RenderDoc
 if TYPE_CHECKING:
     import griffe as gf
     from quartodoc import layout
+    from quartodoc.pandoc.blocks import BlockContent
 
 
 @dataclass
@@ -30,7 +31,7 @@ class __RenderDocAttribute(RenderDoc):
         self.doc: layout.DocAttribute = self.doc
         self.obj: gf.Attribute = self.obj
 
-    def render_signature(self) -> Block:
+    def render_signature(self) -> BlockContent:
         if self.kind in ("type", "typevar"):
             return self.render_type_signature()
 
@@ -48,7 +49,7 @@ class __RenderDocAttribute(RenderDoc):
             Attr(classes=["doc-signature", f"doc-{self.kind}"]),
         )
 
-    def render_type_signature(self) -> Block:
+    def render_type_signature(self) -> BlockContent:
         """
         The signature of a TypeAlias
         """
