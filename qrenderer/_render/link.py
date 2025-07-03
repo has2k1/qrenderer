@@ -13,7 +13,11 @@ from .._pandoc.inlines import InterLink
 from .base import RenderBase
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
     from quartodoc.layout import Link
+
+    from qrenderer.typing import SummaryItem
 
 
 class __RenderLink(RenderBase):
@@ -39,7 +43,7 @@ class __RenderLink(RenderBase):
             )
         )
 
-    def render_summary(self):
+    def render_summary(self) -> Sequence[SummaryItem]:
         link = InterLink(None, markdown_escape(self.link.name))
         return [(str(link), self._describe_object(self.obj))]
 

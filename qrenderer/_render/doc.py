@@ -35,7 +35,12 @@ if TYPE_CHECKING:
     from quartodoc.pandoc.blocks import DefinitionItem
     from quartodoc.pandoc.inlines import InlineContentItem
 
-    from ..typing import Annotation, DisplayNameFormat, DocObjectKind
+    from ..typing import (
+        Annotation,
+        DisplayNameFormat,
+        DocObjectKind,
+        SummaryItem,
+    )
 
 
 @dataclass
@@ -482,7 +487,7 @@ class __RenderDoc(RenderBase):
         """
         return self.doc.name
 
-    def render_summary(self):
+    def render_summary(self) -> Sequence[SummaryItem]:
         """
         Return a line item that summarises the object
         """

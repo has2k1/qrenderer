@@ -15,6 +15,7 @@ from quartodoc.layout import (
     Page,
     Section,
 )
+from quartodoc.pandoc.blocks import InlineContent
 
 from qrenderer import (
     RenderDoc,
@@ -82,4 +83,4 @@ DocType: TypeAlias = DocClass | DocFunction | DocAttribute | DocModule
 
 DocMemberType: TypeAlias = MemberPage | Doc | Link
 
-SummaryItem: TypeAlias = tuple[str, str]
+SummaryItem: TypeAlias = tuple[InlineContent, InlineContent]

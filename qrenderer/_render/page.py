@@ -19,10 +19,12 @@ from .._pandoc.blocks import RawHTMLBlockTag
 from .base import RenderBase
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
     from quartodoc.layout import Page
 
     from qrenderer import RenderDoc
-    from qrenderer.typing import RenderObjType
+    from qrenderer.typing import RenderObjType, SummaryItem
 
 
 class __RenderPage(RenderBase):
@@ -92,7 +94,7 @@ class __RenderPage(RenderBase):
         """
         return Blocks(self.render_objs)
 
-    def render_summary(self) -> list[tuple[str, str]]:
+    def render_summary(self) -> Sequence[SummaryItem]:
         page = self.page
         if page.summary is not None:
             link = Link(markdown_escape(page.summary.name), f"{page.path}.qmd")

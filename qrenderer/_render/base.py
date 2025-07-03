@@ -14,6 +14,8 @@ from quartodoc.pandoc.blocks import (
 from .extending import extend_base_class
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
     from quartodoc import layout
 
     from .. import QRenderer
@@ -124,7 +126,7 @@ class __RenderBase(Block):
         return self.render_body()
 
     @cached_property
-    def summary(self) -> list[SummaryItem]:
+    def summary(self) -> Sequence[SummaryItem]:
         """
         The summary of the documented object
 
@@ -173,7 +175,7 @@ class __RenderBase(Block):
         """
         return ""
 
-    def render_summary(self) -> list[SummaryItem]:
+    def render_summary(self) -> Sequence[SummaryItem]:
         """
         Return a line(s) item that summarises the object
         """
