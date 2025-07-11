@@ -95,15 +95,18 @@ section.doc-methods > section.doc-method {
 }
 
 // docstring definition-items
+.doc-text dl > dt,
 .doc-definition-items dt,
 .doc-see-also > dl > dt {
    font-weight: normal;
 }
 
+.doc-text dl > dt,
 .doc-definition-items > dl > dt:not(:first-child) {
    @extend .mt-3;
 }
 
+.doc-text dl > dd,
 .doc-definition-items > dl > dd,
 .doc-see-also > dl > dd {
    @extend .mt-1;
@@ -131,6 +134,13 @@ section.doc-methods > section.doc-method {
 .doc-signature > p > code {
    @extend .p-2;
    display: block;
+   font-weight: normal;
+   color: var(--quarto-hl-ot-color);
+   background-color: $signature-background-color;
+}
+
+.doc-text dt code {
+   @extend .p-1;
    font-weight: normal;
    color: var(--quarto-hl-ot-color);
    background-color: $signature-background-color;
