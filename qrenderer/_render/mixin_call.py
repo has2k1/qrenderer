@@ -74,9 +74,14 @@ class __RenderDocCallMixin(RenderDoc):
                 else None
             )
 
-            # *args & **kwargs should not have a default value
-            if self._is_var_keyword_or_positional_parameter(el):
-                default = None
+            # Parameter of kind *args or **kwargs have not default values
+            if isinstance(el, gf.DocstringParameter):
+                kind = self._parameter_kinds.get(el.name.strip("*"), None)
+                if kind in (
+                    gf.ParameterKind.var_keyword,
+                    gf.ParameterKind.var_positional,
+                ):
+                    default = None
 
             term = str(
                 self.render_variable_definition(name, annotation, default)
@@ -93,21 +98,6 @@ class __RenderDocCallMixin(RenderDoc):
             DefinitionList(items),
             Attr(classes=["doc-definition-items"]),
         )
-
-    def _is_var_keyword_or_positional_parameter(
-        self,
-        el: DocstringDefinitionType,
-    ) -> bool:
-        """
-        Return True if the definition item is of *args or **kwargs kind
-        """
-        if isinstance(el, gf.DocstringParameter):
-            kind = self._parameter_kinds.get(el.name.strip("*"), None)
-            return kind in (
-                gf.ParameterKind.var_keyword,
-                gf.ParameterKind.var_positional,
-            )
-        return False
 
     @cached_property
     def parameters(self) -> gf.Parameters:
