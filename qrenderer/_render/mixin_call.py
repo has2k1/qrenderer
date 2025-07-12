@@ -102,7 +102,7 @@ class __RenderDocCallMixin(RenderDoc):
         Return True if the definition item is of *args or **kwargs kind
         """
         if isinstance(el, gf.DocstringParameter):
-            kind = self._parameter_kinds[el.name.strip("*")]
+            kind = self._parameter_kinds.get(el.name.strip("*"), None)
             return kind in (
                 gf.ParameterKind.var_keyword,
                 gf.ParameterKind.var_positional,
