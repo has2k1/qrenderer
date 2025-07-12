@@ -48,6 +48,11 @@ class __RenderDocCallMixin(RenderDoc):
         self.doc = cast("DocFunction | DocClass", self.doc)  # pyright: ignore[reportUnnecessaryCast]
         self.obj = cast("gf.Function", self.obj)  # pyright: ignore[reportUnnecessaryCast]
 
+        # Lookup for the parameter kind by name
+        # gf.DocstringParameter does not have the parameter kind but the
+        # rendering needs it.
+        self._parameter_kinds = {p.name: p.kind for p in self.parameters}
+
     @RenderDoc.render_section.register  # type: ignore
     def _(self, el: DocstringSectionWithDefinitions):
         """
@@ -68,6 +73,11 @@ class __RenderDocCallMixin(RenderDoc):
                 if el.annotation
                 else None
             )
+
+            # *args & **kwargs should not have a default value
+            if self._is_var_keyword_or_positional_parameter(el):
+                default = None
+
             term = str(
                 self.render_variable_definition(name, annotation, default)
             )
@@ -83,6 +93,21 @@ class __RenderDocCallMixin(RenderDoc):
             DefinitionList(items),
             Attr(classes=["doc-definition-items"]),
         )
+
+    def _is_var_keyword_or_positional_parameter(
+        self,
+        el: DocstringDefinitionType,
+    ) -> bool:
+        """
+        Return True if the definition item is of *args or **kwargs kind
+        """
+        if isinstance(el, gf.DocstringParameter):
+            kind = self._parameter_kinds[el.name.strip("*")]
+            return kind in (
+                gf.ParameterKind.var_keyword,
+                gf.ParameterKind.var_positional,
+            )
+        return False
 
     @cached_property
     def parameters(self) -> gf.Parameters:
@@ -163,9 +188,9 @@ class __RenderDocCallMixin(RenderDoc):
 
         """
         default = None
-        if str(el.kind) == gf.ParameterKind.var_keyword:
+        if el.kind == gf.ParameterKind.var_keyword:
             name = f"**{el.name}"
-        elif str(el.kind) == gf.ParameterKind.var_positional:
+        elif el.kind == gf.ParameterKind.var_positional:
             name = f"*{el.name}"
         else:
             name = el.name

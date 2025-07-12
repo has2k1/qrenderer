@@ -19,6 +19,8 @@ from qrenderer import (
 )
 
 if TYPE_CHECKING:
+    from types import MethodType
+
     from qrenderer.typing import DocType
 
 
@@ -28,7 +30,7 @@ __all__ = (
 )
 
 
-def _canonical_path(klass: type) -> str:
+def _canonical_path(klass: type | MethodType) -> str:
     """
     Return the canonical path to python type object
     """
@@ -74,12 +76,14 @@ def render_code_variable(code: str, name: str | None = None) -> str:
 
     If name is None, return code rendered as a module
     """
-    with gf.temporary_visited_package("package", {"__init__.py": code}) as m:
+    with gf.temporary_visited_package(
+        "package", {"__init__.py": code}, docstring_parser="numpy"
+    ) as m:
         obj = m[name] if name else m
     return _render(obj)
 
 
-def render_type_object(path: str | type) -> str:
+def render_type_object(path: str | type | MethodType) -> str:
     """
     Render python object to qmd
 
